@@ -1,0 +1,107 @@
+@import "../home/home.component.scss";
+
+.page-container-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+table{
+    position: sticky;
+    padding: 0;
+    
+    background-color: rgb(108, 109, 101);
+    border-radius: 12px;
+}
+
+ #fitness-content {
+    flex-direction: column;
+    border-radius: 12px;
+    background: #efefef;
+    box-shadow: 4px 4px 5px 4px rgba(0,0,0,0.25);
+    
+}
+#fitness-header {
+    background: rgb(121, 121, 131);
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    border-radius: 12px 12px 0px 0px;
+}
+
+#fitness-header .close-fitness {
+    font-size: 50px;
+    float: right;
+    background-color: rgb(184, 137, 129);
+    padding: 10px;
+    margin-top: 0;
+    border-radius: 2px;
+}
+#fitness-header .close-fitness:hover {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: rgb(119, 11, 11);
+    
+}
+
+#fitness-footer {
+    background:  rgb(72, 106, 81);
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    border-radius: 0px 0px 12px 12px;
+}
+#fitness-body {
+    padding: 10px 10px;
+
+}
+
+#fitness-body h3{
+    color:  rgb(121, 121, 131);
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+} 
+
+.form-group label {
+    display:block;
+    margin-top: 5px;
+    font-size: 18px;
+}
+.form-group input, textarea, select {
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+
+}
+input[type='submit'] {
+    font-size: 20px;
+    margin-top: 20px;
+    background-color: rgb(146, 184, 129);
+    border:none;
+    padding:12px;
+    border-radius: 12px;
+    color: white;
+
+}
+input[type='submit']:hover {
+    background: rgb(136, 227, 94);;
+}
+
+.btn{
+    color: blueviolet;
+    &:hover{
+      background-color: antiquewhite;
+    }
+    &:selection{
+      color: azure;
+    }
+  }
+
