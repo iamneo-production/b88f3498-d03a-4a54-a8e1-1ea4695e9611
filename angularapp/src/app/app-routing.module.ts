@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { WorkoutplanComponent } from './workoutplan/workoutplan.component';
-import { GoalsettingComponent} from './goalsetting/goalsetting.component';
-import { RecommendationsComponent } from './recommendations/recommendations.component';
-import { WorkouthistoryComponent } from './workouthistory/workouthistory.component';
-import { ExercisetrackingComponent } from './exercisetracking/exercisetracking.component';
+import { HomeComponent } from './components/home/home.component';
+import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
+import { GoalsettingComponent} from './components/goalsetting/goalsetting.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
+import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
