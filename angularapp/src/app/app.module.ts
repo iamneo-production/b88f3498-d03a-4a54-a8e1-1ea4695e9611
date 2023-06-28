@@ -31,7 +31,7 @@ import { ContainerComponent } from './components/container/container.component';
     GoalsettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
-    ContainerComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
