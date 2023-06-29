@@ -21,6 +21,10 @@ import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
+<<<<<<< HEAD
+import { SuriyaComponent } from './suriya/suriya.component';
+import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
+=======
 import { DatePipe } from '@angular/common';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
@@ -39,6 +43,10 @@ import { MatTableModule } from '@angular/material/table';
     ContainerComponent,
     RegistrationComponent,
     LoginComponent,
+<<<<<<< HEAD
+    SuriyaComponent,
+    CustomNutritionRecomendationComponent
+=======
     WorkoutplanComponent,
     GoalSettingComponent  
   ],
