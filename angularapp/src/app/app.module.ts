@@ -7,13 +7,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
+import {  MatDrawer, MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
@@ -21,15 +20,13 @@ import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
-<<<<<<< HEAD
-import { SuriyaComponent } from './suriya/suriya.component';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
-=======
 import { DatePipe } from '@angular/common';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 
 @NgModule({
   declarations: [
@@ -43,10 +40,7 @@ import { MatTableModule } from '@angular/material/table';
     ContainerComponent,
     RegistrationComponent,
     LoginComponent,
-<<<<<<< HEAD
-    SuriyaComponent,
-    CustomNutritionRecomendationComponent
-=======
+    CustomNutritionRecomendationComponent,
     WorkoutplanComponent,
     GoalSettingComponent  
   ],
@@ -63,7 +57,7 @@ import { MatTableModule } from '@angular/material/table';
     MatToolbarModule,
     MatMenuModule,
     MatTableModule,
-    MatDialogModule,
+    MatDialogModule
 
   ],
   providers: [DatePipe],
