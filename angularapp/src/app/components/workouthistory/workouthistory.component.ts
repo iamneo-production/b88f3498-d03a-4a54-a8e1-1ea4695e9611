@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from 'app/services/title.service';
-import { WorkoutService } from '../services/workout.service';
+import { TitleService } from 'src/app/services/title.service';
+import { WorkoutService } from 'src/app/services/workout.service';
 
 
 
