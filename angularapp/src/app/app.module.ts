@@ -19,7 +19,9 @@ import { GoalsettingComponent } from './components/goalsetting/goalsetting.compo
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { RegistrationComponent } from './registration/registration.component';
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
