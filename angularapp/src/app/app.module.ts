@@ -19,7 +19,7 @@ import { GoalsettingComponent } from './components/goalsetting/goalsetting.compo
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
-import { GoalhomeComponent } from './goalhome/goalhome.component';
+import { GoalhomeComponent } from './components/goalhome/goalhome.component';
 
 @NgModule({
   declarations: [
