@@ -22,6 +22,8 @@ import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { SuriyaComponent } from './suriya/suriya.component';
+import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { RegistrationComponent } from './components/registration/registration.co
     WorkouthistoryComponent,
     ContainerComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    SuriyaComponent,
+    CustomNutritionRecomendationComponent
   ],
   imports: [
     BrowserModule,
