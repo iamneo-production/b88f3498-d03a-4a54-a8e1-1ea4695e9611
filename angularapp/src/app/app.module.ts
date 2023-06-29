@@ -15,15 +15,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
-import { GoalsettingComponent } from './components/goalsetting/goalsetting.component';
+
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
+<<<<<<< HEAD
 import { SuriyaComponent } from './suriya/suriya.component';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
+=======
+import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
+>>>>>>> a978b8f9bbbe58a909423e450545f778df239390
 
 @NgModule({
   declarations: [
@@ -33,17 +37,22 @@ import { CustomNutritionRecomendationComponent } from './components/recommendati
     SidenavComponent,
     WorkoutplanComponent,
     ExercisetrackingComponent,
-    GoalsettingComponent,
+    GoalSettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
     RegistrationComponent,
     LoginComponent,
+<<<<<<< HEAD
     SuriyaComponent,
     CustomNutritionRecomendationComponent
+=======
+    WorkoutplanComponent,
+>>>>>>> a978b8f9bbbe58a909423e450545f778df239390
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
