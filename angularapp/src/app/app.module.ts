@@ -15,13 +15,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
-import { GoalsettingComponent } from './components/goalsetting/goalsetting.component';
+
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,17 @@ import { RegistrationComponent } from './components/registration/registration.co
     SidenavComponent,
     WorkoutplanComponent,
     ExercisetrackingComponent,
-    GoalsettingComponent,
+    GoalSettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    WorkoutplanComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
