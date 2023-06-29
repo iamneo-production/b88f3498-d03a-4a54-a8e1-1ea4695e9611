@@ -7,11 +7,11 @@
 
 
     <div class="container-fluid page">
-      <div class="d-flex page__box p-3">Workout Plan</div>
+      <div class="d-flex page__box p-3 mt-2">Workout Plan</div>
       <div [ngSwitch]="show" class="d-flex flex-column page__content shadow position-relative"
-        style="min-height: calc(100vh - 162px);">
+        style="min-height: calc(100vh - 200px);">
 
-        <div id="page_header" class="text-center" >
+        <div id="page_header" class="text-center">
           <button style="float:left;" class="btn" (click)="goBack()">
             <mat-icon>arrow_back</mat-icon>
           </button>
@@ -49,6 +49,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 
+          <!-- <div id="contact-fitness" > -->
           <div id="fitness-content" [style.display]="isOpen?'flex' : 'none'">
             <div id="fitness-header">
               <div id="span" (click)="closeDiv()" class="close-fitness">&times;</div>

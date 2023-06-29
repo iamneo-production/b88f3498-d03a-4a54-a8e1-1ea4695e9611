@@ -17,6 +17,7 @@ import { ExercisetrackingComponent } from './components/exercisetracking/exercis
 
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { ContainerComponent } from './components/container/container.component';
+import { GoalhomeComponent } from './components/goalhome/goalhome.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -39,12 +40,12 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
+    GoalhomeComponent
     RegistrationComponent,
     LoginComponent,
     CustomNutritionRecomendationComponent,
     WorkoutplanComponent,
     GoalSettingComponent  
-
   ],
   imports: [
     BrowserModule,
