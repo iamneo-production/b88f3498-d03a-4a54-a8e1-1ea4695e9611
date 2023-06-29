@@ -7,22 +7,27 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import {  MatDrawer, MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
-import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
+import { DatePipe } from '@angular/common';
+import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
+import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
+import { HttpClientModule } from '@angular/common/http';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 
 @NgModule({
@@ -31,9 +36,7 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     HeaderComponent,
     HomeComponent,
     SidenavComponent,
-    WorkoutplanComponent,
     ExercisetrackingComponent,
-    GoalSettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
@@ -41,6 +44,8 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     LoginComponent,
     CustomNutritionRecomendationComponent,
     WorkoutplanComponent,
+    GoalSettingComponent  
+
   ],
   imports: [
     BrowserModule,
@@ -48,14 +53,18 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule,
-    MatDividerModule,
-    MatListModule,
+    MatTableModule,
+    MatDialogModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

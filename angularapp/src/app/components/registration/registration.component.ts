@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  constructor(private formValiadtionService: FormValidationService,private userService: UserService, private router: Router, private title: TitleService, private http: HttpClient) {
+  constructor(private formValiadtionService: FormValidationService, private router: Router, private title: TitleService, private http: HttpClient, private userService: UserService) {
     console.log(this.user);
     this.title.setTitle("Register");
   }
@@ -33,7 +33,7 @@ export class RegistrationComponent {
     this.user = this.myform.value;  
     console.log(this.myform);
     if(this.myform.valid){
-      this.http.post('http://localhost:8080/user/register', this.user).subscribe(response => {
+      this.http.post('https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io/user/register', this.user).subscribe(response => {
         console.log(response);
       });
       this.router.navigate(['login']);

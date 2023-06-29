@@ -20,7 +20,8 @@ export class LoginComponent {
     private _http: HttpClient,
     private _route: Router,
     private title: TitleService,
-    private userService: UserService) { this.title.setTitle("Login"); }
+    private userService: UserService
+    ) { this.title.setTitle("Login"); }
 
   id!: number;
   imageBlob: Blob | undefined;
@@ -35,7 +36,7 @@ export class LoginComponent {
 
     try {
       var response:any;
-      this._http.post("http://localhost:8080/user/login", this.user).subscribe((res:any)=>{
+      this._http.post("https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io/user/login", this.user).subscribe((res:any)=>{
         response = res;
         }
 
@@ -58,7 +59,7 @@ export class LoginComponent {
   // Check user based on their ID
   async setUsertoUserService() {
     try {
-      const response: any = await this._http.get("http://localhost:8080/users").toPromise();
+      const response: any = await this._http.get("https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io/users").toPromise();
 
       for (const loginUser of response as any[]) {
         if (loginUser.email == this.user.email) {
@@ -76,7 +77,7 @@ export class LoginComponent {
             const formData: FormData = new FormData();
             if (this.imageBlob) {
               formData.append('file', this.imageBlob);
-              const updatedUser: any = await this._http.put(`http://localhost:8080/update/${this.id}`, formData, loginUser).toPromise();
+              const updatedUser: any = await this._http.put(`https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io/update/${this.id}`, formData, loginUser).toPromise();
               this.userService.setUser(updatedUser);
               console.log("updatedUser:", updatedUser);
             } else {
