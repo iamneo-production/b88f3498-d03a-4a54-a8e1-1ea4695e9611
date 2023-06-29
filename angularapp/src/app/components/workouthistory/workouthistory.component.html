@@ -1,10 +1,50 @@
+<mat-drawer-container class="body">
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
 
-<div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2">Workout History</div>
-    <div class="page__content shadow p-3 position-relative">
-      <div class="page__content-data position-absolute text-center">
-        Workout History Content Goes Here
+
+    <div class="container-fluid page">
+      <div class="d-flex page__box p-3 ">Workout History</div>
+      <div class="page__content shadow p-3 position-relative">
+        <div class="page_container p-4" style="font-size: medium; width: 100%; min-height: calc(100vh - 200px);">
+          <figure>
+          <table mat-table [dataSource]="ds" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="workoutName">
+              <th mat-header-cell *matHeaderCellDef> Workout Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.workoutName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="workoutType">
+              <th mat-header-cell *matHeaderCellDef> Workout Type</th>
+              <td mat-cell *matCellDef="let element"> {{element.workoutType}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="workoutDuration">
+              <th mat-header-cell *matHeaderCellDef> Duration </th>
+              <td mat-cell *matCellDef="let element"> {{element.workoutDuration}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sets">
+              <th mat-header-cell *matHeaderCellDef> No.of Sets</th>
+              <td mat-cell *matCellDef="let element"> {{element.sets}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </figure>
+        </div>
       </div>
     </div>
-  </div>
-  
+  </mat-drawer-content>
+</mat-drawer-container>

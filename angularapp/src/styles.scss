@@ -1,4 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #1C2B44;
+  }
+  
+  
+  
+  
+  
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #2d1f1f;
+  }
+  
+  @media (max-width: 650px) or (max-height: 650px) {
+    .h-custom {
+      height: 100%;
+  
+    }
+  
+  }
+  
+  
+  .is-invalid {
+    border-color: red;
+  }
+  
+  
+  
+  
+  .nav {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  

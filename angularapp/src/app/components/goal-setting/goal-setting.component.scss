@@ -1,0 +1,322 @@
+@import '../home/home.component.scss';
+.page__content{
+  background-color: rgb(227, 224, 224);
+}
+.nav{
+    background-color:darksalmon;
+    align-items: center;
+    display: flex;
+}
+.title{
+  font-style: bold;
+  font-size: 30px;
+  color: white;
+
+}
+.marquee{
+  margin-right: 2px;
+
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card {
+    width: 14rem;
+    height: 29rem;
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 45px;
+  }
+  .card-title{
+    font-size: large;
+    font-style: oblique;
+    font-weight: 600;
+  }
+  .button{
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-around;
+
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),url(https://t4.ftcdn.net/jpg/02/43/13/15/240_F_243131531_jmNppYX9Ux2Hj2RV9yYR1swicwcYr8EQ.jpg) ;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.fitness {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#contact-fitness {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+#contact-fitness #fitness-header {
+  background-color: cadetblue;
+  padding: 10px;
+  text-align: center;
+}
+
+#contact-fitness #fitness-body {
+  padding: 20px;
+}
+
+#contact-fitness input[type="text"],
+#contact-fitness input[type="date"],
+#contact-fitness input[type="number"],
+#contact-fitness select,
+
+#contact-fitness textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #555;
+}
+
+#contact-fitness label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+#contact-fitness input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-button {
+  order: 1;
+}
+#contact-fitness .error {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+#fitness-header .close-fitness {
+  font-size: 50px;
+  float: right;
+}
+
+#fitness-header .close-fitness:hover {
+  color: #333;
+  cursor: pointer;
+}
+.card {
+  /* Styles for your card */
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: relative;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  opacity: 1;
+  pointer-events: none;
+  animation: ripple 0.8s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+.confirm {
+  position: relative;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as per your preference */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  width: 380px; /* Adjust the width as per your preference */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+}
+
+.popup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.popup-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+// .popup-content {
+//   /* Add styling for the popup content */
+// }
+.popup-buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.popup-buttons .b1 {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-buttons .b2 {
+  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.button .b1 {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.button button:hover {
+  background-color: #0056b3;
+}
+
+
+#trackgoals{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-drawer {
+  width: 260px;
+}
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer {
+  background: #0f172a;
+}
+.t1{
+  padding-left: 0%;
+  padding-top: 10%;
+}
+.t2{
+  padding-left: 0%;
+  padding-top: 20%;
+}
+.t3{
+  padding-left: 0%;
+  padding-top: 10%;
+}
+.t4{
+  padding-left: 0%;
+  padding-top: 30%;
+}
+.t5{
+  padding-left: 0%;
+  padding-top: 20%;
+}
