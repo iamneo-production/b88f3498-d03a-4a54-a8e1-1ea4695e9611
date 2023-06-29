@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     CustomNutritionRecomendationComponent,
     WorkoutplanComponent,
     GoalSettingComponent  
+
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IComp } from '../components/IComp';
-
+import { IComp } from '../interfaces/IComp';
 
 
 @Injectable({
@@ -18,5 +17,5 @@ export class DataService {
 
   getDataArray(): any[] {
     return this.temp;
-}
+  }
 }
