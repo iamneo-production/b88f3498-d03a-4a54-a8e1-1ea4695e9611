@@ -1,11 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardDataService } from 'app/services/card-data.service';
-import { DataService } from 'app/services/data.service';
-import { GoalsettingService } from 'app/services/goalsetting.service';
-import { TitleService } from 'app/services/title.service';
+import { CardDataService } from 'src/app/services/card-data.service';
+import { GoalsettingService } from 'src/app/services/goalsetting.service';
+import { TitleService } from 'src/app/services/title.service';
 import { IComp } from '../IComp';
+
 
 @Component({
   selector: 'app-goal-setting',

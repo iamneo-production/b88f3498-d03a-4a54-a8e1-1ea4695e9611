@@ -17,11 +17,12 @@ import { WorkoutplanComponent } from './components/workoutplan/workoutplan.compo
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
-import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
 import { LoginComponent } from './components/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { DatePipe } from '@angular/common';
+import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 
 @NgModule({
@@ -30,15 +31,14 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     HeaderComponent,
     HomeComponent,
     SidenavComponent,
-    WorkoutplanComponent,
     ExercisetrackingComponent,
-    GoalSettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
     RegistrationComponent,
     LoginComponent,
     WorkoutplanComponent,
+    GoalSettingComponent  
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,7 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     MatDividerModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
