@@ -6,6 +6,7 @@ import { GoalsettingComponent} from './components/goalsetting/goalsetting.compon
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'goalsetting', component: GoalsettingComponent},
   { path: 'recommendations', component: RecommendationsComponent},
   { path: 'history', component: WorkouthistoryComponent},
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormValidationService } from 'app/services/form-validation.service';
-import { UserService } from 'app/services/user.service';
 import { TitleService } from '../../services/title.service';
+import { FormValidationService } from 'src/app/services/form-validation.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
