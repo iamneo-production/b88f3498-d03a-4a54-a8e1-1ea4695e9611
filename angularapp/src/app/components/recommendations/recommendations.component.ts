@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from 'app/services/title.service';
-import { UserService } from 'app/services/user.service';
+import { TitleService } from 'src/app/services/title.service';
+import { UserService } from 'src/app/services/user.service';
 
-@Component({
+@Component ({
   selector: 'app-recommendations',
   templateUrl: './recommendations.component.html',
   styleUrls: ['./recommendations.component.scss']
