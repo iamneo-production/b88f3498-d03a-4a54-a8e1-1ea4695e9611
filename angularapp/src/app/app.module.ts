@@ -27,6 +27,7 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { WorkoutplanComponent } from './components/workoutplan/workoutplan.compo
     MatToolbarModule,
     MatMenuModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
 
   ],
   providers: [DatePipe],
