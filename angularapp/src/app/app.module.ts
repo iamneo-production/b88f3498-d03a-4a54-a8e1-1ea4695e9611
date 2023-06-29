@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,6 +24,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { DatePipe } from '@angular/common';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -46,12 +48,15 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule,
-    MatDividerModule,
-    MatListModule,
+    MatTableModule,
+    MatDialogModule,
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

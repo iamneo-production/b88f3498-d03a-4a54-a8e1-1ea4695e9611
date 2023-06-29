@@ -5,6 +5,7 @@ import { CardDataService } from 'src/app/services/card-data.service';
 import { GoalsettingService } from 'src/app/services/goalsetting.service';
 import { TitleService } from 'src/app/services/title.service';
 import { IComp } from '../IComp';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
