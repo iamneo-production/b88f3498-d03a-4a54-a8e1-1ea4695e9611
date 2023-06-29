@@ -6,6 +6,8 @@ import { GoalsettingComponent} from './components/goalsetting/goalsetting.compon
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
+import { AppComponent } from './app.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

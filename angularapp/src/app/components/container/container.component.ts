@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerComponent {
   title = 'admin-panel-layout';
+  
   sideBarOpen = true;
 
   sideBarToggler() {

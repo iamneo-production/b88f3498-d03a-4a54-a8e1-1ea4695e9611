@@ -19,6 +19,8 @@ import { GoalsettingComponent } from './components/goalsetting/goalsetting.compo
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ContainerComponent } from './components/container/container.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,18 +33,23 @@ import { ContainerComponent } from './components/container/container.component';
     GoalsettingComponent,
     RecommendationsComponent,
     WorkouthistoryComponent,
-    ContainerComponent
+    ContainerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    HttpClientModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent],
