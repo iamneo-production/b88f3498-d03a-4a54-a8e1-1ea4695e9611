@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
