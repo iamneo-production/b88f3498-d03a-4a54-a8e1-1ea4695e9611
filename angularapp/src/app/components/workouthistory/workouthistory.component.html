@@ -10,7 +10,7 @@
       <div class="d-flex page__box p-3 ">Workout History</div>
       <div class="page__content shadow p-3 position-relative">
         <div class="page_container p-4" style="font-size: medium; width: 100%; min-height: calc(100vh - 200px);">
-
+          <figure>
           <table mat-table [dataSource]="ds" class="mat-elevation-z8">
 
             <ng-container matColumnDef="workoutName">
@@ -42,6 +42,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+        </figure>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import {  MatDrawer, MatDrawerContainer, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,7 +23,6 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
 import { DatePipe } from '@angular/common';
 import { WorkouthistoryComponent } from './components/workouthistory/workouthistory.component';
-import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';

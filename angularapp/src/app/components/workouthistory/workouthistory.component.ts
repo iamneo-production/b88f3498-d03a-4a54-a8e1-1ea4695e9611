@@ -23,6 +23,7 @@ export class WorkouthistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
   sideBarOpen = true;
 
