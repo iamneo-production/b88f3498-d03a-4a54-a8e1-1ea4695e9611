@@ -30,7 +30,7 @@ public class UserController {
 
     // Retrieve a specific user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         if (user != null) {
             return ResponseEntity.ok(user);
@@ -41,7 +41,7 @@ public class UserController {
 
     // Update a specific user
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable("id") int id, @RequestBody User updatedUser) {
+    public String updateUser(@PathVariable("id") Long id, @RequestBody User updatedUser) {
         updatedUser.setId(id);
         userService.updateUser(updatedUser);
         return "User Updated";
@@ -49,7 +49,7 @@ public class UserController {
 
     // Delete a specific user by ID
     @DeleteMapping("/id")
-    public String deleteUserById(@RequestParam("id") int id) {
+    public String deleteUserById(@RequestParam("id") Long id) {
         userService.deleteUserById(id);
         return "User deleted";
     }

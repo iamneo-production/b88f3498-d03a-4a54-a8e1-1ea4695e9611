@@ -8,9 +8,9 @@ import com.example.springapp.model.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    void deleteById(int id);
+    void deleteById(Long id);
 
-    Optional<User> findById(int id);
+    Optional<User> findById(Long id);
 
     User findByEmail(String email);
 

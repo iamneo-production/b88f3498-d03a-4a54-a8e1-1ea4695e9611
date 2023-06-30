@@ -1,16 +1,18 @@
 package com.example.springapp.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 
 @Entity
-public class User{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private String password;
@@ -21,28 +23,17 @@ public class User{
     private String goals;
     private String role;
 
+    @OneToMany
+    List<Workout> workout;
+
     public User() {
     }
 
-    public User(int id, String name, String email, String password, String height, String weight, int age,
-            String gender, String goals, String role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.gender = gender;
-        this.goals = goals;
-        this.role = role;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -118,6 +109,32 @@ public class User{
         this.role = role;
     }
 
+    public List<Workout> getWorkout() {
+        return workout;
+    }
 
+    public void setWorkout(List<Workout> workout) {
+        this.workout = workout;
+    }
 
+    public User(Long id, String name, String email, String password, String height, String weight, int age,
+            String gender, String goals, String role, List<Workout> workout) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.goals = goals;
+        this.role = role;
+        this.workout = workout;
+    }
+
+    public User(List<Workout> workout) {
+        this.workout = workout;
+    }
+
+    
 }
