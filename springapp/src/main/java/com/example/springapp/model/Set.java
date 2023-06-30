@@ -1,21 +1,17 @@
 package com.example.springapp.model;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-@Entity
+
 public class Set {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long exerciseId;
-    private long reps;
-    private String duration;
+    private Long id;
+    private Long reps;
     private String weight;
-
+    private String duration;
+    private Long exerciseId;
     
     // not given in condition of examly
     // @ManyToOne
@@ -23,27 +19,27 @@ public class Set {
     public Set() {
     }
 
-    public Set(long id, long exerciseid, long reps, String weight, String duration) {
+    public Set(Long id, Long reps, String weight, String duration, Long exerciseId) {
         this.id = id;
-        this.exerciseId = exerciseid;
         this.reps = reps;
         this.weight = weight;
         this.duration = duration;
+        this.exerciseId = exerciseId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getReps() {
+    public Long getReps() {
         return reps;
     }
 
-    public void setReps(long reps) {
+    public void setReps(Long reps) {
         this.reps = reps;
     }
 
@@ -63,15 +59,11 @@ public class Set {
         this.duration = duration;
     }
 
-    public long getExerciseId() {
+    public Long getExerciseId() {
         return exerciseId;
     }
 
-    public void setExerciseId(long exerciseId) {
+    public void setExerciseId(Long exerciseId) {
         this.exerciseId = exerciseId;
     }
-
-
-
-
 }
