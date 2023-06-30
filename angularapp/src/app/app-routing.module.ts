@@ -12,6 +12,7 @@ import { GoaltrackingComponent } from './components/goaltracking/goaltracking.co
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'register', pathMatch: 'full' },
@@ -27,7 +28,9 @@ const routes: Routes = [
   { path: 'exertracking/goaltracking', component: GoaltrackingComponent},
   { path: 'exertracking/datetracking', component: DatetrackingComponent},
   { path: 'exertracking/heightweighttracking', component: HtwtcompComponent},
-  { path: '**', component: ErrorPageComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: ErrorPageComponent }
+  
 
 ];
 
