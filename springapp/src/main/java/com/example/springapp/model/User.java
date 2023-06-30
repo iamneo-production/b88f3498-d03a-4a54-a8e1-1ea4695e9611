@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -26,6 +28,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Workout> workout;
+
+    public User() {
+    }
+
 
     public User(long id, String name, String email, String password, String height, String weight, long age,
             String gender, String goals, String role) {
@@ -108,6 +114,7 @@ public class User {
         this.gender = gender;
     }
 
+
     public String getGoals() {
         return goals;
     }
@@ -124,10 +131,12 @@ public class User {
         this.role = role;
     }
 
+    @JsonIgnore
     public List<Workout> getWorkout() {
         return workout;
     }
-
+    
+    @JsonProperty("workout")
     public void setWorkout(List<Workout> workout) {
         this.workout = workout;
     }

@@ -17,6 +17,7 @@
         <hr width="100%"><br>
         <div class="container w-50" style="font-size: small; ">
           <table *ngIf="!isOpen" mat-table [dataSource]="ds" class="table table-primary d-table-row">
+            <content>table</content>
             <ng-container matColumnDef="workoutName">
               <th mat-header-cell *matHeaderCellDef> Workout Name </th>
               <td mat-cell *matCellDef="let element"> {{element.workoutName}} </td>
