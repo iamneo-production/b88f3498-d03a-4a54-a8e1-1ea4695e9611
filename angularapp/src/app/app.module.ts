@@ -29,6 +29,9 @@ import { MatTableModule } from '@angular/material/table';
 import { WorkoutplanComponent } from './components/workoutplan/workoutplan.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
+import { GoaltrackingComponent } from './components/goaltracking/goaltracking.component';
+import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
+import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +43,15 @@ import { GoalSettingComponent } from './components/goal-setting/goal-setting.com
     RecommendationsComponent,
     WorkouthistoryComponent,
     ContainerComponent,
-    GoalhomeComponent
+    GoalhomeComponent,
     RegistrationComponent,
     LoginComponent,
     CustomNutritionRecomendationComponent,
     WorkoutplanComponent,
-    GoalSettingComponent  
+    GoalSettingComponent,
+    GoaltrackingComponent,
+    HtwtcompComponent,
+    DatetrackingComponent
   ],
   imports: [
     BrowserModule,
