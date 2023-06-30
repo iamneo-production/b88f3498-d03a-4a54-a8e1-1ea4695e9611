@@ -1,0 +1,53 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+    <div class="container-fluid page">
+      <div class="d-flex page__box p-3">Home</div>
+      <div class="page__content shadow position-relative">
+        <h1 class="text-center fw-bold">Transform Your Life with the Power of Fitness Workouts</h1>
+        <mat-divider style="border-top-width: 2px; border-color:rgb(255, 255, 255);"></mat-divider>
+        <div class="page_container position-relative p-4">
+          <h2 class="fw-bold">Fitness is Journey</h2>
+
+          <div class="d-flex align-items-center justify-content-center mt-2">
+            <img height="400px" width="300px" class="workout"
+              src="../../../assets/icon/fitness.png"
+              alt="workout image"><br>
+
+          </div>
+
+          Regular exercise improves physical and mental health, boosts
+          mood and energy, and helps you live a better life.
+          A study found that just 10 minutes of exercise can boost brainpower, improving cognitive function and
+          memory.
+          Doing just 15 minutes of exercise per day can add three years to your life.
+          <br>
+          <div class="d-flex align-items-center justify-content-center row mt-2">
+            <img style="width:280px"
+              src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcStaD8XU1M6PRKskYzBzdo4codurTodnzEdaijNRm0qabvx1SBu"
+              alt="fitness quote">
+
+          </div>
+
+          <br>
+          <h2 class="fw-bold">Start Better You</h2>
+          <br>
+          Be kind to yourself and celebrate your progress along the
+          way. Remember that fitness is a journey, not a destination.
+          Every workout is a step towards a better, healthier, and happier you.By starting a fitness workout
+          and committing to regular exercise, you can unlock your full potential and become the best version of
+          yourself.
+          So take that first step today and start your journey towards a better you!
+          <br>
+          <!-- <div class="row">
+            <a class="btn  btn border border-primary mt-2" routerLink="/history">WORKOUT HISTORY</a>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
