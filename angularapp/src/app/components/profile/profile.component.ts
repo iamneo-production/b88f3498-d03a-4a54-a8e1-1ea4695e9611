@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { TitleService } from 'src/app/services/title.service';
-import { UserService } from 'src/afpp/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
