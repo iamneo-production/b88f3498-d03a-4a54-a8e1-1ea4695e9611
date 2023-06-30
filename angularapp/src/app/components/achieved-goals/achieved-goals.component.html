@@ -1,0 +1,39 @@
+<mat-drawer-container class="body">
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+      <app-sidenav></app-sidenav>
+    </mat-drawer>
+    <mat-drawer-content>
+      <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+  
+  
+      <div class="container-fluid page">
+        <div class="d-flex page__box p-3 mt-2">Achieved Goals</div>
+        <div class="page__content shadow p-3 position-relative">
+          <div class="page_container p-4" style="font-size: medium; width: 100%; min-height: calc(100vh - 200px);">
+  
+            <div class="container-table">
+              <h1 class="text-primary">Achieved Goals</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Goal</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let goal of achievedGoals">
+                    <td>{{ goal.goal }}</td>
+                    <td>{{ goal.date }}</td>
+                    <td>{{ goal.duration }}</td>
+                    <td>{{ goal.result }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>

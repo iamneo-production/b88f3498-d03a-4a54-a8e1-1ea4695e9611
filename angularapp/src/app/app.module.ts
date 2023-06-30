@@ -33,6 +33,7 @@ import { GoaltrackingComponent } from './components/goaltracking/goaltracking.co
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AchievedGoalsComponent } from './achieved-goals/achieved-goals.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     GoaltrackingComponent,
     HtwtcompComponent,
     DatetrackingComponent,
-    ProfileComponent
+    ProfileComponent,
+    AchievedGoalsComponent
   ],
   imports: [
     BrowserModule,

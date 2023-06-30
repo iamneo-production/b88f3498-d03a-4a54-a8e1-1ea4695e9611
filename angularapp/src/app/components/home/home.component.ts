@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TitleService } from 'app/services/title.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  constructor(private titleService: TitleService) {
+    this.titleService.setTitle("Home");
+  }
+
+  sideBarOpen = true;
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
+
+
 
 }
