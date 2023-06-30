@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
       const formData: FormData = new FormData();
       formData.append('file', this.file);
 
-      this.http.put(`http://localhost:8080/update/${this.id}`, formData, this.user).subscribe((response: any) => {
+      this.http.put(`${this.userService.baseUrl}/update/${this.id}`, formData, this.user).subscribe((response: any) => {
         next: console.log("response:", response);
         const type = this.file.type;
         console.log(type);
@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
   UpdateProfile() {
     this.saved = true;
 
-    this.http.put(`http://localhost:8080/users/${this.id}`, this.user).subscribe(response => {
+    this.http.put(`${this.userService.baseUrl}/users/${this.id}`, this.user).subscribe(response => {
       this.message = "Profile Updated Successfully!"
       this.allowEdit = false;
       setTimeout(() => {

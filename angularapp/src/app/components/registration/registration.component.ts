@@ -33,7 +33,7 @@ export class RegistrationComponent {
     this.user = this.myform.value;  
     console.log(this.myform);
     if(this.myform.valid){
-      this.http.post('https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io/user/register', this.user).subscribe(response => {
+      this.http.post('${this.userService.baseUrl}/user/register', this.user).subscribe(response => {
         console.log(response);
       });
       this.router.navigate(['login']);
