@@ -1,0 +1,99 @@
+@import '../home/home.component.scss';
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #746e6f;
+
+}
+nav{
+    height: 20vh;
+    min-width: 400px;
+    display: flex;
+    align-items: top;
+    justify-content: space-around;
+    margin: auto;
+}
+a{
+    position: relative;
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    letter-spacing: 0.5px;
+    padding: 0 10px;
+    top:20%;
+
+}
+
+a:after{
+    content: "";
+    position: absolute;
+    background-color:crimson;
+    height: 3px;
+    width: 0%;
+    top:20%;
+    left:5%;
+    bottom: -5px;
+    transition: 0.3s;
+}
+.active, a:hover{
+    color: azure;
+    
+}
+a:hover:after{
+    width: 100%;
+}
+
+.container{
+    position: absolute;
+    left:20%;
+    top:50%;
+    width: 700px;
+   
+    
+    
+}
+
+.carousel{
+    
+    display: grid;
+    grid-auto-flow: column;
+    scroll-behavior: auto;
+    gap: 1.2rem;
+    overflow-y: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    
+    
+    
+}
+.carousel::-webkit-scrollbar{
+    display: none;
+    
+    
+}
+
+.card{
+    font-family: 'Poppins',sans-serif;
+    text-align: center;
+    scroll-snap-align: start;
+    border-radius: 20px;
+    min-height: 150px;
+    min-width: 200px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+.card:nth-child(odd) {
+    background: linear-gradient(-229deg,#fbd52d, #ef3a7b);
+}
+.card:nth-child(even) {
+    background: linear-gradient(-229deg,#ff70af, #5fa8f5);
+}

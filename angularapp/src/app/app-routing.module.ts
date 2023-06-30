@@ -8,6 +8,9 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { GoaltrackingComponent } from './components/goaltracking/goaltracking.component';
+import { DatetrackingComponent } from './components/datetracking/datetracking.component';
+import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,7 +21,11 @@ const routes: Routes = [
   { path: 'goalsetting', component: GoalSettingComponent},
   { path: 'recommendations', component: RecommendationsComponent},
   { path: 'history', component: WorkouthistoryComponent},
+  { path: 'exertracking/goaltracking', component: GoaltrackingComponent},
+  { path: 'exertracking/datetracking', component: DatetrackingComponent},
+  { path: 'exertracking/heightweighttracking', component: HtwtcompComponent},
   { path: '**', component: ErrorPageComponent },
+
 ];
 
 @NgModule({

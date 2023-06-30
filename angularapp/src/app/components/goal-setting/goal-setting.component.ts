@@ -88,7 +88,7 @@ export class GoalSettingComponent implements OnInit {
 
   clicktotrack() {
     let dataArray: IComp = { "Swiminput": this.swiminput, "Cycleinput": this.cycleinput, "Yogainput": this.yogainput, "Exerciseinput": this.exerciseinput, "Runinput": this.runinput };
-    this.router.navigateByUrl('/tracking');
+    this.router.navigateByUrl('exertracking/goaltracking');
     this.dataservice.setDataArray(dataArray);
     console.log(dataArray);
   }

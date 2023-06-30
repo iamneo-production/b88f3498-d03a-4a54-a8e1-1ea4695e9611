@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { TitleService } from 'src/app/services/title.service';
 import { WorkoutService } from 'src/app/services/workout.service';
-
 
 @Component({
   selector: 'app-workoutplan',
   templateUrl: './workoutplan.component.html',
   styleUrls: ['./workoutplan.component.scss'],
-  providers: [WorkoutService]
+  providers:[WorkoutService]
 })
 export class WorkoutplanComponent implements OnInit {
   show: string = "btns";
@@ -45,8 +44,7 @@ export class WorkoutplanComponent implements OnInit {
   AddToHistory() {
     this.isSubmitted = true;
   }
-  goBack() {
-    this.isOpen = false;
+  goBack(){
+    window.location.reload();
   }
-
 }
