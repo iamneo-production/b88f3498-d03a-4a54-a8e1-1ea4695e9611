@@ -16,4 +16,8 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+  
+  showUserProfile() {
+    this.router.navigate(['profile']);
+  }
 }
