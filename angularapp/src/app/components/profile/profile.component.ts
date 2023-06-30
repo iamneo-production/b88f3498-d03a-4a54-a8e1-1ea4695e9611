@@ -83,12 +83,5 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  sideBarOpen = true;
-
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
-
-
 
 }
