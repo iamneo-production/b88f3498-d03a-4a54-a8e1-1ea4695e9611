@@ -29,7 +29,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElseThrow();
     }
@@ -38,7 +38,7 @@ public class UserService {
         userRepository.save(updatedUser);
     }
 
-    public void deleteUserById(Long id) {
+    public void deleteUserById(long id) {
         userRepository.deleteById(id);
     }
 }

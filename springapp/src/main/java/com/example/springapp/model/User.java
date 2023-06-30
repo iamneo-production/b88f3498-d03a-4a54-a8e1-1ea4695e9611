@@ -1,5 +1,6 @@
 package com.example.springapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,28 +13,42 @@ import javax.persistence.OneToMany;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     private String name;
     private String email;
     private String password;
     private String height;
     private String weight;
-    private int age;
+    private long age;
     private String gender;
     private String goals;
     private String role;
 
-    @OneToMany
-    List<Workout> workout;
+    @OneToMany(mappedBy = "user")
+    private List<Workout> workout;
 
-    public User() {
+    public User(long id, String name, String email, String password, String height, String weight, long age,
+            String gender, String goals, String role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.goals = goals;
+        this.role = role;
+        this.workout = new ArrayList<>();
     }
 
-    public Long getId() {
+   
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -77,11 +92,11 @@ public class User {
         this.weight = weight;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
@@ -117,24 +132,6 @@ public class User {
         this.workout = workout;
     }
 
-    public User(Long id, String name, String email, String password, String height, String weight, int age,
-            String gender, String goals, String role, List<Workout> workout) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.gender = gender;
-        this.goals = goals;
-        this.role = role;
-        this.workout = workout;
-    }
-
-    public User(List<Workout> workout) {
-        this.workout = workout;
-    }
 
     
 }
