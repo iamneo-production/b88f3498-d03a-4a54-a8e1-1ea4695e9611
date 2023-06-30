@@ -1,0 +1,81 @@
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+  
+    &__box {
+      min-height: 120px;
+      background: #1e293b;
+      margin: 0 -1rem;
+      font-size: 36px;
+    }
+  
+    &__content {
+      min-height: calc(100vh - 178px);
+      border-radius: 10px;
+      margin-top: -2rem;
+      background: white;
+      color: rgb(143, 130, 130);
+      font-size: 1rem;
+    }
+  }
+  
+  .btn {
+    color: rgb(255, 255, 255);
+  }
+  
+  .btn-box-top {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  
+  .body {
+    min-width: 750px;
+  }
+  
+  .card-img-top {
+    width: 150px;
+  }
+  
+  .card {
+    min-width: 400px;
+    max-width: 1000px;
+    // box-shadow: 6px 6px 8px rgb(206, 203, 203);
+  
+  }
+  
+  .form-control-plaintext {
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 6px 6px 8px lightgrey;
+  }
+  
+  .oval-shape {
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+  }
+  
+  .row-btns {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .form-control:disabled, select:disabled{
+    background-color: #e0e4eb3e;
+  }
