@@ -7,13 +7,13 @@
               <div>
                   <h3>You can Track The Workouts by Setting Your Goals</h3>
                   <div *ngFor="let data of dataArray">
-                    <h6 *ngIf="data.Swiminput" >You spent {{data.Swiminput}} minutes for swimming</h6>
-                    <h6 *ngIf="data.Cycleinput">You spent {{data.Cycleinput}} minutes for Cycling</h6>
-                    <h6 *ngIf="data.Yogainput">You spent {{data.Yogainput}} minutes for doing Yoga</h6>
-                    <h6 *ngIf="data.Exerciseinput">You spent {{data.Exerciseinput}} minutes for doing Exercises</h6>
-                    <h6 *ngIf="data.Runinput">You spent {{data.Runinput}} minutes for Running</h6>
+                    <h4 *ngIf="data.Swiminput" >You spent {{data.Swiminput}} minutes for swimming</h4>
+                    <h4 *ngIf="data.Cycleinput">You spent {{data.Cycleinput}} minutes for Cycling</h4>
+                    <h4 *ngIf="data.Yogainput">You spent {{data.Yogainput}} minutes for doing Yoga</h4>
+                    <h4 *ngIf="data.Exerciseinput">You spent {{data.Exerciseinput}} minutes for doing Exercises</h4>
+                    <h4 *ngIf="data.Runinput">You spent {{data.Runinput}} minutes for Running</h4>
                   </div>
-                  <button (click)="displaychart()" style="border-radius: 8px;">Track</button>
+                  <button (click)="displaychart()" style="border-radius: 8px;" class="btn btn-success">Track</button>
                   <br>
                   <div>
                     <div style="height: 500px; width: 700px;">
