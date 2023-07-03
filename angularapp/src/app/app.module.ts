@@ -33,7 +33,7 @@ import { GoaltrackingComponent } from './components/goaltracking/goaltracking.co
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AchievedGoalsComponent } from './achieved-goals/achieved-goals.component';
+import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goals.component';
 
 @NgModule({
   declarations: [
@@ -67,13 +67,13 @@ import { AchievedGoalsComponent } from './achieved-goals/achieved-goals.componen
     MatIconModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule,
+    MatToolbarModule,   
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
     HttpClientModule
-
   ],
+
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
