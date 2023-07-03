@@ -8,10 +8,10 @@ public class Set {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long exerciseId;
     private Long reps;
     private String weight;
     private String duration;
-    private Long exerciseId;
     
     // not given in condition of examly
     // @ManyToOne
@@ -19,7 +19,7 @@ public class Set {
     public Set() {
     }
 
-    public Set(Long id, Long reps, String weight, String duration, Long exerciseId) {
+    public Set(Long id, Long reps, Long exerciseId, String weight, String duration) {
         this.id = id;
         this.reps = reps;
         this.weight = weight;

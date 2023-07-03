@@ -10,7 +10,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
@@ -33,7 +33,8 @@ import { GoaltrackingComponent } from './components/goaltracking/goaltracking.co
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AchievedGoalsComponent } from './achieved-goals/achieved-goals.component';
+import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goals.component';
+import {MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -56,23 +57,23 @@ import { AchievedGoalsComponent } from './achieved-goals/achieved-goals.componen
     DatetrackingComponent,
     ProfileComponent,
     AchievedGoalsComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
-    HttpClientModule
-
+    AppRoutingModule,
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

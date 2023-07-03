@@ -9,28 +9,27 @@ import javax.persistence.Id;
 public class Exercise {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Long workoutId;
+    private long id;
+    private long workoutId;
     private String name;
     private String description;
-    public Exercise() {
-    }
-    public Exercise(Long id, Long workoutId, String name, String description) {
+   
+    public Exercise(long id, long workoutId, String name, String description) {
         this.id = id;
         this.workoutId = workoutId;
         this.name = name;
         this.description = description;
     }
-    public Long getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
-    public Long getWorkoutId() {
+    public long getWorkoutId() {
         return workoutId;
     }
-    public void setWorkoutId(Long workoutId) {
+    public void setWorkoutId(long workoutId) {
         this.workoutId = workoutId;
     }
     public String getName() {
@@ -45,4 +44,7 @@ public class Exercise {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    
+    
 }
