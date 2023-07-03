@@ -9,8 +9,8 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient){
 
   }
-  baseUrl:String = 'https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io';
-  user: any = { email: '',  username: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+  baseUrl:String = 'https://8080-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io';
+  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
@@ -49,5 +49,13 @@ export class UserService implements OnDestroy {
     })
     return this.userCalorie = BMR * activity_factor;
   }
+
+  getBasicAuthHeader(email: string, password: string): string {
+    const credentials = email + ':' + password;
+    const encodedCredentials = btoa(credentials); // Base64 encode the credentials
+    return 'Basic ' + encodedCredentials;
+  }
+  
+
 
 }

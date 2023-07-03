@@ -34,6 +34,7 @@ import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goals.component';
+import {MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
