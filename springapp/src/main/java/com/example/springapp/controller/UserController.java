@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springapp.model.User;
-import com.example.springapp.service.impl.UserService;
+import com.example.springapp.service.UserService;
 
 
 @RestController
-// @CrossOrigin(origins = "*")
 @RequestMapping("/user")
 public class UserController {
 
