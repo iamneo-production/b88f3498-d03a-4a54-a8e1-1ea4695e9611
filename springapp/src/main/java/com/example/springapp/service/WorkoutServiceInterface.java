@@ -7,5 +7,5 @@ import com.example.springapp.model.Workout;
 public interface WorkoutServiceInterface {
      public List<Workout> getAllWorkout();
      public Workout getWorkoutById(long id);
-     public Workout getWorkOutByUserId(long user_id);   
+     public Iterable<Workout> getWorkOutByUserId(long user_id); 
 }

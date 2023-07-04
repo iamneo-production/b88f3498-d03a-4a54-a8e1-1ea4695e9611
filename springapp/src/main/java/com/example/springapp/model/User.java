@@ -1,30 +1,39 @@
 package com.example.springapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-public class User{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     private String email;
     private String password;
     private String height;
     private String weight;
-    private int age;
+    private long age;
     private String gender;
     private String goals;
     private String role;
 
+    @OneToMany(mappedBy = "user")
+    private List<Workout> workout;
+
     public User() {
     }
 
-    public User(int id, String name, String email, String password, String height, String weight, int age,
+
+    public User(long id, String name, String email, String password, String height, String weight, long age,
             String gender, String goals, String role) {
         this.id = id;
         this.name = name;
@@ -36,13 +45,16 @@ public class User{
         this.gender = gender;
         this.goals = goals;
         this.role = role;
+        this.workout = new ArrayList<>();
     }
 
-    public int getId() {
+   
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -86,11 +98,11 @@ public class User{
         this.weight = weight;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
@@ -101,6 +113,7 @@ public class User{
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 
     public String getGoals() {
         return goals;
@@ -118,6 +131,16 @@ public class User{
         this.role = role;
     }
 
+    @JsonIgnore
+    public List<Workout> getWorkout() {
+        return workout;
+    }
+    
+    @JsonProperty("workout")
+    public void setWorkout(List<Workout> workout) {
+        this.workout = workout;
+    }
 
 
+    
 }

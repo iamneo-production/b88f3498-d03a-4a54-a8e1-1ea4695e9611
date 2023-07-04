@@ -11,11 +11,14 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { GoaltrackingComponent } from './components/goaltracking/goaltracking.component';
 import { DatetrackingComponent } from './components/datetracking/datetracking.component';
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
+import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: RegistrationComponent },
+  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  {path:'register', component: RegistrationComponent},
+  {path:'login', component: LoginComponent},
+  { path: 'home', component: HomeComponent },
   {path: 'login', component: LoginComponent},
   { path: 'workout', component: WorkoutplanComponent},
   { path: 'exertracking', component: ExercisetrackingComponent},
