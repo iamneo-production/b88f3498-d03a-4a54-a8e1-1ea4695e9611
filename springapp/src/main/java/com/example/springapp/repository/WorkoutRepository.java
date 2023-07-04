@@ -12,5 +12,6 @@ public interface WorkoutRepository extends CrudRepository<Workout, Long> {
 
 
     Optional<Workout> findWorkoutById(long id);
+    List<Workout> findAllByUserId(long id);
 
 }
