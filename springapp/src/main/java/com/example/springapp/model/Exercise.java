@@ -13,6 +13,10 @@ public class Exercise {
     private long workoutId;
     private String name;
     private String description;
+
+    public Exercise(){
+        
+    }
    
     public Exercise(long id, long workoutId, String name, String description) {
         this.id = id;
