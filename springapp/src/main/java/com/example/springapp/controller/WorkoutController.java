@@ -24,8 +24,8 @@ import com.example.springapp.repository.UserRepository;
 import com.example.springapp.service.WorkoutService;
 import com.example.springapp.repository.WorkoutRepository;
 @RestController
-@CrossOrigin
 @RequestMapping("/workout")
+@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
 public class WorkoutController {
 
     @Autowired
