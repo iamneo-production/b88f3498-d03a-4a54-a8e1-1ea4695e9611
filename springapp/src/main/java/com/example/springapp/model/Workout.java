@@ -27,8 +27,6 @@ public class Workout {
         this.duration = duration;
         this.notes = notes;
     }
-    public Workout() {
-    }
     public long getId() {
         return id;
     }
