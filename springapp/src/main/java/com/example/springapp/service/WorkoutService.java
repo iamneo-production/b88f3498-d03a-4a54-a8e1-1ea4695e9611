@@ -27,10 +27,9 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
         return optionalworkout.orElseThrow(() -> new UserNotFoundException("User is not present in Databse"));
      }
+     
      @Override
-     public List<Workout> getWorkOutByUserId(long user_id){
-        return null;
-        
-     } 
-    
+     public List<Workout> getWorkOutByUserId(long userId){
+        return workoutRepository.findAllByUserId(userId);
+     }
 }

@@ -62,7 +62,10 @@ public class WorkoutController {
         return workoutService.getWorkoutById(id);
     }
     
-
+    @GetMapping("/userid")
+    public List<Workout> getWorkoutByUserId(@RequestParam("userid") long id){
+        return workoutService.getWorkOutByUserId(id);
+    }
 }
 
 
