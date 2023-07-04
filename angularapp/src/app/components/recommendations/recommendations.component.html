@@ -18,11 +18,12 @@
           style="display: flex; flex-direction: column ;font-size: small; width: 100%; min-height: calc(100vh - 200px)">
           <div class="row" *ngIf="!openClicked && !setCustomClicked">
             <!-- total calorie of user: -->
-            <i>According to Mifflin-St. Jeor equation, Your Calorie:<b
-                [ngClass]="{'is-calorie': userCalorie!=0}">{{userCalorie}}</b>
+            <em>According to Mifflin-St. Jeor equation, Your Calorie:<strong
+                [ngClass]="{'is-calorie': userCalorie!=0}">{{userCalorie}}</strong>
               and the <u>average calorie for {{UserAge}} years old {{UserGender}}</u> should be<br>
-              <br></i>
+              <br></em>
             <Table class="table table- table-secondary">
+            <caption>This Table contains required Calories</caption>
               <thead class="table-primary">
                 <tr>
                   <td>Age Group</td>
