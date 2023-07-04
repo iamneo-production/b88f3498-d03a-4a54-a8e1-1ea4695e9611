@@ -21,7 +21,7 @@ import com.example.springapp.service.UserService;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="*",allowedHeaders = "*")
 @RequestMapping("/user")
 public class UserController {
 
@@ -35,7 +35,6 @@ public class UserController {
     }
 
     // Create a new user
-    
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.createUser(user);
@@ -51,6 +50,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    
     
     @PostMapping("/login")
     public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) {
