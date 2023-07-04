@@ -3,18 +3,14 @@ package com.example.springapp.repository;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
-
-import com.example.springapp.model.User;
-import com.example.springapp.model.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.example.springapp.model.Workout;
+
 @CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface WorkoutRepository extends CrudRepository<Workout, Long> {
 
-    void deleteById(long id);
 
-    Optional<User> findById(long id);
-
-    User findByEmail(String email);
+    Optional<Workout> findWorkoutById(long id);
 
 }

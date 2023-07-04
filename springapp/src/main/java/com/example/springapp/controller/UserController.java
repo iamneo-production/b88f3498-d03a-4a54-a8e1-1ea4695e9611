@@ -20,7 +20,6 @@ import com.example.springapp.service.UserService;
 
 
 @RestController
-// @CrossOrigin(origins = "*")
 @RequestMapping("/user")
 public class UserController {
 
