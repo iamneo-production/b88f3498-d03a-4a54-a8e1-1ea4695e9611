@@ -12,50 +12,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import springapp.springapp.model.Set;
-import springapp.springapp.model.User;
-import springapp.springapp.model.Workout;
-import springapp.springapp.repository.UserRepository;
-import springapp.springapp.repository.WorkoutRepository;
+import com.example.springapp.model.Set;
+import com.example.springapp.model.User;
+import com.example.springapp.model.Workout;
+import com.example.springapp.repository.UserRepository;
+import com.example.springapp.service.WorkoutService;
+import com.example.springapp.repository.WorkoutRepository;
 @RestController
-@CrossOrigin
 @RequestMapping("/workout")
+@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
 public class WorkoutController {
+
+    @Autowired
+    private WorkoutService workoutService;
 
     @Autowired
     private WorkoutRepository workoutRepository;
 
     @Autowired
     private UserRepository userRepository;
-
-    //  @GetMapping("/id")
-    //  public Workout getWorkoutById(long id){
-    //      Workout optionalWorkout;
-    //      try{
-    //          optionalWorkout = workoutRepository.getWorkoutById(id);
-    //      }catch(Exception e){
-    //          return null;
-    //      }
-    //  return optionalWorkout;
-    //  }
-
-    // @GetMapping("/userId")
-    // public Workout getWorkOutByUserId(long id)
    
     @PostMapping
-    public ResponseEntity<String> createWorkout(@RequestBody Workout workout,@RequestParam("uid") long user_id) {
-        System.out.println(workout);
+    public ResponseEntity<String> createWorkout(@RequestBody Workout workout) {
+        long user_id = workout.getUser().getId();
         User newUser = new User();
         newUser.setId(user_id);
         workout.setUser(newUser);
         Workout createdWorkout = workoutRepository.save(workout);
         if (createdWorkout != null) {
-            return ResponseEntity.ok(workout.toString());
+            return ResponseEntity.ok("Workout Created");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -67,8 +58,29 @@ public class WorkoutController {
         return ResponseEntity.ok(workouts);
     }
 
+    @GetMapping("/id")
+    public Workout getWorkoutById(@RequestParam("id") long id){
+        return workoutService.getWorkoutById(id);
+    }
     
+    @GetMapping("/userid")
+    public List<Workout> getWorkoutByUserId(@RequestParam("userid") long id){
+        return workoutService.getWorkOutByUserId(id);
+    }
 
+    @PutMapping("/user")
+    public ResponseEntity<String> updateWorkout(@RequestBody Workout workout) {
+        long userId = workout.getUser().getId();
+        User newUser = new User();
+        newUser.setId(userId);
+        workout.setUser(newUser);
+        Workout createdWorkout = workoutRepository.save(workout);
+        if (createdWorkout != null) {
+            return ResponseEntity.ok("Workout Updated");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
 
 

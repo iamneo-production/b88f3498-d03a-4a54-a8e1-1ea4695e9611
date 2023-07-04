@@ -38,7 +38,7 @@ export class LoginComponent {
     this._http.post(`${this.userService.baseUrl}/user/login`, this.user).subscribe(loggedUser=>{
       if(loggedUser!=null){
         console.log(loggedUser);
-        
+        this.authService.setAuthentication(true);
         this.userService.setUser(loggedUser);
         this._route.navigate(['home']);
       }
