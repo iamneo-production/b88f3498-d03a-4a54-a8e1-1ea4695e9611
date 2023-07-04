@@ -47,19 +47,19 @@ public class WorkoutController {
     // @GetMapping("/userId")
     // public Workout getWorkOutByUserId(long id)
    
-    // @PostMapping
-    // public ResponseEntity<String> createWorkout(@RequestBody Workout workout,@RequestParam("uid") long user_id) {
-    //     System.out.println(workout);
-    //     User newUser = new User();
-    //     newUser.setId(user_id);
-    //     workout.setUser(newUser);
-    //     Workout createdWorkout = workoutRepository.save(workout);
-    //     if (createdWorkout != null) {
-    //         return ResponseEntity.ok(workout.toString());
-    //     } else {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    //     }
-    // }
+    @PostMapping
+    public ResponseEntity<String> createWorkout(@RequestBody Workout workout,@RequestParam("uid") long user_id) {
+        System.out.println(workout);
+        User newUser = new User();
+        newUser.setId(user_id);
+        workout.setUser(newUser);
+        Workout createdWorkout = workoutRepository.save(workout);
+        if (createdWorkout != null) {
+            return ResponseEntity.ok(workout.toString());
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
      
     @GetMapping
     public ResponseEntity<Iterable<Workout>> getAllWorkouts() {
