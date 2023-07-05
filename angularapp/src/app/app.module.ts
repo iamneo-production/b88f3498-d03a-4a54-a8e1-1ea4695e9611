@@ -35,6 +35,8 @@ import { DatetrackingComponent } from './components/datetracking/datetracking.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goals.component';
 import {MatIconModule } from '@angular/material/icon';
+import { ListworksComponent } from './components/listworks/listworks.component';
+import { WorksComponent } from './components/works/works.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MatIconModule } from '@angular/material/icon';
     HtwtcompComponent,
     DatetrackingComponent,
     ProfileComponent,
-    AchievedGoalsComponent
+    AchievedGoalsComponent,
+    ListworksComponent,
+    WorksComponent,
 
   ],
   imports: [
@@ -67,7 +71,7 @@ import {MatIconModule } from '@angular/material/icon';
     MatDividerModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule,
+    MatToolbarModule,   
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
@@ -75,6 +79,7 @@ import {MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     MatIconModule
   ],
+
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
