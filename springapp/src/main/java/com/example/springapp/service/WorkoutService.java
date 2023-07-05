@@ -4,16 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.exceptions.UserNotFoundException;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.WorkoutRepository;
 
-
 @Service
-public class WorkoutService extends RuntimeException implements WorkoutServiceInterface{
+public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
    @Autowired
    private WorkoutRepository workoutRepository;
 
