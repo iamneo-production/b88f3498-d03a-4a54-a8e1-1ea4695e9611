@@ -45,7 +45,7 @@ public class SetController {
 
     @DeleteMapping("/id")
     public void deleteSetById(@RequestParam("id") long id){
-         setService.getSetById(id);
+         setService.deleteSetById(id);
     }
 
     @PostMapping
