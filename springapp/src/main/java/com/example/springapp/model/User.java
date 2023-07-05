@@ -50,8 +50,6 @@ public class User {
         this.workout = new ArrayList<>();
     }
 
-   
-
     public long getId() {
         return id;
     }

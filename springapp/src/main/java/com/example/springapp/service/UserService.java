@@ -32,13 +32,13 @@ public class UserService {
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             map.add("message", "User Already Exists!!!");
             
-            return new ResponseEntity<User>(map, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<>(map, HttpStatus.ALREADY_REPORTED);
         }
 
         String encrpytedPwd = bcrypt.encode(user.getPassword());
         user.setPassword(encrpytedPwd);
         userRepository.save(user);
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     public User getUserById(Long id) {
