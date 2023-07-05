@@ -6,4 +6,5 @@ public interface SetServiceInterface {
     public Set getSetById(long id);
     public Iterable<Set> getAllSet();
     public Iterable<Set> getSetByExerciseId(long e_id);
+    public void deleteSetById(long id);
 }
