@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.springapp.model.Set;
-import com.example.springapp.model.Exercise;
 import com.example.springapp.service.SetService;
 import com.example.springapp.repository.SetRepository;
 
@@ -31,11 +30,11 @@ public class SetController {
     private SetService setService;
 
     @GetMapping
-    public Iterable<Exercise> getAllSet() {
+    public Iterable<Set> getAllSet() {
         return setService.getAllSet();
     }
     @GetMapping("/id")
-    public Exercise getSetById(@RequestParam("id") long id){
+    public Set getSetById(@RequestParam("id") long id){
         return setService.getSetById(id);
     }
 
