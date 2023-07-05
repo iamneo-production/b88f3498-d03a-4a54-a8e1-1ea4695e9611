@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springapp.model.Set;
+import java.util.Set;
+
+
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.UserRepository;
@@ -37,11 +39,15 @@ public class WorkoutController {
     @Autowired
     private UserRepository userRepository;
    
+    /**
+     * @param workout
+     * @return
+     */
     @PostMapping
     public ResponseEntity<String> createWorkout(@RequestBody Workout workout) {
-        long user_id = workout.getUser().getId();
+        long userId = workout.getUser().getId();
         User newUser = new User();
-        newUser.setId(user_id);
+        newUser.setId(userId);
         workout.setUser(newUser);
         Workout createdWorkout = workoutRepository.save(workout);
         if (createdWorkout != null) {

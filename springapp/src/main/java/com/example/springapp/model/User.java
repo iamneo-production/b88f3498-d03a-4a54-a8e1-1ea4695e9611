@@ -28,8 +28,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Workout> workout;
+   
 
     public User() {
+        
     }
 
 

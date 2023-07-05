@@ -1,23 +1,28 @@
 package com.example.springapp.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 public class Set {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+   
     private Long exerciseId;
     private Long reps;
     private String weight;
     private String duration;
     
     // not given in condition of examly
-    // @ManyToOne
-    // @JoinColumn(name = "user_id")
-    public Set() {
-    }
+     
+   public Set() {
+
+   }
 
     public Set(Long id, Long reps, Long exerciseId, String weight, String duration) {
         this.id = id;
