@@ -23,15 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import springapp.springapp.model.Set;
-import springapp.springapp.model.User;
-import springapp.springapp.model.Workout;
-import springapp.springapp.repository.UserRepository;
-import springapp.springapp.repository.WorkoutRepository;
-import springapp.springapp.service.impl.WorkoutService;
+import com.example.springapp.model.Set;
+import com.example.springapp.model.User;
+import com.example.springapp.model.Workout;
+import com.example.springapp.repository.UserRepository;
+import com.example.springapp.repository.WorkoutRepository;
+import com.example.springapp.service.WorkoutService;
 
 @RestController
-@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
+@CrossOrigin(origins = "https://8081-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io")
 @RequestMapping("/workout")
 public class WorkoutController {
 

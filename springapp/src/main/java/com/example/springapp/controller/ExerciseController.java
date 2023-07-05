@@ -24,7 +24,7 @@ import com.example.springapp.repository.ExerciseRepository;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="https://8081-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io")
 @RequestMapping("/exercise")
 public class ExerciseController {
 
