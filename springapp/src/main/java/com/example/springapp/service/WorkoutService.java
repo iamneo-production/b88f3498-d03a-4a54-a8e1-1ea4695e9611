@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import springapp.springapp.exceptions.UserNotFoundException;
-import springapp.springapp.model.User;
-import springapp.springapp.model.Workout;
-import springapp.springapp.repository.WorkoutRepository;
+import com.example.springapp.exceptions.UserNotFoundException;
+import com.example.springapp.model.User;
+import com.example.springapp.model.Workout;
+import com.example.springapp.repository.WorkoutRepository;
 
 
 @Service

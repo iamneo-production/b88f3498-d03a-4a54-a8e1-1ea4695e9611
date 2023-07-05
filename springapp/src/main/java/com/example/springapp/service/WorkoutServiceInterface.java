@@ -1,5 +1,7 @@
 package com.example.springapp.service;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 import com.example.springapp.model.Workout;
