@@ -43,7 +43,7 @@ public class SetService implements SetServiceInterface  {
     }
 
     public ResponseEntity<Set> createSet(Set set){
-        Set sets = setRepository.findBySetId(set.getId());
+        Set sets = setRepository.findById(set.getId()).get();
         if(sets!=null){
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             map.add("message", "Set Already Exists!!!");
