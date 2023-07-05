@@ -13,23 +13,32 @@ import { DatetrackingComponent } from './components/datetracking/datetracking.co
 import { HtwtcompComponent } from './components/htwtcomp/htwtcomp.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { guardGuard } from './services/guard.guard';
+import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
+import { ListworksComponent } from './components/listworks/listworks.component';
+import { WorksComponent } from './components/works/works.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  {path:'', redirectTo: 'register', pathMatch: 'full'},
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent },
-  {path: 'login', component: LoginComponent},
-  { path: 'workout', component: WorkoutplanComponent},
-  { path: 'exertracking', component: ExercisetrackingComponent},
-  { path: 'goalsetting', component: GoalSettingComponent},
-  { path: 'recommendations', component: RecommendationsComponent},
-  { path: 'history', component: WorkouthistoryComponent},
-  { path: 'exertracking/goaltracking', component: GoaltrackingComponent},
-  { path: 'exertracking/datetracking', component: DatetrackingComponent},
-  { path: 'exertracking/heightweighttracking', component: HtwtcompComponent},
-  { path: 'profile', component: ProfileComponent },
-  { path: '**', component: ErrorPageComponent }
+  { path: '',canActivate: [guardGuard],
+  children:[
+    { path: 'home', component: HomeComponent },
+    { path: 'workout', component: WorkoutplanComponent},
+    { path: 'goalsetting', component: GoalSettingComponent},
+    { path: 'recommendations', component: RecommendationsComponent},
+    { path: 'history', component: WorkouthistoryComponent},
+    {path: 'customRecommendation', component: CustomNutritionRecomendationComponent},
+    { path: 'exertracking', component: ExercisetrackingComponent},
+    { path: 'exertracking/goaltracking', component: GoaltrackingComponent},
+    { path: 'exertracking/heightweighttracking', component: HtwtcompComponent},
+    { path: 'profile', component: ProfileComponent},
+    { path: 'exertracking/workoutstracking', component: ListworksComponent},
+    { path: 'exertracking/workoutstracking/:id', component: WorksComponent},
+  ] 
+},
+{ path: '**', component: ErrorPageComponent }
   
 
 ];

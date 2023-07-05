@@ -12,20 +12,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springapp.model.Set;
+import java.util.Set;
+
+
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.UserRepository;
 import com.example.springapp.service.WorkoutService;
 import com.example.springapp.repository.WorkoutRepository;
 @RestController
-@CrossOrigin
 @RequestMapping("/workout")
+@CrossOrigin(origins = "*")
 public class WorkoutController {
 
     @Autowired
@@ -37,11 +40,15 @@ public class WorkoutController {
     @Autowired
     private UserRepository userRepository;
    
+    /**
+     * @param workout
+     * @return
+     */
     @PostMapping
     public ResponseEntity<String> createWorkout(@RequestBody Workout workout) {
-        long user_id = workout.getUser().getId();
+        long userId = workout.getUser().getId();
         User newUser = new User();
-        newUser.setId(user_id);
+        newUser.setId(userId);
         workout.setUser(newUser);
         Workout createdWorkout = workoutRepository.save(workout);
         if (createdWorkout != null) {
@@ -62,7 +69,24 @@ public class WorkoutController {
         return workoutService.getWorkoutById(id);
     }
     
+    @GetMapping("/userid")
+    public List<Workout> getWorkoutByUserId(@RequestParam("userid") long id){
+        return workoutService.getWorkOutByUserId(id);
+    }
 
+    @PutMapping("/user")
+    public ResponseEntity<String> updateWorkout(@RequestBody Workout workout) {
+        long userId = workout.getUser().getId();
+        User newUser = new User();
+        newUser.setId(userId);
+        workout.setUser(newUser);
+        Workout createdWorkout = workoutRepository.save(workout);
+        if (createdWorkout != null) {
+            return ResponseEntity.ok("Workout Updated");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
 
 

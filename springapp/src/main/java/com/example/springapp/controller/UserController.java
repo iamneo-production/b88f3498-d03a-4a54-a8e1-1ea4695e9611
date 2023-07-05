@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired

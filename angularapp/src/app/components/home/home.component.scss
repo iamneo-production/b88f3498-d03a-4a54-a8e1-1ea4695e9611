@@ -7,7 +7,7 @@
     min-width: 500px;
     background: #1e293b;
     margin: 0 -1rem;
-    font-size: 36px;
+    font-size: 25px;
   }
   &__content {
     padding: 12px;
@@ -54,4 +54,7 @@ border-radius: 6px;
 
 .page_container:hover::-webkit-scrollbar{
 display:block;
+}
+.mat-drawer{
+  background-color: #2c3344 !important;
 }
