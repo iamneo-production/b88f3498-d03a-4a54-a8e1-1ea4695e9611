@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
-@CrossOrigin(origins="*",allowedHeaders = "*")
 @RequestMapping("/user")
+@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
 public class UserController {
 
     @Autowired

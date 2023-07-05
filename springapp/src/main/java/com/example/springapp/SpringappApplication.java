@@ -4,23 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-
+import com.example.springapp.config.SecurityConfig;
 
 @SpringBootApplication
 @ComponentScan
 public class SpringappApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringappApplication.class, args);
+		SpringApplication.run(new Class[]{SpringappApplication.class, SecurityConfig.class}, args);
 	}
 
-	// @Autowired
-    // private AdminSetupService adminService;
-
-    // @PostConstruct
-    // public void init() {
-    //     adminService.createAdminUser();
-    // }
+	
 
 }
 

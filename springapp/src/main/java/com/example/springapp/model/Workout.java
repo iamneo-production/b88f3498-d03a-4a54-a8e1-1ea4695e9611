@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import java.util.List;
 
 import java.time.LocalDate;
 
@@ -20,12 +23,18 @@ public class Workout {
     private LocalDate date;
     private String duration;
     private String notes;
+    // @OneToMany(mappedBy = "exercise")
+    // private List<Exercise> exercise;
+   
+
     public Workout(long id, User user, LocalDate date, String duration, String notes) {
         this.id = id;
         this.user = user;
         this.date = date;
         this.duration = duration;
         this.notes = notes;
+    }
+    public Workout() {
     }
     public long getId() {
         return id;
