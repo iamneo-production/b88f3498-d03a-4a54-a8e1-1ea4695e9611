@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
