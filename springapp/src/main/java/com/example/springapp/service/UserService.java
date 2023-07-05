@@ -1,21 +1,19 @@
 package com.example.springapp.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.example.springapp.model.User;
 import com.example.springapp.repository.UserRepository;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {
@@ -34,13 +32,13 @@ public class UserService {
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             map.add("message", "User Already Exists!!!");
             
-            return new ResponseEntity<>(map, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<User>(map, HttpStatus.ALREADY_REPORTED);
         }
 
         String encrpytedPwd = bcrypt.encode(user.getPassword());
         user.setPassword(encrpytedPwd);
         userRepository.save(user);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
     public User getUserById(Long id) {

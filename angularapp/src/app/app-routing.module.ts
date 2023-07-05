@@ -15,6 +15,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { guardGuard } from './services/guard.guard';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
+import { ListworksComponent } from './components/listworks/listworks.component';
+import { WorksComponent } from './components/works/works.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'register', pathMatch: 'full'},
@@ -30,9 +32,10 @@ const routes: Routes = [
     {path: 'customRecommendation', component: CustomNutritionRecomendationComponent},
     { path: 'exertracking', component: ExercisetrackingComponent},
     { path: 'exertracking/goaltracking', component: GoaltrackingComponent},
-    { path: 'exertracking/datetracking', component: DatetrackingComponent},
     { path: 'exertracking/heightweighttracking', component: HtwtcompComponent},
     { path: 'profile', component: ProfileComponent},
+    { path: 'exertracking/workoutstracking', component: ListworksComponent},
+    { path: 'exertracking/workoutstracking/:id', component: WorksComponent},
   ] 
 },
 { path: '**', component: ErrorPageComponent }
