@@ -1,6 +1,5 @@
 package com.example.springapp.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import com.example.springapp.repository.ExerciseRepository;
 
 @Service 
 public class ExerciseService extends RuntimeException implements ExerciseServiceInterface {
+
     @Autowired
     private ExerciseRepository exerciseRepository;
 
@@ -40,3 +40,4 @@ public class ExerciseService extends RuntimeException implements ExerciseService
      
     
 }
+

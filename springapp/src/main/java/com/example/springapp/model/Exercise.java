@@ -21,6 +21,10 @@ public class Exercise {
     private long workoutId;
     private String name;
     private String description;
+
+    public Exercise(){
+        
+    }
    
 
     
