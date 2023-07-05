@@ -38,9 +38,9 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
    }
    @Override
    public ResponseEntity<String> addOrUpdateWorkout(Workout workout,String message) {
-      long user_id = workout.getUser().getId();
+      long userId = workout.getUser().getId();
         User newUser = new User();
-        newUser.setId(user_id);
+        newUser.setId(userId);
         workout.setUser(newUser);
         Workout createdWorkout = workoutRepository.save(workout);
         if (createdWorkout != null) {
@@ -50,7 +50,15 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         }
    } 
 
-     
-    
+   @Override
+   public ResponseEntity<String> deleteFromWorkout(long id){
+      workoutRepository.deleteById(id);
+      if(workoutRepository.existsById(id)){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+      }else{
+         return ResponseEntity.ok("Workout Deleted");
+      }
+   }
+   
 }
 
