@@ -22,7 +22,7 @@ import com.example.springapp.service.SetService;
 import com.example.springapp.repository.SetRepository;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/set")
 public class SetController {
 
