@@ -38,6 +38,11 @@ public class SetController {
         return setService.getSetById(id);
     }
 
+    @GetMapping("/exercise/id")
+    public Iterable<Set> getSetByExerciseId(@RequestParam("id")long e_id){
+        return setService.getSetByExerciseId(e_id);
+    }
+
     @DeleteMapping("/id")
     public void deleteSetById(@RequestParam("id") long id){
          setService.getSetById(id);
