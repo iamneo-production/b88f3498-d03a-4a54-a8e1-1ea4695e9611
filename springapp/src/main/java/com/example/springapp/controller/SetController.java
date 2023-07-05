@@ -48,4 +48,9 @@ public class SetController {
          setService.getSetById(id);
     }
 
+    @PostMapping
+    public ResponseEntity<Set> createSet(@RequestBody Set set){
+        return setService.createSet(set);
+    }  
+
 }

@@ -3,8 +3,11 @@ package com.example.springapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-
+import java.util.stream.StreamSupport;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
 
@@ -15,9 +18,8 @@ public class SetService implements SetServiceInterface  {
     private SetRepository setRepository;
 
     @Override
-    public Set getSetById(Long id){
-        Optional<Set> set = setRepository.getSetById(id);
-        return set.orElseThrow();
+    public Set getSetById(long id){
+        return setRepository.getSetById(id).orElseThrow();
     }
 
     @Override
@@ -28,7 +30,7 @@ public class SetService implements SetServiceInterface  {
     @Override
     public Iterable<Set> getSetByExerciseId(long e_id){
          Iterable<Set> set = setRepository.getSetByExerciseId(e_id);
-         int count = StreamSupport.stream(set.spliterator(), false).count();
+         int count = (int) StreamSupport.stream(set.spliterator(), false).count();
          if(count > 0){
             return set;
          }
@@ -37,7 +39,19 @@ public class SetService implements SetServiceInterface  {
 
     @Override
     public void deleteSetById(long id){
-         exerciseRepository.deleteSetById(id);
+         setRepository.deleteSetById(id);
+    }
+
+    public ResponseEntity<Set> createSet(Set set){
+        Set sets = setRepository.findBySetId(set.getId());
+        if(sets!=null){
+            MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+            map.add("message", "Set Already Exists!!!");
+            
+            return new ResponseEntity<>(map, HttpStatus.ALREADY_REPORTED);
+        }
+        setRepository.save(set);
+        return new ResponseEntity<>(set, HttpStatus.CREATED);
     }
 
 

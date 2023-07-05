@@ -3,7 +3,7 @@ package com.example.springapp.exception;
 import org.springframework.http.HttpStatus;
 
 
-public class ExerciseExceptions {
+public class ExerciseException {
 
     private String message;
     private HttpStatus httpstatus;
