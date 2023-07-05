@@ -1,46 +1,6 @@
 package com.example.springapp.controller;
 
-<<<<<<< HEAD
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;import com.example.springapp.service.ExerciseService;
 
-@CrossOrigin(origins = "https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io")
-@RestController
-public class ExerciseController {
-
-    @Autowired()
-    private ExerciseServiceInterface exerciseServiceInterface;
-
-
-    @GetMapping("/exercise")
-    public ResponseEntity<List<Exercise>> getAllExercises(){
-        MultiValueMap<String,String> map = new LinkedMultiValueMap<String,String>();
-        map.add("message","All Exercises are displayed");
-        ResponseEntity<List<Exercise>> responseEntity = new ResponseEntity<List<Exercise>>(exerciseServiceInterface.getAllExercise(),map,HttpStatus.OK);
-        return responseEntity;
-    }
-
-    @GetMapping("/exercise/{id}")
-    public ResponseEntity<Exercise> getExerciseById(@PathVariable Long id) throws ExerciseNotFoundException{
-        ResponseEntity<Exercise> responseEntity = new ResponseEntity<Exercise>(exerciseServiceInterface.getExerciseById(id),HttpStatus.OK);
-        return responseEntity;
-    }
-
-    @GetMapping("/exercise/workout/{id}")
-    public ResponseEntity<List<Exercise>> getExerciseByWorkoutId(@PathVariable Long id) throws ExerciseNotFoundException{
-        ResponseEntity<List<Exercise>> responseEntity = new ResponseEntity<List<Exercise>>(exerciseServiceInterface.getExerciseByWorkoutId(id),HttpStatus.OK);
-        return responseEntity;
-    }
-    
-}
-=======
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,5 +66,3 @@ public class ExerciseController {
 
 }
 
-
->>>>>>> 0f7aca6afa9e6b43818a1829a09ebc0b896c73ad
