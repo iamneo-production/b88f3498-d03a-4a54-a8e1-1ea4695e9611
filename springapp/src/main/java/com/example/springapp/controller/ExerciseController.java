@@ -24,7 +24,7 @@ import com.example.springapp.repository.ExerciseRepository;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/exercise")
 public class ExerciseController {
 
@@ -48,7 +48,6 @@ public class ExerciseController {
     //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     //     }
     // }
-     
     @GetMapping
     public Iterable<Exercise> getAllExercise() {
         return exerciseService.getAllExercise();
@@ -62,6 +61,7 @@ public class ExerciseController {
     public void deleteExerciseById(@RequestParam("id") long id){
          exerciseService.getExerciseById(id);
     }
+    
     
 
 }
