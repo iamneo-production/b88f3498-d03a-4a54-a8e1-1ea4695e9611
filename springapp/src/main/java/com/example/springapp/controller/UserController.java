@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
@@ -35,7 +36,6 @@ public class UserController {
     }
 
     // Create a new user
-    
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.createUser(user);
@@ -51,6 +51,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    
     
     @PostMapping("/login")
     public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) {

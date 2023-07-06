@@ -2,6 +2,8 @@ package com.example.springapp.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.springapp.model.Workout;
 
 public interface WorkoutServiceInterface {
