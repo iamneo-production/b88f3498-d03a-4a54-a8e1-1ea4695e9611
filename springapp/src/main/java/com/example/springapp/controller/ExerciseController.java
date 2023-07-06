@@ -19,11 +19,7 @@ import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin("https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io")
-=======
 @CrossOrigin("*")
->>>>>>> 7dc5b9fc3f740b949bcf9c2cd536a24c7cbbc498
 @RequestMapping("/exercise")
 public class ExerciseController {
 
