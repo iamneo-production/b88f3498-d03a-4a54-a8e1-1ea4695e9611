@@ -63,4 +63,5 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
       workoutRepository.deleteById(id);
       return new ResponseEntity<>("workout deleted", HttpStatus.OK);
    }
+   
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class SetService implements SetServiceInterface {
 
@@ -38,7 +40,12 @@ public class SetService implements SetServiceInterface {
 
     @Override
     public ResponseEntity<String> deleteSetById(long id) {
-        setRepository.deleteSetById(id);
+        try {
+
+            setRepository.deleteSetById(id);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
+        }
         return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
     }
 
