@@ -1,16 +1,13 @@
 package com.example.springapp.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import java.util.List;
-
-import java.time.LocalDate;
 
 @Entity
 public class Workout {
@@ -23,9 +20,6 @@ public class Workout {
     private LocalDate date;
     private String duration;
     private String notes;
-    // @OneToMany(mappedBy = "exercise")
-    // private List<Exercise> exercise;
-   
 
     public Workout(long id, User user, LocalDate date, String duration, String notes) {
         this.id = id;

@@ -4,25 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name = "setTable")
 public class Set {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-   
     private Long exerciseId;
     private Long reps;
     private String weight;
     private String duration;
-    
-    // not given in condition of examly
-     
-   public Set() {
 
-   }
+    public Set() {
+
+    }
+
+    public Set(Long exerciseId, Long reps, String weight, String duration) {
+        this.exerciseId = exerciseId;
+        this.reps = reps;
+        this.weight = weight;
+        this.duration = duration;
+    }
 
     public Set(Long id, Long reps, Long exerciseId, String weight, String duration) {
         this.id = id;

@@ -1,9 +1,16 @@
 package com.example.springapp.service;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.springapp.model.Set;
 
 public interface SetServiceInterface {
-    public Set getSetById(long id);
-    public Iterable<Set> getAllSet();
-    public Iterable<Set> getSetByExerciseId(long e_id);
+    Set getSetById(long id);
+
+    Iterable<Set> getAllSet();
+
+    Iterable<Set> getSetByExerciseId(long e_id);
+
+    ResponseEntity<String> deleteSetById(long id);
+    // Set createSet();
 }
