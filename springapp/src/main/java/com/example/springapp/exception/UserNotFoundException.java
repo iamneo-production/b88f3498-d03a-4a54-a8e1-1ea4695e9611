@@ -1,4 +1,4 @@
-package com.example.springapp.exceptions;
+package com.example.springapp.exception;
 
 public class UserNotFoundException extends RuntimeException {
 
