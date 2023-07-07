@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   saved: boolean = false;
   labelGender: string = "Gender"
   file!: File;
-  imageName!: string;
+  imageName: string = "assets/icon/user.png";
 
 
   constructor(private http: HttpClient, private formValidationService: FormValidationService, private titleService: TitleService, private userService: UserService) {
