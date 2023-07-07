@@ -6,7 +6,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormValidationService {
 
-
   myform = new FormGroup({
     email : new FormControl('', [Validators.required, Validators.email]),
     name : new FormControl('', [Validators.required, Validators.minLength(3)]),
