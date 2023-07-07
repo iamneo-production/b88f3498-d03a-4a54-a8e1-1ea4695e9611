@@ -1,34 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Works } from '../components/listworks/listworks.component';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
 export class WorksdataService {
+  url:string = this.userService.baseUrl;
+  userEmail!:string;
+  id!: number;
+  
 
   constructor(
-    private http:HttpClient
-  ){  }
+    private http:HttpClient, 
+    private userService: UserService,
+  ){ 
+    this.userService.userSubject.subscribe(user =>{
+      this.userEmail = user.email;     
+      this.id = user.id;
+    });
+   }
   
-  retrieveAllTodos(username:any){
-    return this.http.get<Works[]>(`https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/users/${username}/todos`);
+  retrieveAllTodos(userEmail:any){
+    return this.http.get<Works[]>(`${this.url}/users/${userEmail}/todos`);
     // console.log("Execute Hello World Bean Service  .")
   }
 
-  deleteTodo(username: any,id: any){
-    return this.http.delete(`https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/users/${username}/todos/${id}`);
+  deleteTodo(userEmail: any,id: any){
+    return this.http.delete(`${this.url}/users/${userEmail}/todos/${id}`);
   }
 
-  retrieveTodo(username: any,id: any){
-    return this.http.get<Works>(`https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/users/${username}/todos/${id}`);
+  retrieveTodo(userEmail: any,id: any){
+    return this.http.get<Works>(`${this.url}/users/${userEmail}/todos/${id}`);
   }
 
-  updateTodo(username: any,id: any, todo: any){
-    return this.http.put(`https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/users/${username}/todos/${id}`, todo);
+  updateTodo(userEmail: any,id: any, todo: any){
+    return this.http.put(`${this.url}/users/${userEmail}/todos/${id}`, todo);
   }
 
-  createTodo(username: any, todo: any){
-    return this.http.post(`https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/users/${username}/todos`, todo);
+  createTodo(userEmail: any, todo: any){
+    console.log(this.userEmail);
+    return this.http.post(`${this.url}/users/${userEmail}/todos`, todo);
   }
 }
 

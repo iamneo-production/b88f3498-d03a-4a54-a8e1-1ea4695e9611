@@ -37,6 +37,7 @@ import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goa
 import {MatIconModule } from '@angular/material/icon';
 import { ListworksComponent } from './components/listworks/listworks.component';
 import { WorksComponent } from './components/works/works.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { WorksComponent } from './components/works/works.component';
     AchievedGoalsComponent,
     ListworksComponent,
     WorksComponent,
+    FooterComponent,
 
   ],
   imports: [
