@@ -3,7 +3,7 @@ package com.example.springapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+
 import com.example.springapp.config.SecurityConfig;
 
 @SpringBootApplication
