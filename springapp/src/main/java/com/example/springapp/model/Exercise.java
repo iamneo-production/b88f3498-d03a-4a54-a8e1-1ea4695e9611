@@ -19,10 +19,6 @@ public class Exercise {
         
     }
    
-
-    
-
-   
     public Exercise(long id, long workoutId, String name, String description) {
         this.id = id;
         this.workoutId = workoutId;
