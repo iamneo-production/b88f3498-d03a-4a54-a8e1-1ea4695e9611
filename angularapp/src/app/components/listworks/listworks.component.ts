@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import { WorksdataService } from 'src/app/services/worksdata.service';
 
 export class Works {
@@ -21,15 +22,22 @@ export class ListworksComponent implements OnInit {
 
   todos : Works[] | undefined
   message!: string;
+  userEmail!:string;
+  // id!:number;
 
-  constructor(private workService: WorksdataService, private router: Router) { }
+  constructor(private workService: WorksdataService, private router: Router, private userService: UserService) {
+this.userService.userSubject.subscribe(user=>{
+  this.userEmail= user.email;
+  // this.id = user.id;
+})
+   }
 
   ngOnInit() {
     this.refreshTodos()
   }
 
   refreshTodos(){
-    this.workService.retrieveAllTodos('in28minutes').subscribe(
+    this.workService.retrieveAllTodos(this.userEmail).subscribe(
       response => {
         console.log(response);
         this.todos = response;
@@ -38,7 +46,7 @@ export class ListworksComponent implements OnInit {
   }
   deleteTodo(id: any){
     console.log(`delete todo ${id}`);
-    this.workService.deleteTodo('in28minutes',id).subscribe(
+    this.workService.deleteTodo(this.userEmail,id).subscribe(
       response => {
         console.log(response);
         this.message = `Delete of Exercise ${id} is Successful`;
