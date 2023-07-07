@@ -26,7 +26,7 @@ public class TrackingController {
 
         @GetMapping("/users/{username}/todos")
     public Iterable<TrackingModel> getAllTodos(@PathVariable String username){
-        return trackingService.findAll();
+        return trackingService.findAll(username);
     }
 
     @GetMapping("/users/{username}/todos/{id}")
@@ -37,23 +37,21 @@ public class TrackingController {
     @DeleteMapping("/users/{username}/todos/{id}")
     public ResponseEntity<String> deleteSetById(@PathVariable String username, @PathVariable int id){
         return trackingService.deleteById(id);
-        // if(todo!=null){
-        //     return ResponseEntity.noContent().build(); 
-        // }
-        // return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/users/{username}/todos/{id}")
     public ResponseEntity<TrackingModel> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody TrackingModel todo){
+        todo.setUsername(username);
         TrackingModel todoUpdated = trackingService.save(todo);
         return new ResponseEntity<TrackingModel>(todoUpdated, HttpStatus.OK);
     }
 
     @PostMapping("/users/{username}/todos")
-    public ResponseEntity<Void> updateTodo(@PathVariable String username, @RequestBody TrackingModel todo){
-        TrackingModel createdTodo = trackingService.save(todo);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<TrackingModel> createTodo(@PathVariable String username, @RequestBody TrackingModel todo) {
+        todo.setUsername(username);
+
+        TrackingModel newModel = trackingService.save(todo);
+        return new ResponseEntity<>(newModel, HttpStatus.CREATED);
     }
     
     

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TitleService } from 'src/app/services/title.service';
 import { UserService } from 'src/app/services/user.service';
 
-@Component ({
+@Component({
   selector: 'app-recommendations',
   templateUrl: './recommendations.component.html',
   styleUrls: ['./recommendations.component.scss']
@@ -37,7 +37,7 @@ export class RecommendationsComponent implements OnInit {
   UserWeight!:number;
   ngOnInit(): void {
     
-    this.userService.userSubject.subscribe((userData:any) => {
+    this.userService.userSubject.subscribe((userData :any) => {
       this.UserGender = userData.gender;
       this.UserAge = userData.age;
       this.UserWeight = userData.weight;
