@@ -18,20 +18,12 @@ public class TrackingService {
     // true));
     // }
 
-    public Iterable<TrackingModel> findAll() {
-        return todos.findAll();
+    public Iterable<TrackingModel> findAll(String email) {
+        return todos.findAllByUsername(email);
     }
 
     public TrackingModel save(TrackingModel todo) {
         return todos.save(todo);
-        // if (todo.getId() == -1 || todo.getId() == 0) {
-        // todo.setId(++idCounter);
-        // todos.add(todo);
-        // } else {
-        // deleteById(todo.getId());
-        // todos.add(todo);
-        // }
-        // return todo;
     }
 
     public ResponseEntity<String> deleteById(int id) {

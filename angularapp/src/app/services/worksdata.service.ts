@@ -16,7 +16,7 @@ export class WorksdataService {
     private userService: UserService,
   ){ 
     this.userService.userSubject.subscribe(user =>{
-      this.userEmail = user.email;
+      this.userEmail = user.email;     
       this.id = user.id;
     });
    }
@@ -39,6 +39,7 @@ export class WorksdataService {
   }
 
   createTodo(userEmail: any, todo: any){
+    console.log(this.userEmail);
     return this.http.post(`${this.url}/users/${userEmail}/todos`, todo);
   }
 }
