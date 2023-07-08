@@ -13,6 +13,6 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
     Optional<Exercise> findExerciseById(long id);
     Exercise deleteExerciseById(long id);
     List<Exercise> findAllByWorkoutId(long workoutId);
-
-    
+    Iterable<Exercise> findAll();
+    Exercise save(Exercise exercise);
 }
