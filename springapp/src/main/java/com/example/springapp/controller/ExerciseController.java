@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
+import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 
 @RestController
 @CrossOrigin("*")
@@ -27,7 +30,7 @@ public class ExerciseController {
     private ExerciseService exerciseService;
 
     @PostMapping
-    public ResponseEntity<String> createExercise(@RequestBody Exercise exercise) {
+    public ResponseEntity<String> createExercise(@RequestBody Exercise exercise) throws AlreadyExistsException {
         exerciseService.createExercise(exercise);
         return ResponseEntity.ok("exercise Created");
 
@@ -51,8 +54,9 @@ public class ExerciseController {
     }
 
     @GetMapping("/workout")
-    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) {
-        return exerciseService.getExerciseByWorkoutId(workoutId);
+
+    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) throws WorkoutNotFoundException {
+         return exerciseService.getExerciseByWorkoutId(workoutId);
     }
 
     @PutMapping

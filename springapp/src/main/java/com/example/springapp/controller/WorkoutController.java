@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.UserNotFoundException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -24,6 +26,7 @@ import com.example.springapp.repository.UserRepository;
 import com.example.springapp.repository.WorkoutRepository;
 import com.example.springapp.model.Workout;
 import com.example.springapp.service.WorkoutService;
+import com.example.springapp.exception.WorkoutNotFoundException;
 
 @RestController
 @RequestMapping
@@ -45,12 +48,12 @@ public class WorkoutController {
     }
 
     @GetMapping("/workout/id")
-    public Workout getWorkoutById(@RequestParam("id") long id) {
+    public Workout getWorkoutById(@RequestParam("id") long id) throws WorkoutNotFoundException {
         return workoutService.getWorkoutById(id);
     }
 
     @GetMapping("/workout/userId")
-    public List<Workout> getWorkoutByUserId(@RequestParam("userId") long id) {
+    public List<Workout> getWorkoutByUserId(@RequestParam("userId") long id) throws UserNotFoundException{
         return workoutService.getWorkOutByUserId(id);
     }
 

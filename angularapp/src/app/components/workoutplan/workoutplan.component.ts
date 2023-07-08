@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TitleService } from 'app/services/title.service';
-import { WorkoutService } from 'app/services/workout.service';
+import { TitleService } from 'src/app/services/title.service';
+import { WorkoutService } from 'src/app/services/workout.service';
 
 
 @Component({

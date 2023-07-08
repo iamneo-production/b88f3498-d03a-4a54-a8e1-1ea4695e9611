@@ -30,4 +30,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionProperties, HttpStatus.NOT_FOUND);
     }
     
+    @ExceptionHandler(value = {AlreadyExistsException.class})
+    public ResponseEntity<ExceptionProperties> setNotFoundExceptionHandler(AlreadyExistsException alreadyExistsException){
+        ExceptionProperties exceptionProperties = new ExceptionProperties(alreadyExistsException.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.NOT_FOUND);
+    }
+    
 }
