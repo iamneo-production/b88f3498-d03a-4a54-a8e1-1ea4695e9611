@@ -7,7 +7,7 @@ public interface ExerciseServiceInterface {
     public Iterable<Exercise> getAllExercise();
     public Exercise getExerciseById(long id) throws ExerciseNotFoundException;
     public void deleteExerciseById(long id);
-    public List<Exercise> getExerciseByWorkoutId(long workoutId);
+    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException;
 
     
 }

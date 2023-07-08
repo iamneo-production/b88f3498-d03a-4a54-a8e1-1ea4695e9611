@@ -25,13 +25,13 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
 
     }
      @Override
-     public Workout getWorkoutById(long id){
+     public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
         return optionalworkout.orElseThrow(() -> new UserNotFoundException("User not Found"));
      }
      
      @Override
-     public List<Workout> getWorkOutByUserId(long userId){
+     public List<Workout> getWorkOutByUserId(long userId) throws UserNotFoundException{
         return workoutRepository.findAllByUserId(userId);
      }
    public ResponseEntity<String> createWorkout(Workout workout) {

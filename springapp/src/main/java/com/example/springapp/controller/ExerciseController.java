@@ -51,7 +51,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/workout")
-    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) {
+    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) throws WorkoutNotFoundException {
         return exerciseService.getExerciseByWorkoutId(workoutId);
     }
 

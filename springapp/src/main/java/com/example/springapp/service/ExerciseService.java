@@ -35,7 +35,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     @Override
-    public List<Exercise> getExerciseByWorkoutId(long workoutId) {
+    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException{
         return exerciseRepository.findAllByWorkoutId(workoutId);
 
     }
