@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 
+
 @Transactional
 @Service
 public class SetService implements SetServiceInterface {
@@ -39,8 +40,8 @@ public class SetService implements SetServiceInterface {
     public Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException {
         Iterable<Set> set = setRepository.getSetByExerciseId(e_id);
         int count = (int) StreamSupport.stream(set.spliterator(), false).count();
-        if (count<0) {
-            throw new ExerciseNotFoundException("Exercise not exists for particular set ID");
+        if (count<=0) {
+            throw new ExerciseNotFoundException("Exercise does not exists for particular set ID");
         }
         return set;
     }

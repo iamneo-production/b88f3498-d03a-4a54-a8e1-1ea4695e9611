@@ -15,5 +15,6 @@ public interface SetServiceInterface {
     Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException;
 
     ResponseEntity<String> deleteSetById(long id);
-    // Set createSet();
+    
+    public ResponseEntity<String> createSet(Set set);
 }
