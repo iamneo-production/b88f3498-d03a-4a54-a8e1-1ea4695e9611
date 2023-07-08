@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
+
 import org.springframework.transaction.annotation.Transactional;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 
 @Transactional
 @Service
@@ -39,8 +41,8 @@ public class SetService implements SetServiceInterface {
     public Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException {
         Iterable<Set> set = setRepository.getSetByExerciseId(e_id);
         int count = (int) StreamSupport.stream(set.spliterator(), false).count();
-        if (count<0) {
-            throw new ExerciseNotFoundException("Exercise not exists for particular set ID");
+        if (count<=0) {
+            throw new ExerciseNotFoundException("Exercise does not exists for particular set ID");
         }
         return set;
     }
@@ -56,9 +58,23 @@ public class SetService implements SetServiceInterface {
         return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> createSet(Set set) {
+    public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{
+        Iterable<Set> dbset = setRepository.getSetByExerciseId(set.getExerciseId());
+        int count = (int) StreamSupport.stream(dbset.spliterator(), false).count();
+        if (count>0) {
+            throw new AlreadyExistsException("Set Already Exists");
+        }
         setRepository.save(set);
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
+    }
+    public ResponseEntity<String> updateSet(Set set) {
+        Set dbSet = setRepository.findById(set.getId()).orElseThrow();
+        dbSet.setExerciseId(set.getExerciseId());
+        dbSet.setReps(set.getReps());
+        dbSet.setWeight(set.getWeight());
+        dbSet.setDuration(set.getDuration());
+        setRepository.save(dbSet);
+        return new ResponseEntity<>("Set Updated", HttpStatus.OK);
     }
 
 }

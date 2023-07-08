@@ -12,6 +12,7 @@ import com.example.springapp.model.Exercise;
 import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 
 
 @Service
@@ -36,7 +37,11 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     @Override
-    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException{
+    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException {
+        List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(workoutId);
+        if(exercises.isEmpty()){
+            throw new WorkoutNotFoundException("Exercise not found for particular Workout Id");
+        }
         return exerciseRepository.findAllByWorkoutId(workoutId);
 
     }
@@ -46,7 +51,11 @@ public class ExerciseService extends RuntimeException implements ExerciseService
         exerciseRepository.deleteById(id);
     }
 
-    public ResponseEntity<String> createExercise(Exercise exercise) {
+    public ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException {
+        List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(exercise.getWorkoutId());
+        if(!exercises.isEmpty()){
+            throw new AlreadyExistsException("Exercise Already Exists with particular Workout Id");
+        }
         exerciseRepository.save(exercise);
         return new ResponseEntity<>("exercise created", HttpStatus.CREATED);
     }

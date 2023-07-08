@@ -13,6 +13,8 @@ public interface SetRepository extends CrudRepository<Set,Long>{
 
     void deleteSetById(long id);
 
+    Set findById(long id);
+
 }
 
 

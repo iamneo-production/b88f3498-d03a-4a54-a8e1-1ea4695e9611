@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
-
+import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.model.Set;
 import com.example.springapp.service.SetService;
 import javax.transaction.Transactional;
@@ -36,7 +37,7 @@ public class SetController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createSet(@RequestBody Set set) {
+    public ResponseEntity<String> createSet(@RequestBody Set set) throws AlreadyExistsException {
         return setService.createSet(set);
 
     }
@@ -51,11 +52,16 @@ public class SetController {
         return setService.getSetByExerciseId(e_id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/id")
     public ResponseEntity<String> deleteSetById(@RequestParam("id") long id) {
         setService.deleteSetById(id);
         return new ResponseEntity<>("Set deleted", HttpStatus.OK);
 
+    }
+
+    @PutMapping
+    public ResponseEntity<String> updateSet(@RequestBody Set set){
+        return setService.updateSet(set);
     }
 
 }

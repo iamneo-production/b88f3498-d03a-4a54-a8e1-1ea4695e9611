@@ -13,6 +13,7 @@ import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.WorkoutRepository;
+import com.example.springapp.exception.WorkoutNotFoundException;
 
 
 @Service
@@ -28,7 +29,10 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
      @Override
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
-        return optionalworkout.orElseThrow(() -> new UserNotFoundException("User not Found"));
+        if(optionalworkout.isEmpty()){
+            throw new WorkoutNotFoundException("Workout does not exists for Particular ID");
+        }
+        return optionalworkout.get();
      }
      
      @Override
