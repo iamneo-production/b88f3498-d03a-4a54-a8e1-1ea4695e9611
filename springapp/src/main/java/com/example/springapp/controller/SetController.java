@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PutMapping;
+import com.example.springapp.exception.SetsNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.model.Set;
 import com.example.springapp.service.SetService;
 import javax.transaction.Transactional;
+
+
 @Transactional
 @RestController
 @CrossOrigin("*")
@@ -32,26 +37,31 @@ public class SetController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createSet(@RequestBody Set set) {
+    public ResponseEntity<String> createSet(@RequestBody Set set) throws AlreadyExistsException {
         return setService.createSet(set);
 
     }
 
     @GetMapping("/id")
-    public Set getSetById(@RequestParam("id") long id) {
+    public Set getSetById(@RequestParam("id") long id) throws SetsNotFoundException {
         return setService.getSetById(id);
     }
 
     @GetMapping("/exerciseId")
-    public Iterable<Set> getSetByExerciseId(@RequestParam("exerciseId") long e_id) {
+    public Iterable<Set> getSetByExerciseId(@RequestParam("exerciseId") long e_id) throws ExerciseNotFoundException {
         return setService.getSetByExerciseId(e_id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/id")
     public ResponseEntity<String> deleteSetById(@RequestParam("id") long id) {
         setService.deleteSetById(id);
         return new ResponseEntity<>("Set deleted", HttpStatus.OK);
 
+    }
+
+    @PutMapping
+    public ResponseEntity<String> updateSet(@RequestBody Set set){
+        return setService.updateSet(set);
     }
 
 }
