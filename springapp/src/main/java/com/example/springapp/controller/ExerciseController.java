@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
+import com.example.springapp.exception.WorkoutNotFoundException;
 
 @RestController
 @CrossOrigin("*")
@@ -51,7 +52,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/workout")
-    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) {
+    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) throws WorkoutNotFoundException{
         return exerciseService.getExerciseByWorkoutId(workoutId);
     }
 

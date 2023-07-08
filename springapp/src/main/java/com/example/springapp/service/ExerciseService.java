@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.WorkoutNotFoundException;
 
 
 @Service
@@ -35,7 +36,11 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     @Override
-    public List<Exercise> getExerciseByWorkoutId(long workoutId) {
+    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException {
+        List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(workoutId);
+        if(exercises.isEmpty()){
+            throw new WorkoutNotFoundException("Exercise not found for particular Workout Id");
+        }
         return exerciseRepository.findAllByWorkoutId(workoutId);
 
     }
