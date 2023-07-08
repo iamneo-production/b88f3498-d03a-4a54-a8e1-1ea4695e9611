@@ -35,5 +35,11 @@ public class GlobalExceptionHandler {
         ExceptionProperties exceptionProperties = new ExceptionProperties(alreadyExistsException.getMessage(), HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.NOT_FOUND);
     }
+//update
+    @ExceptionHandler(value = {InvalidInputException.class}) 
+    public ResponseEntity<ExceptionProperties> invalidInputExceptionHandler(InvalidInputException invalidInputException) {
+        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidInputException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+    }
     
 }
