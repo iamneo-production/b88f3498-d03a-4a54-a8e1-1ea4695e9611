@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.WorkoutNotFoundException;
 
 
 @Service

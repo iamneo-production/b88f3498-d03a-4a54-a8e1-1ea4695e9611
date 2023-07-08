@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
