@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.springapp.model.Set;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 
 
 public interface SetServiceInterface {
@@ -16,5 +17,7 @@ public interface SetServiceInterface {
 
     ResponseEntity<String> deleteSetById(long id);
     
-    public ResponseEntity<String> createSet(Set set);
+    ResponseEntity<String> createSet(Set set) throws AlreadyExistsException;
+
+    
 }
