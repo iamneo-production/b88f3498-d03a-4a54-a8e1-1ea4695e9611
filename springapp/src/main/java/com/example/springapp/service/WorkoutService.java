@@ -9,17 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.exception.WorkoutNotFoundException;
-import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.WorkoutRepository;
 import com.example.springapp.exception.WorkoutNotFoundException;
-
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidInputException;
 
 @Service
 public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
-   @Autowired
+  
+    @Autowired
    private WorkoutRepository workoutRepository;
 
     @Override
@@ -77,8 +78,12 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
 
    @Override
    public ResponseEntity<String> deleteWorkoutById(long id) {
-      workoutRepository.deleteById(id);
-      return new ResponseEntity<>("workout deleted", HttpStatus.OK);
-   }
+    try {
+        workoutRepository.deleteById(id);
+        return new ResponseEntity<>("Workout deleted", HttpStatus.OK);
+    } catch (Exception e) {
+        throw new InvalidDeleteException("Error occurred while deleting the workout.");
+    }
+}
    
 }
