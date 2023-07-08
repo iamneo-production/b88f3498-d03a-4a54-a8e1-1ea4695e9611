@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.UserNotFoundException;
-
+import com.example.springapp.exception.InvalidInputException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -58,7 +58,7 @@ public class WorkoutController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<String> updateWorkout(@RequestBody Workout workout) {
+    public ResponseEntity<String> updateWorkout(@RequestBody Workout workout) throws InvalidInputException {
         return workoutService.updateWorkout(workout);
     }
 
