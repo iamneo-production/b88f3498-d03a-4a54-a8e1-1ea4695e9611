@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
@@ -52,7 +53,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         }
    }
    @Override
-   public ResponseEntity<String> updateWorkout(Workout workout) throws InvalidInputException {
+   public ResponseEntity<String> updateWorkout(Workout workout)  throws InvalidInputException {
             if (workout == null || workout.getUser() == null || workout.getUser().getId() <= 0) {
             throw new InvalidInputException("Invalid input provided for updating the workout.");
         }
