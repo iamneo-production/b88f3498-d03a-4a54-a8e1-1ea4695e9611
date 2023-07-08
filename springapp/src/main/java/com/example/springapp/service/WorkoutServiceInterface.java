@@ -11,7 +11,7 @@ import com.example.springapp.exception.WorkoutNotFoundException;
 
 import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.UserNotFoundException;
-
+import com.example.springapp.exception.InvalidDeleteException;
 public interface WorkoutServiceInterface {
      public Iterable<Workout> getAllWorkout();
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException;
