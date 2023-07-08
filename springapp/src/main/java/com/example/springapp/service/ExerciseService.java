@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Exercise;
 import com.example.springapp.repository.ExerciseRepository;
+import com.example.springapp.exception.ExerciseNotFoundException;
+
 
 @Service
 public class ExerciseService extends RuntimeException implements ExerciseServiceInterface {
@@ -24,8 +26,11 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     @Override
-    public Exercise getExerciseById(long id) {
+    public Exercise getExerciseById(long id) throws ExerciseNotFoundException {
         Optional<Exercise> optionalExercise = exerciseRepository.findExerciseById(id);
+        if(optionalExercise.isEmpty()){
+            throw new ExerciseNotFoundException("Exercise does not exists for particular ID");
+        }
         return optionalExercise.orElseThrow();
     }
 

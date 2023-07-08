@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
 
@@ -39,7 +39,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/id")
-    public Exercise getExerciseById(@RequestParam("id") long id) {
+    public Exercise getExerciseById(@RequestParam("id") long id) throws ExerciseNotFoundException {
         return exerciseService.getExerciseById(id);
     }
 

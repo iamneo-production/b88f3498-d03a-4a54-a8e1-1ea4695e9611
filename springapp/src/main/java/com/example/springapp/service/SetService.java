@@ -1,5 +1,6 @@
 package com.example.springapp.service;
 
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.springapp.exception.SetsNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
 
 @Transactional
 @Service
@@ -24,18 +27,22 @@ public class SetService implements SetServiceInterface {
     }
 
     @Override
-    public Set getSetById(long id) {
-        return setRepository.getSetById(id).orElseThrow();
+    public Set getSetById(long id) throws SetsNotFoundException {
+        Optional<Set> set = setRepository.getSetById(id);
+        if(set.isEmpty()){
+            throw new SetsNotFoundException("Set does not exists for particular ID");
+        }
+        return setRepository.getSetById(id).get();
     }
 
     @Override
-    public Iterable<Set> getSetByExerciseId(long e_id) {
+    public Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException {
         Iterable<Set> set = setRepository.getSetByExerciseId(e_id);
         int count = (int) StreamSupport.stream(set.spliterator(), false).count();
-        if (count > 0) {
-            return set;
+        if (count<0) {
+            throw new ExerciseNotFoundException("Exercise not exists for particular set ID");
         }
-        return null;
+        return set;
     }
 
     @Override

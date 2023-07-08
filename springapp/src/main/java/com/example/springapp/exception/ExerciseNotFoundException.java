@@ -2,7 +2,7 @@ package com.example.springapp.exception;
 
 public class ExerciseNotFoundException extends Exception{
 
-    ExerciseNotFoundException(String message){
+    public ExerciseNotFoundException(String message){
         super(message);
     }
     

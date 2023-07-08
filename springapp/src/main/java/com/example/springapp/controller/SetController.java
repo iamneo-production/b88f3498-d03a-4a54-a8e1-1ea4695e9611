@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.springapp.exception.SetsNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
 
 import com.example.springapp.model.Set;
 import com.example.springapp.service.SetService;
 import javax.transaction.Transactional;
+
+
 @Transactional
 @RestController
 @CrossOrigin("*")
@@ -38,12 +42,12 @@ public class SetController {
     }
 
     @GetMapping("/id")
-    public Set getSetById(@RequestParam("id") long id) {
+    public Set getSetById(@RequestParam("id") long id) throws SetsNotFoundException {
         return setService.getSetById(id);
     }
 
     @GetMapping("/exerciseId")
-    public Iterable<Set> getSetByExerciseId(@RequestParam("exerciseId") long e_id) {
+    public Iterable<Set> getSetByExerciseId(@RequestParam("exerciseId") long e_id) throws ExerciseNotFoundException {
         return setService.getSetByExerciseId(e_id);
     }
 
