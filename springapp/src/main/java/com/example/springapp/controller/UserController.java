@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.springapp.exception.UserNotFoundException;
-import com.example.springapp.exception.AlreadyExistsException;
 
-import com.example.springapp.exception.InvalidInputException;
+
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
 
@@ -44,7 +43,7 @@ public class UserController {
 
     // Create a new user
     @PostMapping("/register")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws AlreadyExistsException{
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
@@ -61,13 +60,13 @@ public class UserController {
     
     
     @PostMapping("/login")
-    public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) throws InvalidInputException{
+    public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) {
         return userService.loginByEmail(loginData);
     }
 
     // Update a specific user
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) throws InvalidUpdateException{
+    public String updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
         updatedUser.setId(id);
         userService.updateUser(updatedUser);
         return "User Updated";

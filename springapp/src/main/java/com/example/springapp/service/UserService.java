@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.model.User;
 import com.example.springapp.repository.UserRepository;
 
@@ -50,8 +51,16 @@ public class UserService {
         userRepository.save(updatedUser);
     }
 
-    public void deleteUserById(Long id) {
-        userRepository.deleteById(id);
+   
+   public ResponseEntity<String> deleteUserById(Long id) throws InvalidDeleteException{
+    try {
+
+        userRepository.deleteUserById(id);
+        return new ResponseEntity<>("User deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            
+        throw new InvalidDeleteException("Error occurred while deleting the user.");
+        }
     }
 
     public ResponseEntity<User> loginByEmail(Map<String, String> loginData){
