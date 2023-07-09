@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.springapp.exception.ExceptionProperties;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.InvalidInputException;
+
+import main.java.com.example.springapp.exception.InvalidDeleteException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,6 +31,25 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ExceptionProperties> setNotFoundExceptionHandler(WorkoutNotFoundException workoutNotFoundException){
         ExceptionProperties exceptionProperties = new ExceptionProperties(workoutNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(value = {AlreadyExistsException.class})
+    public ResponseEntity<ExceptionProperties> setNotFoundExceptionHandler(AlreadyExistsException alreadyExistsException){
+        ExceptionProperties exceptionProperties = new ExceptionProperties(alreadyExistsException.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {InvalidInputException.class}) 
+    public ResponseEntity<ExceptionProperties> invalidInputExceptionHandler(InvalidInputException invalidInputException) {
+        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidInputException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {InvalidDeleteException.class})
+    public ResponseEntity<ExceptionProperties> invalidDeleteExceptionHandler(InvalidDeleteException invalidDeleteException){
+        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidDeleteException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+
     }
     
 }

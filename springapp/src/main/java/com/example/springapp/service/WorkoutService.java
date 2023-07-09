@@ -13,11 +13,14 @@ import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
 import com.example.springapp.repository.WorkoutRepository;
-
+import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidInputException;
 
 @Service
 public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
-   @Autowired
+  
+    @Autowired
    private WorkoutRepository workoutRepository;
 
     @Override
@@ -28,7 +31,10 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
      @Override
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
-        return optionalworkout.orElseThrow(() -> new UserNotFoundException("User not Found"));
+        if(optionalworkout.isEmpty()){
+            throw new WorkoutNotFoundException("Workout does not exists for Particular ID");
+        }
+        return optionalworkout.get();
      }
      
      @Override
@@ -36,7 +42,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         return workoutRepository.findAllByUserId(userId);
      }
    public ResponseEntity<String> createWorkout(Workout workout) {
-      long userId = workout.getUser().getId();
+       long userId = workout.getUser().getId();
         User newUser = new User();
         newUser.setId(userId);
         workout.setUser(newUser);
@@ -47,23 +53,37 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
    }
-   public ResponseEntity<String> updateWorkout(Workout workout) {
-      long userId = workout.getUser().getId();
-        User newUser = new User();
-        newUser.setId(userId);
-        workout.setUser(newUser);
-        Workout createdWorkout = workoutRepository.save(workout);
-        if (createdWorkout != null) {
-            return ResponseEntity.ok("workout Updated");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+   @Override
+   public ResponseEntity<String> updateWorkout(Workout workout)  throws InvalidInputException {
+            if (workout == null || workout.getUser() == null || workout.getUser().getId() <= 0) {
+            throw new InvalidInputException("Invalid input provided for updating the workout.");
         }
-   }
+            long userId = workout.getUser().getId();
+            User newUser = new User();
+            newUser.setId(userId);
+            workout.setUser(newUser);
+            Workout createdWorkout;
+            try{
+                createdWorkout = workoutRepository.save(workout);
+            }catch (Exception e) {
+                throw new InvalidInputException("Error occurred while updating the workout.");
+            }
+        if(createdWorkout != null) {
+                return ResponseEntity.ok("workout Updated");
+            } 
+            else{
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+    }
 
-   
+   @Override
    public ResponseEntity<String> deleteWorkoutById(long id) {
-      workoutRepository.deleteById(id);
-      return new ResponseEntity<>("workout deleted", HttpStatus.OK);
-   }
+    try {
+        workoutRepository.deleteById(id);
+        return new ResponseEntity<>("Workout deleted", HttpStatus.OK);
+    } catch (Exception e) {
+        throw new InvalidDeleteException("Error occurred while deleting the workout.");
+    }
+}
    
 }
