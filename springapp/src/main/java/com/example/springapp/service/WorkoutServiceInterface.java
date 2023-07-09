@@ -17,5 +17,5 @@ public interface WorkoutServiceInterface {
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException;
      public List<Workout> getWorkOutByUserId(long user_id) throws UserNotFoundException;
      ResponseEntity<String> updateWorkout(Workout workout) throws InvalidInputException;
-     ResponseEntity<String> deleteWorkoutById(long id);
+     ResponseEntity<String> deleteWorkoutById(long id) throws InvalidDeleteException;
 }
