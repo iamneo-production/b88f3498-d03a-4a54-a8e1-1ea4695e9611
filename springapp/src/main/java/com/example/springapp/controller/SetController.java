@@ -55,7 +55,8 @@ public class SetController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id) {
+    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id)  {
+
         setService.deleteSetById(id);
         return new ResponseEntity<>("Set deleted", HttpStatus.OK);
 
