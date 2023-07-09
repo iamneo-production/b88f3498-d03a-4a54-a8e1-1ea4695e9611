@@ -16,7 +16,7 @@ import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.exception.InvalidUpdateException;
-import com.example.springapp.exception.InvalidDeleteException;
+
 
 @Transactional
 @Service
@@ -49,16 +49,16 @@ public class SetService implements SetServiceInterface {
         return set;
     }
 
+
     @Override
-   public ResponseEntity<String> deleteSetById(long id) throws InvalidDeleteException{
-    try {
+    public ResponseEntity<String> deleteSetById(long id)  {
+        try {
 
-        setRepository.deleteSetById(id);
-        return new ResponseEntity<>("Set deleted", HttpStatus.OK);
+            setRepository.deleteSetById(id);
         } catch (Exception e) {
-
-        throw new InvalidDeleteException("Error occurred while deleting the set.");
+            return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
         }
+        return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{

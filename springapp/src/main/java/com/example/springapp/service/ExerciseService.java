@@ -13,8 +13,10 @@ import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
-import com.example.springapp.exception.InvalidDeleteException;
+
 import com.example.springapp.exception.InvalidUpdateException;
+import com.example.springapp.exception.InvalidDeleteException;
+
 
 
 @Service
@@ -49,15 +51,14 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     @Override
-   public ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException{
-    try {
+    public ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException {
+        try {
 
-        exerciseRepository.deleteExerciseById(id);
-        return new ResponseEntity<>("Exercise deleted", HttpStatus.OK);
+            exerciseRepository.deleteExerciseById(id);
         } catch (Exception e) {
-
-        throw new InvalidDeleteException("Error occurred while deleting the exercise.");
+            return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
         }
+        return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException {
