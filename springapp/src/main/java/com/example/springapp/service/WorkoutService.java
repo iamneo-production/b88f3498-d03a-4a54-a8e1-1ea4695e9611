@@ -77,7 +77,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
     }
 
    @Override
-   public ResponseEntity<String> deleteWorkoutById(long id) {
+   public ResponseEntity<String> deleteWorkoutById(long id) throws InvalidDeleteException{
     try {
         workoutRepository.deleteById(id);
         return new ResponseEntity<>("Workout deleted", HttpStatus.OK);

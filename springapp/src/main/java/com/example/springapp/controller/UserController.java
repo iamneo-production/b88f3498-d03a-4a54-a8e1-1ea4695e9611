@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
 
-import com.example.springapp.exception.InvalidInputFoundException;
+import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
 

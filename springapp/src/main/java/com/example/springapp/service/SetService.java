@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
+import com.example.springapp.exception.InvalidUpdateException;
 
 @Transactional
 @Service
@@ -67,7 +68,7 @@ public class SetService implements SetServiceInterface {
         setRepository.save(set);
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
     }
-    public ResponseEntity<String> updateSet(Set set) {
+    public ResponseEntity<String> updateSet(Set set) throws InvalidUpdateException{
         Set dbSet = setRepository.findById(set.getId()).orElseThrow();
         dbSet.setExerciseId(set.getExerciseId());
         dbSet.setReps(set.getReps());

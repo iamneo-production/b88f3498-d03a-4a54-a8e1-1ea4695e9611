@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.example.springapp.exception.SetsNotFoundException;
-import com.example.springapp.exception.ExcerciseNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
 
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
