@@ -7,8 +7,8 @@
             style="font-size: small; width: 100%; min-height: calc(100vh - 200px)">
   
   
-  
-            <table>
+          <div class="container">
+            <table class="table">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -27,7 +27,7 @@
               </tbody>
             </table>
   
-            <div class="containerr">
+            <div>
               <div>
                 <input type="date" [(ngModel)]="date" required>
                 <input type="number" placeholder="Height (cm)" [(ngModel)]="height" required>
@@ -40,7 +40,7 @@
               </div>
             </div>
   
-  
+          </div>
           </div>
         </div>
       </div>
