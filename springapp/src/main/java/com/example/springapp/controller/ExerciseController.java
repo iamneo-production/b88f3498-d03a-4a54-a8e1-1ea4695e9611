@@ -19,6 +19,7 @@ import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
 import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
 
 import com.example.springapp.exception.InvalidDeleteException;

@@ -1,5 +1,6 @@
 package com.example.springapp.controller;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import com.example.springapp.exception.UserNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
+
+import com.example.springapp.exception.InvalidInputFoundException;
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidUpdateException;
 
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
@@ -37,13 +44,13 @@ public class UserController {
 
     // Create a new user
     @PostMapping("/register")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) throws AlreadyExistsException{
         return userService.createUser(user);
     }
 
     // Retrieve a specific user by ID
     @GetMapping("/id")
-    public ResponseEntity<User> getUserById(@RequestParam("id") long id) {
+    public ResponseEntity<User> getUserById(@RequestParam("id") long id) throws UserNotFoundException{
         User user = userService.getUserById(id);
         if (user != null) {
             return ResponseEntity.ok(user);
@@ -54,13 +61,13 @@ public class UserController {
     
     
     @PostMapping("/login")
-    public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) throws InvalidInputException{
         return userService.loginByEmail(loginData);
     }
 
     // Update a specific user
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
+    public String updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) throws InvalidUpdateException{
         updatedUser.setId(id);
         userService.updateUser(updatedUser);
         return "User Updated";
@@ -68,7 +75,7 @@ public class UserController {
 
     // Delete a specific user by ID
     @DeleteMapping("/id")
-    public String deleteUserById(@RequestParam("id") long id) {
+    public String deleteUserById(@RequestParam("id") long id) throws InvalidDeleteException {
         userService.deleteUserById(id);
         return "User deleted";
     }

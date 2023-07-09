@@ -28,6 +28,8 @@ import com.example.springapp.model.Workout;
 import com.example.springapp.service.WorkoutService;
 import com.example.springapp.exception.WorkoutNotFoundException;
 
+import com.example.springapp.exception.UserNotFoundException;
+import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
 
