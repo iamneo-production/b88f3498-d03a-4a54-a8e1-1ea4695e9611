@@ -19,7 +19,11 @@ import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.service.ExerciseService;
 import com.example.springapp.exception.WorkoutNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
+
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidUpdateException;
 
 @RestController
 @CrossOrigin("*")
@@ -47,7 +51,7 @@ public class ExerciseController {
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<String> deleteExerciseById(@RequestParam("id") long id) {
+    public ResponseEntity<String> deleteExerciseById(@RequestParam("id") long id) throws InvalidDeleteException{
         exerciseService.deleteExerciseById(id);
         return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
 
@@ -60,7 +64,7 @@ public class ExerciseController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateExercise(@RequestBody Exercise exercise) {
+    public ResponseEntity<String> updateExercise(@RequestBody Exercise exercise) throws InvalidUpdateException{
         return exerciseService.updateExercise(exercise);
     }
 

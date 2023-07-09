@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
+import com.example.springapp.exception.InvalidDeleteException;
+
 import com.example.springapp.model.User;
 
 public interface UserServiceInterface {
@@ -12,6 +14,6 @@ public interface UserServiceInterface {
     public ResponseEntity<User> createUser(User data);
     public User getUserById(long id);
     public void updateUserById(long id); //Response: user Updated
-    public void deleteUserById(Long id);
+    ResponseEntity<String> deleteUserById(Long id) throws InvalidDeleteException;
     public ResponseEntity<User> loginByEmail(Map<String, String> loginData);
 }
