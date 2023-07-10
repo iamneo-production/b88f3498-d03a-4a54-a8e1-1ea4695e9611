@@ -1,4 +1,4 @@
-package com.example.springapp.ExerciseTracking;
+package com.example.springapp.exception;
 
 public class TrackingNotFoundException extends Exception {
 

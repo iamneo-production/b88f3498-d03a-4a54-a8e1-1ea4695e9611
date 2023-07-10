@@ -1,9 +1,11 @@
-package com.example.springapp.ExerciseTracking;
+package com.example.springapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.example.springapp.model.TrackingModel;
+import com.example.springapp.repository.TrackingRepository;
 
 @Service
 public class TrackingService {

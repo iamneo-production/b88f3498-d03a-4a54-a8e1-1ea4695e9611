@@ -1,4 +1,4 @@
-package com.example.springapp.ExerciseTracking;
+package com.example.springapp.controller;
 
 import java.net.URI;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import com.example.springapp.service.TrackingService;
+import com.example.springapp.model.TrackingModel;
 
-import javax.transaction.Transactional;
-@Transactional
 @RestController
 @CrossOrigin("*")
 public class TrackingController {
