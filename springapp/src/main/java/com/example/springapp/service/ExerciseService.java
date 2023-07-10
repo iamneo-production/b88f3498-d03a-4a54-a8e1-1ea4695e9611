@@ -56,7 +56,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
 
             exerciseRepository.deleteExerciseById(id);
         } catch (Exception e) {
-            return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
+            return new ResponseEntity<String>("Error occured during deleting exercise Id");
         }
         return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
     }

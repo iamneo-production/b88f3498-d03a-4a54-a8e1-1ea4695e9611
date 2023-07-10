@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import com.example.springapp.model.Set;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
+import com.example.springapp.exception.DeleteSetException;
 
 
 public interface SetServiceInterface {
@@ -15,7 +17,7 @@ public interface SetServiceInterface {
 
     Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException;
 
-    ResponseEntity<String> deleteSetById(long id) ;
+    ResponseEntity<String> deleteSetById(long id) throws DeleteSetException ;
     
     ResponseEntity<String> createSet(Set set) throws AlreadyExistsException;
 

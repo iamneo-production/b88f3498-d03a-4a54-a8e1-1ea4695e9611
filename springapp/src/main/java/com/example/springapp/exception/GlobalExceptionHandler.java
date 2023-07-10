@@ -45,19 +45,26 @@ public class GlobalExceptionHandler {
         ExceptionProperties exceptionProperties = new ExceptionProperties(invalidInputException.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
     }
-
-
-    @ExceptionHandler(value = {InvalidUpdateException.class}) 
-    public ResponseEntity<ExceptionProperties> invalidUpdateExceptionHandler(InvalidUpdateException invalidUpdateException) {
-        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidUpdateException.getMessage(), HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
-    }
-
+    
     @ExceptionHandler(value = {InvalidDeleteException.class})
     public ResponseEntity<ExceptionProperties> invalidDeleteExceptionHandler(InvalidDeleteException invalidDeleteException){
         ExceptionProperties exceptionProperties = new ExceptionProperties(invalidDeleteException.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
 
     }
+    @ExceptionHandler(value = {InvalidUpdateException.class}) 
+    public ResponseEntity<ExceptionProperties> invalidUpdateExceptionHandler(InvalidUpdateException invalidUpdateException) {
+        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidUpdateException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {InvalidUpdateException.class}) 
+    public ResponseEntity<ExceptionProperties> deleteSetExceptionHandler(DeleteSetException deleteSetException) {
+        ExceptionProperties exceptionProperties = new ExceptionProperties(deleteSetException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+    }
+    
+
+
     
 }
