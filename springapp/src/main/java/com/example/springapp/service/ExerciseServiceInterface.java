@@ -7,15 +7,16 @@ import org.springframework.http.ResponseEntity;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
 
 public interface ExerciseServiceInterface {
     
-    public Iterable<Exercise> getAllExercise() throws CustomDataAccessException;
+     Iterable<Exercise> getAllExercise() throws CustomDataAccessException;
 
-    public Exercise getExerciseById(long id) throws ExerciseNotFoundException;
+    Exercise getExerciseById(long id) throws ExerciseNotFoundException;
 
     ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException;
 

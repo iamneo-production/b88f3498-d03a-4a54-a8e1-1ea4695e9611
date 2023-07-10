@@ -16,6 +16,7 @@ import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
+import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.DeleteSetException;
 
 
@@ -54,18 +55,24 @@ public class SetService implements SetServiceInterface {
         }
         return set;
     }
+ 
+@Override
+public ResponseEntity<String> deleteSetById(long id) throws InvalidDeleteException{
 
+    try {
 
-    @Override
-    public ResponseEntity<String> deleteSetById(long id) throws DeleteSetException {
-        try {
-            setRepository.deleteSetById(id);
-        } catch (Exception e) {
-            throw new DeleteSetException("Error occurred while deleting the set with ID: " + id);
-        }
-        return new ResponseEntity<>("Set deleted", HttpStatus.OK);
+        setRepository.deleteSetById(id);
+
+    } catch (Exception e) {
+        return new ResponseEntity<String>("Error occured during deleting Set", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
+}
+
+
+
+    
     public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{
         Iterable<Set> dbset = setRepository.getSetByExerciseId(set.getExerciseId());
         int count = (int) StreamSupport.stream(dbset.spliterator(), false).count();
@@ -75,6 +82,7 @@ public class SetService implements SetServiceInterface {
         setRepository.save(set);
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
     }
+
     public ResponseEntity<String> updateSet(Set set) throws InvalidUpdateException{
         try{
         

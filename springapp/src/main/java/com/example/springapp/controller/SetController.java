@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
-
-
+import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.exception.CustomDataAccessException;
@@ -58,13 +57,15 @@ public class SetController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id)  throws DeleteSetException{
+    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id) throws InvalidDeleteException  {
 
         setService.deleteSetById(id);
         return new ResponseEntity<>("Set deleted", HttpStatus.OK);
 
     }
 
+
+    
     @PutMapping
     public ResponseEntity<String> updateSet(@RequestBody Set set) throws InvalidUpdateException{
         return setService.updateSet(set);

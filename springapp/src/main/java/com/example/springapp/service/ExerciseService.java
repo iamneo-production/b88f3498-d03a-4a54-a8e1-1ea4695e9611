@@ -47,6 +47,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     @Override
     public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException {
         List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(workoutId);
+        
         if(exercises.isEmpty()){
             throw new WorkoutNotFoundException("Exercise not found for particular Workout Id");
         }
@@ -54,10 +55,10 @@ public class ExerciseService extends RuntimeException implements ExerciseService
 
     }
 
-    @Override
-    public ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException {
+   
+    public ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException{
         try {
-
+    
             exerciseRepository.deleteExerciseById(id);
         } catch (Exception e) {
             return new ResponseEntity<>("Error occured during deleting exercise Id", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,25 +67,32 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     public ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException {
+
         List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(exercise.getWorkoutId());
+
         if(!exercises.isEmpty()){
+
             throw new AlreadyExistsException("Exercise Already Exists with particular Workout Id");
         }
         exerciseRepository.save(exercise);
-        return new ResponseEntity<>("exercise created", HttpStatus.CREATED);
+        return new ResponseEntity<>("Exercise created", HttpStatus.CREATED);
     }
 
-    public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException{
-        try{
 
-        Exercise dbExercise = exerciseRepository.findById(exercise.getId()).orElseThrow();
-        dbExercise.setDescription(exercise.getDescription());
-        dbExercise.setName(exercise.getName());
-        dbExercise.setWorkoutId(exercise.getWorkoutId());
-        exerciseRepository.save(dbExercise);
-        return new ResponseEntity<>("exercise Updated", HttpStatus.OK);
 
-        }catch(Exception e){
+    
+    public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException {
+        try {
+            Exercise dbExercise = exerciseRepository.findById(exercise.getId())
+                    .orElseThrow(() -> new ExerciseNotFoundException("Exercise not found for the provided ID"));
+    
+            dbExercise.setDescription(exercise.getDescription());
+            dbExercise.setName(exercise.getName());
+            dbExercise.setWorkoutId(exercise.getWorkoutId());
+    
+            exerciseRepository.save(dbExercise);
+            return new ResponseEntity<>("Exercise updated", HttpStatus.OK);
+        } catch (Exception e) {
             throw new InvalidUpdateException("Error occurred while updating the exercise.");
         }
     }
