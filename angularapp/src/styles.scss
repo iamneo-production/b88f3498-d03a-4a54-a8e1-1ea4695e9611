@@ -4,7 +4,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #1C2B44;
+    background-color: #071123;
   }
   
   
@@ -40,6 +40,9 @@ body {
     justify-content: center;
   }
   
-  
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  .mat-toolbar-row{
+    background-color: #020c16;
+  }
+  .page__box{
+    background-color: #ff5c5c;
+    }
