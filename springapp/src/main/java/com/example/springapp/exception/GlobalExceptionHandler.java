@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {InvalidUpdateException.class}) 
+    @ExceptionHandler(value = {DeleteSetException.class}) 
     public ResponseEntity<ExceptionProperties> deleteSetExceptionHandler(DeleteSetException deleteSetException) {
         ExceptionProperties exceptionProperties = new ExceptionProperties(deleteSetException.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
