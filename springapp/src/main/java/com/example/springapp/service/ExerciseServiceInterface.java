@@ -6,17 +6,24 @@ import org.springframework.http.ResponseEntity;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.AlreadyExistsException;
 
 
 public interface ExerciseServiceInterface {
-    public Iterable<Exercise> getAllExercise();
+    
 
-    public Exercise getExerciseById(long id) throws ExerciseNotFoundException;
+    Iterable<Exercise> getAllExercise();
+
+    Exercise getExerciseById(long id) throws ExerciseNotFoundException;
 
     ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException;
 
-    public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException;
+    List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException;
+
+    ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException;
+
+    ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException;
 
     
 

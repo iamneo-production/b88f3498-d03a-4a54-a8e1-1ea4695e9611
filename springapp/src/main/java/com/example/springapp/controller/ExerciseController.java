@@ -36,7 +36,7 @@ public class ExerciseController {
     @PostMapping
     public ResponseEntity<String> createExercise(@RequestBody Exercise exercise) throws AlreadyExistsException {
         exerciseService.createExercise(exercise);
-        return ResponseEntity.ok("exercise Created");
+        return ResponseEntity.ok("Exercise Created");
 
     }
 
