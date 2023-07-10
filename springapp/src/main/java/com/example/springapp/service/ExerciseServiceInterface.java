@@ -14,25 +14,12 @@ import com.example.springapp.exception.InvalidUpdateException;
 
 public interface ExerciseServiceInterface {
     
-<<<<<<< HEAD
-
-    Iterable<Exercise> getAllExercise();
-=======
-    public Iterable<Exercise> getAllExercise() throws CustomDataAccessException;
->>>>>>> 4b94ffcd1b53951545d2d4c43c609861acaca350
+     Iterable<Exercise> getAllExercise() throws CustomDataAccessException;
 
     Exercise getExerciseById(long id) throws ExerciseNotFoundException;
 
     ResponseEntity<String> deleteExerciseById(long id) throws InvalidDeleteException;
 
-<<<<<<< HEAD
-    List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException;
-
-    ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException;
-
-    ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException;
-=======
->>>>>>> 4b94ffcd1b53951545d2d4c43c609861acaca350
 
     List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException;
 
