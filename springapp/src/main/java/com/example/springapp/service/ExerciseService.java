@@ -79,6 +79,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
 
 
 
+    
     public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException {
         try {
             Exercise dbExercise = exerciseRepository.findById(exercise.getId())
@@ -86,9 +87,11 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     
             dbExercise.setDescription(exercise.getDescription());
             dbExercise.setName(exercise.getName());
-
-        }catch(Exception e){
-
+            dbExercise.setWorkoutId(exercise.getWorkoutId());
+    
+            exerciseRepository.save(dbExercise);
+            return new ResponseEntity<>("Exercise updated", HttpStatus.OK);
+        } catch (Exception e) {
             throw new InvalidUpdateException("Error occurred while updating the exercise.");
         }
     }
