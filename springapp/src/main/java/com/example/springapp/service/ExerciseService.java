@@ -56,9 +56,9 @@ public class ExerciseService extends RuntimeException implements ExerciseService
 
             exerciseRepository.deleteExerciseById(id);
         } catch (Exception e) {
-            return new ResponseEntity<String>("Error occured during deleting exercise Id");
+            return new ResponseEntity<>("Error occured during deleting exercise Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Exercise deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException {

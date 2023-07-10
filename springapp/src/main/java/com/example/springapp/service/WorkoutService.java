@@ -14,6 +14,7 @@ import com.example.springapp.repository.WorkoutRepository;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidInputException;
+import com.example.springapp.exception.CustomDataAccessException;
 
 @Service
 public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
@@ -21,11 +22,14 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
     @Autowired
    private WorkoutRepository workoutRepository;
 
-    @Override
-    public Iterable<Workout> getAllWorkout(){
-        return  workoutRepository.findAll();
-
-    }
+   @Override
+   public Iterable<Workout> getAllWorkout() throws CustomDataAccessException{
+       try {
+           return workoutRepository.findAll();
+       } catch (Exception e) {
+           throw new CustomDataAccessException("Error occurred while retrieving all workouts.", e);
+       }
+   }
      @Override
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);

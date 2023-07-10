@@ -64,6 +64,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
     }
     
+    @ExceptionHandler(value = {CustomDataAccessException.class})
+    public ResponseEntity<ExceptionProperties> customdataAccessExceptionHandler(CustomDataAccessException customDataAccessException) {
+    ExceptionProperties exceptionProperties = new ExceptionProperties("Error occurred during data access operation", HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(exceptionProperties, HttpStatus.INTERNAL_SERVER_ERROR);
+}
+    
 
 
     
