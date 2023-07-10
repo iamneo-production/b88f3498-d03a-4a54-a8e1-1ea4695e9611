@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.DeleteSetException;
 
@@ -26,8 +27,13 @@ public class SetService implements SetServiceInterface {
     private SetRepository setRepository;
 
     @Override
-    public Iterable<Set> getAllSet() {
+    public Iterable<Set> getAllSet() throws CustomDataAccessException{
+        try{
         return setRepository.findAll();
+        }catch(Exception e){
+            throw new CustomDataAccessException("Error occurred while retrieving all sets.", e);
+
+        }
     }
 
     @Override

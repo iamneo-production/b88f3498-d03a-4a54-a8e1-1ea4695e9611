@@ -13,7 +13,7 @@ import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
-
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.InvalidDeleteException;
 
@@ -26,9 +26,13 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     private ExerciseRepository exerciseRepository;
 
     @Override
-    public Iterable<Exercise> getAllExercise() {
+    public Iterable<Exercise> getAllExercise() throws CustomDataAccessException {
+        try{
         return exerciseRepository.findAll();
+        }catch(Exception e){
+            throw new CustomDataAccessException("Error occurred while retrieving all Exercises.", e);
 
+        }
     }
 
     @Override

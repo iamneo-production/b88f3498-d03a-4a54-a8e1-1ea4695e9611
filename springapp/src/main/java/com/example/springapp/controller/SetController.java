@@ -19,6 +19,7 @@ import com.example.springapp.exception.ExerciseNotFoundException;
 
 import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.AlreadyExistsException;
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.DeleteSetException;
 import com.example.springapp.model.Set;
 import com.example.springapp.service.SetService;
@@ -36,7 +37,7 @@ public class SetController {
 
     // to retrieve all set
     @GetMapping
-    public Iterable<Set> getAllSet() {
+    public Iterable<Set> getAllSet() throws CustomDataAccessException{
         return setService.getAllSet();
     }
 
