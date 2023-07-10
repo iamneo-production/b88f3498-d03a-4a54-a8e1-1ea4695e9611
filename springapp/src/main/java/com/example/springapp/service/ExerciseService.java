@@ -30,7 +30,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
         try{
         return exerciseRepository.findAll();
         }catch(Exception e){
-            throw new CustomDataAccessException("Error occurred while retrieving all Exercises.", e);
+            throw new CustomDataAccessException("Error occurred while retrieving all exercises", e);
 
         }
     }
@@ -75,12 +75,18 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     }
 
     public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException{
+        try{
+
         Exercise dbExercise = exerciseRepository.findById(exercise.getId()).orElseThrow();
         dbExercise.setDescription(exercise.getDescription());
         dbExercise.setName(exercise.getName());
         dbExercise.setWorkoutId(exercise.getWorkoutId());
         exerciseRepository.save(dbExercise);
         return new ResponseEntity<>("exercise Updated", HttpStatus.OK);
+
+        }catch(Exception e){
+            throw new InvalidUpdateException("Error occurred while updating the exercise.");
+        }
     }
 
 }
