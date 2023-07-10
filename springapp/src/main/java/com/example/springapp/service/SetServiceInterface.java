@@ -12,13 +12,14 @@ import com.example.springapp.exception.DeleteSetException;
 import com.example.springapp.exception.CustomDataAccessException;
 
 public interface SetServiceInterface {
+    
     Set getSetById(long id) throws SetsNotFoundException;
 
     Iterable<Set> getAllSet() throws CustomDataAccessException;
 
     Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException;
 
-    ResponseEntity<String> deleteSetById(long id) throws InvalidDeleteException;
+    ResponseEntity<String> deleteSetById(long id) throws DeleteSetException;
     
     ResponseEntity<String> createSet(Set set) throws AlreadyExistsException;
 
