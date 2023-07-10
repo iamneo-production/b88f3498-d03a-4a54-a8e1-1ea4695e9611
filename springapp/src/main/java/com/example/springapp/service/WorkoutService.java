@@ -27,7 +27,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
        try {
            return workoutRepository.findAll();
        } catch (Exception e) {
-           throw new CustomDataAccessException("Error occurred while retrieving all workouts.", e);
+           throw new CustomDataAccessException("Error occurred while retrieving all workouts", e);
        }
    }
      @Override

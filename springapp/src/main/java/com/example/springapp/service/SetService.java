@@ -31,7 +31,7 @@ public class SetService implements SetServiceInterface {
         try{
         return setRepository.findAll();
         }catch(Exception e){
-            throw new CustomDataAccessException("Error occurred while retrieving all sets.", e);
+            throw new CustomDataAccessException("Error occurred while retrieving all sets", e);
 
         }
     }
@@ -76,6 +76,8 @@ public class SetService implements SetServiceInterface {
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
     }
     public ResponseEntity<String> updateSet(Set set) throws InvalidUpdateException{
+        try{
+        
         Set dbSet = setRepository.findById(set.getId()).orElseThrow();
         dbSet.setExerciseId(set.getExerciseId());
         dbSet.setReps(set.getReps());
@@ -83,6 +85,10 @@ public class SetService implements SetServiceInterface {
         dbSet.setDuration(set.getDuration());
         setRepository.save(dbSet);
         return new ResponseEntity<>("Set Updated", HttpStatus.OK);
+
+        }catch(Exception e){
+            throw new InvalidUpdateException("Error occured while updating sets.");
+        }
     }
 
 }
