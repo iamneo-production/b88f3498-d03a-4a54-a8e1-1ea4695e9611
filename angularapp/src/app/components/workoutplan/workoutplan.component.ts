@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TitleService } from 'src/app/services/title.service';
 import { WorkoutService } from 'src/app/services/workout.service';
+
 
 @Component({
   selector: 'app-workoutplan',
   templateUrl: './workoutplan.component.html',
   styleUrls: ['./workoutplan.component.scss'],
-  providers:[WorkoutService]
+  providers: [WorkoutService]
 })
 export class WorkoutplanComponent implements OnInit {
   show: string = "btns";
@@ -18,13 +20,19 @@ export class WorkoutplanComponent implements OnInit {
   isSubmitted: boolean = false;
   dataList: any[] = ['Arms', 'Leg', 'Abs', 'Back'];
   ds = this.workout.getWorkoutTypes();
+  //goalForm: any;
+  exerciseType: string = ''; 
+  sets: number = 0; 
+  duration: number = 0; 
+  date: string = ''; 
+
   constructor(private titleService: TitleService, private router: Router, private workout: WorkoutService) {
     this.titleService.setTitle("Workout Plan");
   }
   // operation(name: string) {
   //   this.show = name;
   // }
-
+ 
 
   showDiv() {
     this.isOpen = true;
@@ -42,9 +50,12 @@ export class WorkoutplanComponent implements OnInit {
   }
 
   AddToHistory() {
+    
     this.isSubmitted = true;
+    
   }
-  goBack(){
-    window.location.reload();
+  goBack() {
+    this.isOpen = false;
   }
+
 }

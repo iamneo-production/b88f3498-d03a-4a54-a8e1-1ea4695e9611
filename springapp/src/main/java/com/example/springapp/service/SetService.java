@@ -1,5 +1,6 @@
 package com.example.springapp.service;
 
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
+
 import org.springframework.transaction.annotation.Transactional;
+import com.example.springapp.exception.SetsNotFoundException;
+import com.example.springapp.exception.ExerciseNotFoundException;
+import com.example.springapp.exception.AlreadyExistsException;
 
 @Transactional
 @Service
@@ -24,18 +29,22 @@ public class SetService implements SetServiceInterface {
     }
 
     @Override
-    public Set getSetById(long id) {
-        return setRepository.getSetById(id).orElseThrow();
+    public Set getSetById(long id) throws SetsNotFoundException {
+        Optional<Set> set = setRepository.getSetById(id);
+        if(set.isEmpty()){
+            throw new SetsNotFoundException("Set does not exists for particular ID");
+        }
+        return setRepository.getSetById(id).get();
     }
 
     @Override
-    public Iterable<Set> getSetByExerciseId(long e_id) {
+    public Iterable<Set> getSetByExerciseId(long e_id) throws ExerciseNotFoundException {
         Iterable<Set> set = setRepository.getSetByExerciseId(e_id);
         int count = (int) StreamSupport.stream(set.spliterator(), false).count();
-        if (count > 0) {
-            return set;
+        if (count<=0) {
+            throw new ExerciseNotFoundException("Exercise does not exists for particular set ID");
         }
-        return null;
+        return set;
     }
 
     @Override
@@ -49,9 +58,23 @@ public class SetService implements SetServiceInterface {
         return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> createSet(Set set) {
+    public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{
+        Iterable<Set> dbset = setRepository.getSetByExerciseId(set.getExerciseId());
+        int count = (int) StreamSupport.stream(dbset.spliterator(), false).count();
+        if (count>0) {
+            throw new AlreadyExistsException("Set Already Exists");
+        }
         setRepository.save(set);
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
+    }
+    public ResponseEntity<String> updateSet(Set set) {
+        Set dbSet = setRepository.findById(set.getId()).orElseThrow();
+        dbSet.setExerciseId(set.getExerciseId());
+        dbSet.setReps(set.getReps());
+        dbSet.setWeight(set.getWeight());
+        dbSet.setDuration(set.getDuration());
+        setRepository.save(dbSet);
+        return new ResponseEntity<>("Set Updated", HttpStatus.OK);
     }
 
 }

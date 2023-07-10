@@ -23,7 +23,14 @@ public class TrackingModel {
     }
 
 
-    public TrackingModel(int id, String username, String description, Date targetDate, boolean isDone) {
+    public TrackingModel(String username, String description, Date targetDate, boolean isDone) {
+		this.username = username;
+		this.description = description;
+		this.targetDate = targetDate;
+		this.isDone = isDone;
+	}
+    
+	public TrackingModel(int id, String username, String description, Date targetDate, boolean isDone) {
         this.id = id;
         this.username = username;
         this.description = description;

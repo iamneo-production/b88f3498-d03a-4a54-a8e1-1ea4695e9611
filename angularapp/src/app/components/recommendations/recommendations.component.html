@@ -18,12 +18,11 @@
           style="display: flex; flex-direction: column ;font-size: small; width: 100%; min-height: calc(100vh - 200px)">
           <div class="row" *ngIf="!openClicked && !setCustomClicked">
             <!-- total calorie of user: -->
-            <em>According to Mifflin-St. Jeor equation, Your Calorie:<strong
-                [ngClass]="{'is-calorie': userCalorie!=0}">{{userCalorie}}</strong>
+            <i>According to Mifflin-St. Jeor equation, Your Calorie:<b
+                [ngClass]="{'is-calorie': userCalorie!=0}">{{userCalorie}}</b>
               and the <u>average calorie for {{UserAge}} years old {{UserGender}}</u> should be<br>
-              <br></em>
+              <br></i>
             <Table class="table table- table-secondary">
-            <caption>This Table contains required Calories</caption>
               <thead class="table-primary">
                 <tr>
                   <td>Age Group</td>
@@ -127,11 +126,11 @@
 
           </div>
       
-          <!-- <div *ngIf="setCustomClicked">
+          <div *ngIf="setCustomClicked">
             <app-custom-nutrition-recomendation [calorie]="userCalorie" [isSaved]="saved"
               (bagItemEvent)="receivedBagItems($event)" (variableEvent)="receiveVariable($event)">
             </app-custom-nutrition-recomendation>
-          </div> -->
+          </div>
         
           <div *ngIf="saved">
 

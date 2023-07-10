@@ -75,7 +75,7 @@
                             <label for="height" class="hint mt-2">Height (cm)</label>
                             <!-- height -->
                             <div class="form-outline">
-                                <input id="height" placeholder="Enter your height in cm" formControlName="height"
+                                <input id="height" placeholder="Enter your height" formControlName="height"
                                     [ngClass]="{'is-invalid': myform.get('height')?.invalid && myform.get('height')?.touched}"
                                     type="number" class="form-control" required />
                             </div>
@@ -84,7 +84,7 @@
                         <div class="col">
                             <label for="weight" class="hint mt-2">Weight (kg)</label>
                             <div class="form-outline">
-                                <input id="weight" placeholder="Enter your weight in kg" formControlName="weight"
+                                <input id="weight" placeholder="Enter your weight" formControlName="weight"
                                     [ngClass]="{'is-invalid': myform.get('weight')?.invalid && myform.get('weight')?.touched}"
                                     type="number" class="form-control mb-2" required />
                             </div>
