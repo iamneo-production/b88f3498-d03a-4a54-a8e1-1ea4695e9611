@@ -57,18 +57,22 @@ public class SetService implements SetServiceInterface {
     }
  
 @Override
-public ResponseEntity<String> deleteSetById(long id)  {
+public ResponseEntity<String> deleteSetById(long id) throws InvalidDeleteException{
+
     try {
 
         setRepository.deleteSetById(id);
+
     } catch (Exception e) {
-        return new ResponseEntity<String>("Error occured during deleting Set Id", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<String>("Error occured during deleting Set", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
 }
 
 
 
+    
     public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{
         Iterable<Set> dbset = setRepository.getSetByExerciseId(set.getExerciseId());
         int count = (int) StreamSupport.stream(dbset.spliterator(), false).count();
@@ -78,6 +82,7 @@ public ResponseEntity<String> deleteSetById(long id)  {
         setRepository.save(set);
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
     }
+
     public ResponseEntity<String> updateSet(Set set) throws InvalidUpdateException{
         try{
         

@@ -57,7 +57,7 @@ public class SetController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id)  {
+    public ResponseEntity<String> deleteSetById(@RequestParam("id") long id) throws InvalidDeleteException  {
 
         setService.deleteSetById(id);
         return new ResponseEntity<>("Set deleted", HttpStatus.OK);

@@ -47,6 +47,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     @Override
     public List<Exercise> getExerciseByWorkoutId(long workoutId) throws WorkoutNotFoundException {
         List<Exercise> exercises = exerciseRepository.findAllByWorkoutId(workoutId);
+        
         if(exercises.isEmpty()){
             throw new WorkoutNotFoundException("Exercise not found for particular Workout Id");
         }
