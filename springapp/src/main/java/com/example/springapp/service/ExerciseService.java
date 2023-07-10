@@ -13,7 +13,7 @@ import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
-
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
 import com.example.springapp.exception.InvalidDeleteException;
 
@@ -26,9 +26,13 @@ public class ExerciseService extends RuntimeException implements ExerciseService
     private ExerciseRepository exerciseRepository;
 
     @Override
-    public Iterable<Exercise> getAllExercise() {
+    public Iterable<Exercise> getAllExercise() throws CustomDataAccessException {
+        try{
         return exerciseRepository.findAll();
+        }catch(Exception e){
+            throw new CustomDataAccessException("Error occurred while retrieving all exercises", e);
 
+        }
     }
 
     @Override
@@ -55,12 +59,20 @@ public class ExerciseService extends RuntimeException implements ExerciseService
         try {
     
             exerciseRepository.deleteExerciseById(id);
+<<<<<<< HEAD
             return new ResponseEntity<>("Exercise deleted", HttpStatus.OK);
             } catch (Exception e) {
                 
             throw new InvalidDeleteException("Error occurred while deleting the exercise.");
             }
         }
+=======
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error occured during deleting exercise Id", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("Exercise deleted", HttpStatus.OK);
+    }
+>>>>>>> 4b94ffcd1b53951545d2d4c43c609861acaca350
 
     public ResponseEntity<String> createExercise(Exercise exercise) throws AlreadyExistsException {
 
@@ -74,6 +86,7 @@ public class ExerciseService extends RuntimeException implements ExerciseService
         return new ResponseEntity<>("Exercise created", HttpStatus.CREATED);
     }
 
+<<<<<<< HEAD
 
     public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException {
         try {
@@ -88,6 +101,19 @@ public class ExerciseService extends RuntimeException implements ExerciseService
             return new ResponseEntity<>("Exercise updated", HttpStatus.OK);
         
         } catch (Exception e) {
+=======
+    public ResponseEntity<String> updateExercise(Exercise exercise) throws InvalidUpdateException{
+        try{
+
+        Exercise dbExercise = exerciseRepository.findById(exercise.getId()).orElseThrow();
+        dbExercise.setDescription(exercise.getDescription());
+        dbExercise.setName(exercise.getName());
+        dbExercise.setWorkoutId(exercise.getWorkoutId());
+        exerciseRepository.save(dbExercise);
+        return new ResponseEntity<>("exercise Updated", HttpStatus.OK);
+
+        }catch(Exception e){
+>>>>>>> 4b94ffcd1b53951545d2d4c43c609861acaca350
             throw new InvalidUpdateException("Error occurred while updating the exercise.");
         }
     }

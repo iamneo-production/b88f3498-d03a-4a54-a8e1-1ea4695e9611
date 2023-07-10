@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Set;
 import com.example.springapp.repository.SetRepository;
-
 import org.springframework.transaction.annotation.Transactional;
 import com.example.springapp.exception.SetsNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidUpdateException;
+import com.example.springapp.exception.DeleteSetException;
 
 
 @Transactional
@@ -26,8 +27,13 @@ public class SetService implements SetServiceInterface {
     private SetRepository setRepository;
 
     @Override
-    public Iterable<Set> getAllSet() {
+    public Iterable<Set> getAllSet() throws CustomDataAccessException{
+        try{
         return setRepository.findAll();
+        }catch(Exception e){
+            throw new CustomDataAccessException("Error occurred while retrieving all sets", e);
+
+        }
     }
 
     @Override
@@ -51,14 +57,13 @@ public class SetService implements SetServiceInterface {
 
 
     @Override
-    public ResponseEntity<String> deleteSetById(long id)  {
+    public ResponseEntity<String> deleteSetById(long id) throws DeleteSetException {
         try {
-
             setRepository.deleteSetById(id);
         } catch (Exception e) {
-            return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
+            throw new DeleteSetException("Error occurred while deleting the set with ID: " + id);
         }
-        return new ResponseEntity<String>("Set deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Set deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<String> createSet(Set set) throws AlreadyExistsException{
@@ -71,6 +76,8 @@ public class SetService implements SetServiceInterface {
         return new ResponseEntity<>("Set Created", HttpStatus.CREATED);
     }
     public ResponseEntity<String> updateSet(Set set) throws InvalidUpdateException{
+        try{
+        
         Set dbSet = setRepository.findById(set.getId()).orElseThrow();
         dbSet.setExerciseId(set.getExerciseId());
         dbSet.setReps(set.getReps());
@@ -78,6 +85,10 @@ public class SetService implements SetServiceInterface {
         dbSet.setDuration(set.getDuration());
         setRepository.save(dbSet);
         return new ResponseEntity<>("Set Updated", HttpStatus.OK);
+
+        }catch(Exception e){
+            throw new InvalidUpdateException("Error occured while updating sets.");
+        }
     }
 
 }

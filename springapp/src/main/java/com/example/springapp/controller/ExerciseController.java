@@ -21,7 +21,7 @@ import com.example.springapp.service.ExerciseService;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.AlreadyExistsException;
-
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
 
@@ -41,7 +41,7 @@ public class ExerciseController {
     }
 
     @GetMapping
-    public Iterable<Exercise> getAllExercise() {
+    public Iterable<Exercise> getAllExercise() throws CustomDataAccessException {
         return exerciseService.getAllExercise();
     }
 
