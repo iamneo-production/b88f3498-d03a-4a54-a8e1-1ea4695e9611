@@ -24,6 +24,7 @@ import com.example.springapp.exception.AlreadyExistsException;
 import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
+import javax.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
@@ -34,7 +35,7 @@ public class ExerciseController {
     private ExerciseService exerciseService;
 
     @PostMapping
-    public ResponseEntity<String> createExercise(@RequestBody Exercise exercise) throws AlreadyExistsException {
+    public ResponseEntity<String> createExercise(@Valid @RequestBody Exercise exercise) throws AlreadyExistsException {
         exerciseService.createExercise(exercise);
         return ResponseEntity.ok("Exercise Created");
 

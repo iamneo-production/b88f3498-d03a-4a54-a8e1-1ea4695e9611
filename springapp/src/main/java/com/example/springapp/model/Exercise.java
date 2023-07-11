@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 public class Exercise {
     @Id 
@@ -12,7 +17,13 @@ public class Exercise {
     private long id;
     
     private long workoutId;
+
+    @NotNull(message = "Name is not valid")
+    @Size(min = 3, message = "Length of name should be atleast 3 characters long")
     private String name;
+
+    @NotBlank(message = "Description is required")
+    @Size(max = 100, message = "Description must be a maximum of 100 characters")
     private String description;
 
     public Exercise(){
