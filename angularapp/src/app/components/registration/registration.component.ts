@@ -42,6 +42,8 @@ export class RegistrationComponent {
 
       regUser.subscribe({
         next: dbUser => {
+          console.log(dbUser);
+          
           this.user = dbUser;
           this.router.navigate(['login']);
         },
