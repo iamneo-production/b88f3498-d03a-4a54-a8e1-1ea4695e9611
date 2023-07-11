@@ -28,14 +28,16 @@
             </table>
   
             <div>
-              <div>
+              <div class="container">
                 <input type="date" [(ngModel)]="date" required>
                 <input type="number" placeholder="Height (cm)" [(ngModel)]="height" required>
                 <input type="number" placeholder="Weight (kg)" [(ngModel)]="weight" required>
                 <button (click)="addEntry()">Add</button>
               </div>
-  
-              <div style="height: 400px; width: 600px;">
+              <div>
+                <button class="btn btn-success" (click)="updateChart()">Track</button>
+              </div>
+              <div style="height: 400px; width: 600px;" class="container">
                 <canvas id="chart"></canvas>
               </div>
             </div>

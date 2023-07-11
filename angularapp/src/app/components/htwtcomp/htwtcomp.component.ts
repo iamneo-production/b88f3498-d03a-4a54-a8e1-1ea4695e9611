@@ -19,6 +19,9 @@ export class HtwtcompComponent implements OnInit {
   constructor(private userService: UserService, private http: HttpClient) { }
   ngOnInit(): void {
     Chart.register(...registerables);
+    this.http.get('https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/api/v1/tracking').subscribe({
+        next: (response: any)=>{this.entries = response;}
+      })
   }
 
   sideBarOpen = true;
@@ -31,6 +34,7 @@ export class HtwtcompComponent implements OnInit {
     this.calories = this.userService.getUserCalorie(this.weight);
     console.log(this.calories);
     if (this.date && this.weight && this.height) {
+      
       const entry = {
         date: this.date,
         calories: this.calories,
@@ -39,13 +43,16 @@ export class HtwtcompComponent implements OnInit {
       };
       this.entries.push(entry);
       this.date = '';
+      this.calories = 0;
       this.weight = 0;
       this.height = 0;
-      this.updateChart();
+      
+      
 
-      this.http.post('http://localhost:8080/api/v1/tracking', entry).subscribe({
-        next: response => {
+      this.http.post('https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/api/v1/tracking', entry).subscribe({
+        next: (response: any) => {
           console.log('Data sent successfully:', response);
+          
         },
         error: error => {
           console.error('Error while sending data:', error);

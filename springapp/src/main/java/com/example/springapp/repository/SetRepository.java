@@ -11,7 +11,7 @@ public interface SetRepository extends CrudRepository<Set,Long>{
 
     Iterable<Set> getSetByExerciseId(long e_id);
 
-    void deleteSetById(long id);
+    Set deleteSetById(long id);
 
     Set findById(long id);
 

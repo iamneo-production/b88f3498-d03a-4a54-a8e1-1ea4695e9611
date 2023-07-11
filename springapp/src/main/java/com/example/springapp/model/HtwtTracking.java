@@ -2,17 +2,15 @@ package com.example.springapp.model;
 
 import java.time.LocalDate;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "htwtTable")
-
 public class HtwtTracking {
 
     @Id
@@ -23,19 +21,19 @@ public class HtwtTracking {
     private LocalDate date;
 
     @Column(name = "height")
-    private int height;
+    private double height;
 
     @Column(name = "weight")
-    private int weight;
+    private double weight;
 
     @Column(name = "calories")
-    private float calories;
+    private double calories;
 
     public HtwtTracking() {
 
     }
 
-    public HtwtTracking(LocalDate date, int height, int weight, int calories) {
+    public HtwtTracking(LocalDate date, double height, double weight, double calories) {
         super();
         this.date = date;
         this.height = height;
@@ -59,34 +57,27 @@ public class HtwtTracking {
         this.id = id;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public float getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(float calories) {
-        this.calories = calories;
-    }
-
-    public HtwtTracking(LocalDate date, int height, int weight, float calories) {
-        this.date = date;
-        this.height = height;
-        this.weight = weight;
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 

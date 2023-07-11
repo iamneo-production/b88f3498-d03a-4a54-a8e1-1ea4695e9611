@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.example.springapp.exception.ExceptionProperties;
 import com.example.springapp.exception.ExerciseNotFoundException;
 import com.example.springapp.exception.InvalidInputException;
+import com.example.springapp.exception.InvalidUpdateException;
 
 import com.example.springapp.exception.InvalidDeleteException;
 
@@ -42,6 +43,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = {InvalidInputException.class}) 
     public ResponseEntity<ExceptionProperties> invalidInputExceptionHandler(InvalidInputException invalidInputException) {
         ExceptionProperties exceptionProperties = new ExceptionProperties(invalidInputException.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(value = {InvalidUpdateException.class}) 
+    public ResponseEntity<ExceptionProperties> invalidUpdateExceptionHandler(InvalidUpdateException invalidUpdateException) {
+        ExceptionProperties exceptionProperties = new ExceptionProperties(invalidUpdateException.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(exceptionProperties, HttpStatus.BAD_REQUEST);
     }
 
