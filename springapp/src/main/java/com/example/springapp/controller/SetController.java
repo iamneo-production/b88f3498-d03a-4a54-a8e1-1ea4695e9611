@@ -23,6 +23,8 @@ import com.example.springapp.exception.DeleteSetException;
 import com.example.springapp.model.Set;
 import com.example.springapp.service.SetService;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 
 
 @Transactional
@@ -41,7 +43,7 @@ public class SetController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createSet(@RequestBody Set set) throws AlreadyExistsException {
+    public ResponseEntity<String> createSet(@Valid @RequestBody Set set) throws AlreadyExistsException {
         return setService.createSet(set);
 
     }

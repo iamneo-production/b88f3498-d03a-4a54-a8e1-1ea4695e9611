@@ -34,6 +34,7 @@ import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping
@@ -44,7 +45,7 @@ public class WorkoutController {
     private WorkoutService workoutService;
 
     @PostMapping("/workout")
-    public ResponseEntity<String> createWorkout(@RequestBody Workout workout) throws AlreadyExistsException{
+    public ResponseEntity<String> createWorkout(@Valid @RequestBody Workout workout) throws AlreadyExistsException{
         return workoutService.createWorkout(workout);
     }
 
