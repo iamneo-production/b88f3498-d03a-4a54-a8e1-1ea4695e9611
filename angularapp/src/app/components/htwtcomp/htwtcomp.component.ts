@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HtwtcompComponent implements OnInit {
   entries: any[] = [];
+  baseUrl:string = this.userService.baseUrl;
   date: string = new Date().toISOString().substr(0, 10); // Initialize with today's date
   // height: number = 0;
   calories!: number;
@@ -18,8 +19,9 @@ export class HtwtcompComponent implements OnInit {
   chart: Chart | undefined;
   constructor(private userService: UserService, private http: HttpClient) { }
   ngOnInit(): void {
+
     Chart.register(...registerables);
-    this.http.get('https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/api/v1/tracking').subscribe({
+    this.http.get(`${this.baseUrl}/api/v1/tracking`).subscribe({
         next: (response: any)=>{this.entries = response;}
       })
   }
