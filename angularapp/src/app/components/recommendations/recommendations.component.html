@@ -2,6 +2,8 @@
     <div class="container-fluid page">
       <div class="d-flex page__box p-3 ">Nutritional Recommendations</div>
       <div class="page__content shadow p-3 position-realtive">
+        <div class="page_container position-relative p-4"
+    style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
         <div *ngIf="setCustomClicked && !saved" class="d-flex flex-row pb-2" style="justify-content: space-between;">
 
           <div [ngClass]="{'is-valid': calorieAdded> maxRequiredCalories}" class="cal-bar float-end p-2">
@@ -159,7 +161,7 @@
 
           </div>
 
-
+        </div>
         </div>
       </div>
     </div>
