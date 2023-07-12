@@ -17,11 +17,16 @@ export class HtwtcompComponent implements OnInit {
   weight!: number;
   height!: number;
   chart: Chart | undefined;
-  constructor(private userService: UserService, private http: HttpClient) { }
+  userId!:number;
+  constructor(private userService: UserService, private http: HttpClient) {
+    this.userService.userSubject.subscribe({
+      next: user=>{this.userId = user.id;}
+    })
+   }
   ngOnInit(): void {
 
     Chart.register(...registerables);
-    this.http.get(`${this.baseUrl}/api/v1/tracking`).subscribe({
+    this.http.get(`${this.baseUrl}/api/v1/tracking/${this.userId}`).subscribe({
         next: (response: any)=>{this.entries = response;}
       })
   }
@@ -39,6 +44,7 @@ export class HtwtcompComponent implements OnInit {
       
       const entry = {
         date: this.date,
+        userId: this.userId,
         calories: this.calories,
         weight: this.weight,
         height: this.height
@@ -51,7 +57,7 @@ export class HtwtcompComponent implements OnInit {
       
       
 
-      this.http.post('https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io/api/v1/tracking', entry).subscribe({
+      this.http.post(`${this.baseUrl}/api/v1/tracking`, entry).subscribe({
         next: (response: any) => {
           console.log('Data sent successfully:', response);
           
