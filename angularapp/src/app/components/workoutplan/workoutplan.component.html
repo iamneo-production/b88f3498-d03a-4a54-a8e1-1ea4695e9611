@@ -1,6 +1,7 @@
 
     <div class="container-fluid page">
       <div class="d-flex page__box p-3">Workout Plan</div>
+      <div class="page__content shadow p-3 position-relative"></div>
       <div [ngSwitch]="show" class="d-flex flex-column page__content shadow position-relative"
         style="min-height: calc(100vh - 162px);">
 
@@ -102,6 +103,7 @@
             </div>
             <!-- </div> -->
           </div>
+          <app-footer></app-footer>
         </div>
       </div>
     </div>
