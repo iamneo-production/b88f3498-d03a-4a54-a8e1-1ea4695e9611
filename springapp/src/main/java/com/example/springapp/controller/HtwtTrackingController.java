@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +26,9 @@ public class HtwtTrackingController {
     @Autowired
     private HtwtTrackingRepository trackingRepository;
 
-    @GetMapping("/tracking")
-    public Iterable<HtwtTracking> getValues() {
-        return trackingRepository.findAll();
+    @GetMapping("/tracking/{userId}")
+    public Iterable<HtwtTracking> getValuesById(@PathVariable("userId") long userId) {
+        return trackingRepository.findAllByUserId(userId);
     }
 
     @CrossOrigin
@@ -35,6 +36,7 @@ public class HtwtTrackingController {
     public ResponseEntity<?> saveData(@RequestBody HtwtTracking data) {
         double height = data.getHeight();
         double weight = data.getWeight();
+        long userId = data.getUserId();
  
     
         // Process the data (e.g., calculate BMI)
@@ -43,7 +45,7 @@ public class HtwtTrackingController {
         // li.add(height);
         // li.add(weight);
         // li.add(bmi);
-        HtwtTracking htwtdata = new HtwtTracking(data.getDate(), height, weight, bmi);
+        HtwtTracking htwtdata = new HtwtTracking(data.getDate(),userId, height, weight, bmi);
         
 
         trackingRepository.save(htwtdata);

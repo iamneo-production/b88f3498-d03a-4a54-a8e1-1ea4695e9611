@@ -20,6 +20,8 @@ public class HtwtTracking {
     @Column(name = "date")
     private LocalDate date;
 
+    private long userId;
+    
     @Column(name = "height")
     private double height;
 
@@ -33,12 +35,22 @@ public class HtwtTracking {
 
     }
 
-    public HtwtTracking(LocalDate date, double height, double weight, double calories) {
+    public HtwtTracking(LocalDate date, long userId, double height, double weight, double calories) {
         super();
         this.date = date;
+        this.userId = userId;
         this.height = height;
         this.weight = weight;
         this.calories = calories;
+    }
+
+ 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public long getId() {

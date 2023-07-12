@@ -9,4 +9,6 @@ import com.example.springapp.model.HtwtTracking;
 
 public interface HtwtTrackingRepository extends CrudRepository<HtwtTracking, Long> {
 
+    Iterable<HtwtTracking>findAllByUserId(long userId);
+
 }
