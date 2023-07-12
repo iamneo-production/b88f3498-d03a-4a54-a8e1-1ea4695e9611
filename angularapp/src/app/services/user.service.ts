@@ -27,8 +27,8 @@ export class UserService implements OnDestroy {
 
 
   getUserCalorie(weight: number) {
-    var BMR = 0;
-    var activity_factor = 1.2;
+    let BMR = 0;
+    let activity_factor = 1.2;
 
     this.userSubject.subscribe((userData) => {
       if (userData.gender == "Male") {
