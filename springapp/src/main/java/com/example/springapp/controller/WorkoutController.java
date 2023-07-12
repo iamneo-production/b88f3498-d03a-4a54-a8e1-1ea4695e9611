@@ -29,10 +29,12 @@ import com.example.springapp.model.Workout;
 import com.example.springapp.service.WorkoutService;
 import com.example.springapp.exception.WorkoutNotFoundException;
 
+import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping
@@ -43,12 +45,12 @@ public class WorkoutController {
     private WorkoutService workoutService;
 
     @PostMapping("/workout")
-    public ResponseEntity<String> createWorkout(@RequestBody Workout workout) throws AlreadyExistsException{
+    public ResponseEntity<String> createWorkout(@Valid @RequestBody Workout workout) throws AlreadyExistsException{
         return workoutService.createWorkout(workout);
     }
 
     @GetMapping("/workout")
-    public ResponseEntity<Iterable<Workout>> getAllWorkouts() {
+    public ResponseEntity<Iterable<Workout>> getAllWorkouts()throws CustomDataAccessException {
         Iterable<Workout> workouts = workoutService.getAllWorkout();
         return ResponseEntity.ok(workouts);
     }

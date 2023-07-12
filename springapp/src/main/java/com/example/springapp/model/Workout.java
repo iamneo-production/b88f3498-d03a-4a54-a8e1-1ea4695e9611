@@ -9,16 +9,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+
+
 @Entity
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    private LocalDate date;
+
+    @NotNull(message = "Date is required")
+    private LocalDate date; 
+
+    @NotBlank(message = "Duration is required")
+    @Size(max = 100, message = "Duration must be a maximum of 100 characters")
     private String duration;
+
+    @Size(max = 500, message = "Notes must be a maximum of 500 characters")
     private String notes;
 
     public Workout(long id, User user, LocalDate date, String duration, String notes) {

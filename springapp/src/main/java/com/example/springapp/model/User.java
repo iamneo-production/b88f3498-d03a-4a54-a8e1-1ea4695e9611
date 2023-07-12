@@ -8,22 +8,49 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    
     private long id;
+    @NotNull(message = "name is not valid")
+    @Size(min = 3, message = "length of name should be atleast 3 characters")
     private String name;
+    @NotNull(message = "Email should not be null")
+    @Email(message = "email is not valid")
     private String email;
+
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$", message = "Password must have 8 characters containing atleast one uppercase, one lowercase and one Number")
     private String password;
+
+    @NotNull(message = "Height should not be null")
     private String height;
+
+
+    @NotNull(message = "Weight should not be null")
     private String weight;
+    
+    @NotNull(message = "Age should not be null")
+    @Positive(message = "age must be greater than 0")
     private long age;
+    @NotNull(message = "select atleast one gender")
     private String gender;
+
+    @NotNull(message = "select atleast one goal")
     private String goals;
+
+    @NotNull(message = "select atleast one role")
     private String role;
 
     @OneToMany(mappedBy = "user")

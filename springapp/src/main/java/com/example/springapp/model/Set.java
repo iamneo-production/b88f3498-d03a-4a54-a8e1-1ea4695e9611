@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "setTable")
 public class Set {
@@ -13,8 +18,15 @@ public class Set {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long exerciseId;
+    
+    @NotNull(message="Reps is required")
     private Long reps;
+
+    @NotBlank(message = "Weight should not be null")
     private String weight;
+
+    @NotBlank(message = "Duration is required")
+    @Size(max = 100, message = "Duration must be a maximum of 100 characters")
     private String duration;
 
     public Set() {

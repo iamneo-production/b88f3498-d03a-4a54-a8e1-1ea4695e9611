@@ -7,11 +7,21 @@
         </nav>        
     </header>
 
+    <div class="backened-errors">
+        <div class="error" *ngFor="let err of server_side_validation_errors">
+            <div class="alert danger">
+                {{err}}
+            </div>
+    
+        </div>
+    </div>
+
     <div class="custom-container-reg">
         <!-- tagline -->
         <div class="col-md-4 text-center">
             <h1 class="ls-tight mb-5 display-5 fw-bold text-white">
                 Fitness Tracker
+                
                 <p style="color: rgb(140, 177, 243)">Live the healthy Life</p>
             </h1>
             <p class="opacity-50" style="color: rgb(186, 208, 248)">
@@ -19,11 +29,12 @@
                 Motivated!
             </p>
         </div>
+
         <!-- registration form -->
         <div class="col-md-4">
             <div class="align-items-center mt-4 card mx-2">
                 <div name="title">
-                    <label class="h1 ">Register</label>
+                    <label class="h1">Register</label>
                 </div>
                 <form [formGroup]="myform" class="card-body row mx-2" (submit)="onSubmit()">
                     <div class="form-outline">
@@ -90,30 +101,62 @@
                             </div>
                         </div>
                     </div>
-                    <!-- age -->
-                    <div class="form-outline">
-                        <label for="age" class="hint mt-2">Age</label>
-                        <div class="form-outline">
-                            <input id="age" placeholder="Enter your age" type="number" formControlName="age"
-                                [ngClass]="{'is-invalid': myform.get('age')?.invalid && myform.get('age')?.touched}"
-                                class="form-control mb-2" required />
-
+                    <div class="put-in-row">
+                        <!-- age -->
+                        <div class="col">
+                            <div class="form-outline">
+                                <label for="age" class="hint mt-2">Age</label>
+                                <div class="form-outline">
+                                    <input id="age" placeholder="Enter your age" type="number" formControlName="age"
+                                        [ngClass]="{'is-invalid': myform.get('age')?.invalid && myform.get('age')?.touched}"
+                                        class="form-control mb-2" required />
+        
+                                </div>
+                            </div>
+                        </div>
+                         <!-- gender -->
+                         <div class="col">
+                            <label for="gender" class="hint mt-2">Gender</label>
+                            <select formControlName="gender" class="form-select" id="gender"
+                                [ngClass]="{'is-invalid': myform.get('gender')?.invalid && myform.get('gender')?.touched}"
+                                required>
+    
+                                <option [selected]="true" [disabled]="true">Select your gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            
                         </div>
                     </div>
           
-                    <!-- gender -->
-                    <div>
-                        <label for="gender" class="hint">Gender</label>
-                        <select formControlName="gender" class="form-select" id="gender"
-                            [ngClass]="{'is-invalid': myform.get('gender')?.invalid && myform.get('gender')?.touched}"
-                            required>
-
-                            <option [selected]="true" [disabled]="true">Select your gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
+                    <div class="put-in-row">
+                         
+                        <div class="col">
+                            <label for="role" class="hint">Role</label>
+                            <select formControlName="role" class="form-select" id="role"
+                                [ngClass]="{'is-invalid': myform.get('role')?.invalid && myform.get('role')?.touched}"
+                                required>
+    
+                                <option [selected]="true" [disabled]="true">Select your role</option>
+                                <option value="USER">USER</option>
+                                <option value="ADMIN">ADMIN</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="goals" class="hint">goals</label>
+                            <select formControlName="goals" class="form-select" id="goals"
+                                [ngClass]="{'is-invalid': myform.get('goals')?.invalid && myform.get('goals')?.touched}"
+                                required>
+    
+                                <option [selected]="true" [disabled]="true">Select your goal</option>
+                                <option value="WeighLoss">WeigthLoss</option>
+                                <option value="MuscleGain">MuscleGain</option>
+                            </select>
+                        </div>
                     </div>
+                  
+                    
 
                     <!-- Submit button -->
                     <div class="row-btns mt-2">
@@ -126,6 +169,7 @@
                     </div>
 
                 </form>
+
             </div>
         </div>
     </div>

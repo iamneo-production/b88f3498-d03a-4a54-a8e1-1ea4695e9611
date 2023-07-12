@@ -30,4 +30,27 @@
   color: rgba(74, 71, 71, 0.667);
 }
 
-  
+.backened-errors{
+  position: absolute;
+  height: 400px;
+  top: 0;
+  right: 0;
+ 
+ }
+ error{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   flex-wrap: wrap;
+ }
+ 
+ .danger {
+   transform: translateY(12px);
+   transition-duration: 900ms;
+   z-index: 1;
+   text-shadow: 0 0 black;
+   max-height: 50px;
+   color: #842029;
+   background-color: #f8d7da;
+   border-color: #f5c2c7;
+ }

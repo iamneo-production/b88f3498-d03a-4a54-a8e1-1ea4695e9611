@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
@@ -16,6 +14,18 @@ import com.example.springapp.repository.WorkoutRepository;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidInputException;
+import com.example.springapp.exception.CustomDataAccessException;
+
+import javax.validation.Valid;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.context.request.WebRequest;
+
 
 @Service
 public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
@@ -23,11 +33,14 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
     @Autowired
    private WorkoutRepository workoutRepository;
 
-    @Override
-    public Iterable<Workout> getAllWorkout(){
-        return  workoutRepository.findAll();
-
-    }
+   @Override
+   public Iterable<Workout> getAllWorkout() throws CustomDataAccessException{
+       try {
+           return workoutRepository.findAll();
+       } catch (Exception e) {
+           throw new CustomDataAccessException("Error occurred while retrieving all workouts", e);
+       }
+   }
      @Override
      public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
@@ -41,7 +54,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
      public List<Workout> getWorkOutByUserId(long userId) throws UserNotFoundException{
         return workoutRepository.findAllByUserId(userId);
      }
-   public ResponseEntity<String> createWorkout(Workout workout) {
+   public ResponseEntity<String> createWorkout( Workout workout) {
        long userId = workout.getUser().getId();
         User newUser = new User();
         newUser.setId(userId);
