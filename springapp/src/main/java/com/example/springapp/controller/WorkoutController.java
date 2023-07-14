@@ -38,7 +38,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping
-@CrossOrigin("*")
+@CrossOrigin( origins="https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class WorkoutController {
 
     @Autowired

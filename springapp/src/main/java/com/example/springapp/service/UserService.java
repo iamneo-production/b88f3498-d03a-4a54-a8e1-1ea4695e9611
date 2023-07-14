@@ -13,30 +13,31 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.model.User;
 import com.example.springapp.repository.UserRepository;
+import com.example.springapp.model.LoginModel;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
         return (List<User>) userRepository.findAll();
     }
 
-    public ResponseEntity<User> createUser(User user) {
+    public ResponseEntity<User> createUser(User user) throws UserNotFoundException{
         User dbUser = userRepository.findByEmail(user.getEmail());
         if(dbUser!=null){
-            MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-            map.add("message", "User Already Exists!!!");
-            
-            return new ResponseEntity<>(map, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
         }
 
-        String encrpytedPwd = bcrypt.encode(user.getPassword());
+        String encrpytedPwd = passwordEncoder.encode(user.getPassword());
         user.setPassword(encrpytedPwd);
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -63,16 +64,19 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<User> loginByEmail(Map<String, String> loginData){
-        String email = loginData.get("email");
-        String password = loginData.get("password");
+    public ResponseEntity<User> loginByEmail(LoginModel loginData){
+        String email = loginData.getEmail();
+        String password = loginData.getPassword();
 
         User user = userRepository.findByEmail(email);
-        if (user == null || !bcrypt.matches(password,user.getPassword())) {
-            return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
+        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+        
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
-
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 }
