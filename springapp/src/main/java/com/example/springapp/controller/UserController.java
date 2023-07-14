@@ -24,12 +24,13 @@ import com.example.springapp.exception.InvalidUpdateException;
 
 import com.example.springapp.model.User;
 import com.example.springapp.service.UserService;
+import com.example.springapp.model.LoginModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("*")
+@CrossOrigin( origins="https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class UserController {
 
     @Autowired
@@ -60,7 +61,7 @@ public class UserController {
     
     
     @PostMapping("/login")
-    public ResponseEntity<User> loginByEmail(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<User> loginByEmail(@RequestBody LoginModel loginData) {
         return userService.loginByEmail(loginData);
     }
 

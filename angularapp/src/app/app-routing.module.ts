@@ -17,6 +17,7 @@ import { guardGuard } from './services/guard.guard';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
 import { ListworksComponent } from './components/listworks/listworks.component';
 import { WorksComponent } from './components/works/works.component';
+import { GoalhomeComponent } from './components/goalhome/goalhome.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'register', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   children:[
     { path: 'home', component: HomeComponent },
     { path: 'workout', component: WorkoutplanComponent},
+    { path: 'goalhome', component: GoalhomeComponent},
     { path: 'goalsetting', component: GoalSettingComponent},
     { path: 'recommendations', component: RecommendationsComponent},
     { path: 'history', component: WorkouthistoryComponent},
