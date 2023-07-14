@@ -1,18 +1,12 @@
-<mat-drawer-container class="body">
-    <mat-drawer mode="side" [opened]="sideBarOpen">
-      <app-sidenav></app-sidenav>
-    </mat-drawer>
-    <mat-drawer-content>
-      <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
-  
+
   
       <div class="container-fluid page">
         <div class="d-flex page__box p-3 mt-2">Goal Settings</div>
         <div style="background-color: #746e6f;" class="page__content shadow position-relative">
           <nav>
-            <a class="active" href="./goalhome">Tasks</a>
+            <a class="active" href="./tasks">Tasks</a>
             
-            <a routerLink="./goalsets">Set Goals</a>
+            <a routerLink="./goalsetting">Set Goals</a>
   
             <a routerLink="./achievedgoals">Achieved goals</a>
           </nav>
@@ -61,5 +55,4 @@
           </div>
         </div>
       </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
+    
