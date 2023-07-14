@@ -6,6 +6,8 @@ import { WorkouthistoryComponent } from './components/workouthistory/workouthist
 import { ExercisetrackingComponent } from './components/exercisetracking/exercisetracking.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { GoalSettingComponent } from './components/goal-setting/goal-setting.component';
+import { GoalhomeComponent } from './components/goalhome/goalhome.component';
+import { AchievedGoalsComponent } from './components/achieved-goals/achieved-goals.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { GoaltrackingComponent } from './components/goaltracking/goaltracking.component';
@@ -17,7 +19,6 @@ import { guardGuard } from './services/guard.guard';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
 import { ListworksComponent } from './components/listworks/listworks.component';
 import { WorksComponent } from './components/works/works.component';
-import { GoalhomeComponent } from './components/goalhome/goalhome.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'register', pathMatch: 'full'},
@@ -27,8 +28,9 @@ const routes: Routes = [
   children:[
     { path: 'home', component: HomeComponent },
     { path: 'workout', component: WorkoutplanComponent},
-    { path: 'goalhome', component: GoalhomeComponent},
-    { path: 'goalsetting', component: GoalSettingComponent},
+    { path: 'goalhome/goalsetting', component: GoalSettingComponent},
+    { path:'goalhome', component : GoalhomeComponent},
+    {path : 'goalhome/achievedgoals', component:AchievedGoalsComponent},
     { path: 'recommendations', component: RecommendationsComponent},
     { path: 'history', component: WorkouthistoryComponent},
     {path: 'customRecommendation', component: CustomNutritionRecomendationComponent},
@@ -40,8 +42,8 @@ const routes: Routes = [
     { path: 'exertracking/workoutstracking/:id', component: WorksComponent},
   ] 
 },
-{ path: '**', component: ErrorPageComponent }
-  
+{ path: '**', component: ErrorPageComponent },
+
 
 ];
 
