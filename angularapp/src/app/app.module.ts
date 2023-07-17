@@ -38,6 +38,8 @@ import {MatIconModule } from '@angular/material/icon';
 import { ListworksComponent } from './components/listworks/listworks.component';
 import { WorksComponent } from './components/works/works.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ListworksComponent,
     WorksComponent,
     FooterComponent,
+    LandingPageComponent,
 
   ],
   imports: [
@@ -79,7 +82,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatDialogModule,
     AppRoutingModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
 
   providers: [DatePipe],
