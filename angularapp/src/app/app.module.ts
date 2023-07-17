@@ -40,6 +40,7 @@ import { WorksComponent } from './components/works/works.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
@@ -85,7 +86,8 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     AppRoutingModule,
     HttpClientModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
 
   providers: [DatePipe],
