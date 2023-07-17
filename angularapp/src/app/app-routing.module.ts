@@ -19,13 +19,16 @@ import { guardGuard } from './services/guard.guard';
 import { CustomNutritionRecomendationComponent } from './components/recommendations/custom-nutrition-recomendation/custom-nutrition-recomendation.component';
 import { ListworksComponent } from './components/listworks/listworks.component';
 import { WorksComponent } from './components/works/works.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 const routes: Routes = [
-  {path:'', redirectTo: 'register', pathMatch: 'full'},
+  {path:'', redirectTo: 'landingPage', pathMatch: 'full'},
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
+  { path: 'landingPage' , component: LandingPageComponent},
   { path: '',canActivate: [guardGuard],
   children:[
+    // { path: 'landingPage' , component: LandingPageComponent},
     { path: 'home', component: HomeComponent },
     { path: 'workout', component: WorkoutplanComponent},
     { path: 'goalhome/goalsetting', component: GoalSettingComponent},
