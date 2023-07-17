@@ -40,6 +40,7 @@ import { WorksComponent } from './components/works/works.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { MatButtonModule } from '@angular/material/button';
     WorksComponent,
     FooterComponent,
     LandingPageComponent,
+    ChatbotComponent,
 
   ],
   imports: [
