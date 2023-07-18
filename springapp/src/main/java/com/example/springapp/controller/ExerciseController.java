@@ -27,7 +27,7 @@ import com.example.springapp.exception.InvalidUpdateException;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin( origins="https://8081-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+@CrossOrigin( origins="https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 @RequestMapping("/exercise")
 public class ExerciseController {
 
