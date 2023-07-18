@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { environment } from 'src/app/environment';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-chatbot',
