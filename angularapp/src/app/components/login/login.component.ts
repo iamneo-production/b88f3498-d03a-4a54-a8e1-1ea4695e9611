@@ -49,6 +49,6 @@ export class LoginComponent {
     });
   }
   sendToRegisterPage() {
-    this._route.navigate(['']);
+    this._route.navigate(['register']);
   }
 }
