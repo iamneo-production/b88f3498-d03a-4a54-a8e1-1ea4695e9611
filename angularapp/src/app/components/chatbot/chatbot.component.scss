@@ -4,9 +4,10 @@
     align-items: flex-end;
     z-index: 1000000000;
     position: absolute;
-    top: 0%;
+    bottom: 0%;
     right: 0%;
     margin: 12px;
+    
 }
 
 .chat-btn {
@@ -28,7 +29,8 @@
 .close {
     border: none;
     background-color: rgb(227 0 0);
-    border-radius: 10%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     position: relative;
     padding: 8px 22px 8px 22px;
     color: floralwhite;
@@ -46,6 +48,8 @@ img{
     overflow-y: scroll;
     background-color:beige;
     position: relative;
+    border-top-right-radius: 5px;
+    
 }
 
 .scroll:hover::-webkit-scrollbar {
@@ -72,6 +76,8 @@ img{
     display: flex;
     border: 0px 0px 12px 12px;
     background-color:aquamarine;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
 }
 .card{
