@@ -29,7 +29,10 @@ import javax.validation.Valid;
 
 @Transactional
 @RestController
-@CrossOrigin( origins="https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+//@CrossOrigin( origins="https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+
+//vivek
+@CrossOrigin(origins="https://8081-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 @RequestMapping("/set")
 public class SetController {
 
