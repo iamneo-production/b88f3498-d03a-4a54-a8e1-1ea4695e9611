@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/app/environment';
 
 @Component({
   selector: 'app-chatbot',
@@ -13,6 +14,7 @@ export class ChatbotComponent {
   resp: any;
   promt!:string;
   isLoading = false;
+  api = environment.API_KEY;
 
   constructor(private http: HttpClient){}
 
@@ -33,7 +35,7 @@ export class ChatbotComponent {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization':"Bearer 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"
+        'Authorization':`Bearer ${this.api}`
       }),
     };
     const requestBody = {
