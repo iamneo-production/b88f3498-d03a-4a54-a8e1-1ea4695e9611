@@ -41,38 +41,38 @@ import org.springframework.web.context.request.WebRequest;
 public class WorkoutService extends RuntimeException implements WorkoutServiceInterface {
   
     @Autowired
-   private WorkoutRepository workoutRepository;
+    private WorkoutRepository workoutRepository;
 
-   @Autowired
+    @Autowired
     private ExerciseRepository exerciseRepository;
 
     @Autowired
     private SetRepository setRepository;
 
 
-   @Override
-   public Iterable<Workout> getAllWorkout() throws CustomDataAccessException{
-       try {
-           return workoutRepository.findAll();
-       } catch (Exception e) {
-           throw new CustomDataAccessException("Error occurred while retrieving all workouts", e);
-       }
-   }
-     @Override
-     public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
+    @Override
+    public Iterable<Workout> getAllWorkout() throws CustomDataAccessException{
+        try {
+            return workoutRepository.findAll();
+        } catch (Exception e) {
+            throw new CustomDataAccessException("Error occurred while retrieving all workouts", e);
+        }
+    }
+    @Override
+    public Workout getWorkoutById(long id) throws WorkoutNotFoundException{
         Optional<Workout> optionalworkout = workoutRepository.findWorkoutById(id);
         if(optionalworkout.isEmpty()){
             throw new WorkoutNotFoundException("Workout does not exists for Particular ID");
         }
         return optionalworkout.get();
-     }
+    }
      
-     @Override
-     public List<Workout> getWorkOutByUserId(long userId) throws UserNotFoundException{
-        return workoutRepository.findAllByUserId(userId);
-     }
-   public ResponseEntity<String> createWorkout( Workout workout) {
-       long userId = workout.getUser().getId();
+    @Override
+    public List<Workout> getWorkOutByUserId(long userId) throws UserNotFoundException{
+       return workoutRepository.findAllByUserId(userId);
+    }
+    public ResponseEntity<String> createWorkout( Workout workout) {
+        long userId = workout.getUser().getId();
         User newUser = new User();
         newUser.setId(userId);
         workout.setUser(newUser);
@@ -85,29 +85,29 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
    }
    @Override
    public ResponseEntity<String> updateWorkout(Workout workout)  throws InvalidInputException {
-            if (workout == null || workout.getUser() == null || workout.getUser().getId() <= 0) {
+        if (workout == null || workout.getUser() == null || workout.getUser().getId() <= 0) {
             throw new InvalidInputException("Invalid input provided for updating the workout.");
         }
-            long userId = workout.getUser().getId();
-            User newUser = new User();
-            newUser.setId(userId);
-            workout.setUser(newUser);
-            Workout createdWorkout;
-            try{
-                createdWorkout = workoutRepository.save(workout);
-            }catch (Exception e) {
-                throw new InvalidInputException("Error occurred while updating the workout.");
-            }
+        long userId = workout.getUser().getId();
+        User newUser = new User();
+        newUser.setId(userId);
+        workout.setUser(newUser);
+        Workout createdWorkout;
+        try{
+            createdWorkout = workoutRepository.save(workout);
+        }catch (Exception e) {
+            throw new InvalidInputException("Error occurred while updating the workout.");
+        }
         if(createdWorkout != null) {
-                return ResponseEntity.ok("workout Updated");
-            } 
-            else{
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
+            return ResponseEntity.ok("workout Updated");
+        } 
+        else{
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
-   @Override
-   public ResponseEntity<String> deleteWorkoutById(long id) throws InvalidDeleteException {
+    @Override
+    public ResponseEntity<String> deleteWorkoutById(long id) throws InvalidDeleteException {
     try {
         workoutRepository.deleteById(id);
         return new ResponseEntity<>("Workout deleted", HttpStatus.OK);
@@ -153,7 +153,37 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         }
     }
 
-    
+    public ResponseEntity<List<HashMap<String,Object>>> getHistory(long id){
+        List<HashMap<String,Object>> response = new ArrayList<HashMap<String,Object>>();
+        List<Workout> allWorkouts = workoutRepository.findAllByUserId(id);
+        Iterator<Workout> workoutIterator = (Iterator) allWorkouts.iterator();
+        while(workoutIterator.hasNext()){
+            Workout workout = workoutIterator.next();
+            long workoutId = workout.getId();
+            List<Exercise> allExercises = exerciseRepository.findAllByWorkoutId(workoutId);
+            Iterator<Exercise> exerciseIterator = (Iterator) allExercises.iterator();
+            while(exerciseIterator.hasNext()){
+                HashMap<String,Object> map = new HashMap<>();
+                Exercise exercise = exerciseIterator.next();
+                long exerciseId = exercise.getId();
+                List<Set> allSets = setRepository.findByExerciseId(exerciseId);
+                Iterator<Set> setIterator = (Iterator) allSets.iterator();
+                while (setIterator.hasNext()) {
+                    Set set = setIterator.next();
+                    map.put("sets",set.getDuration());
+                    map.put("weight", set.getWeight());
+                    map.put("reps" ,set.getReps());
+                    map.put("exerciseName" ,exercise.getName());
+                    map.put("date" ,workout.getDate().toString());
+                    map.put("duration", workout.getDuration());
+                    map.put("notes" ,workout.getNotes());
+                    response.add(map);
+                }
+                
+            }
+        }
+        return new ResponseEntity<List<HashMap<String,Object>>>(response,HttpStatus.OK);
+    }
   
    
 }

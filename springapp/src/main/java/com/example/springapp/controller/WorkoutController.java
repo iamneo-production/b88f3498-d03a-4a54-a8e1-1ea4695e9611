@@ -80,4 +80,9 @@ public class WorkoutController {
         return workoutService.addToWorkoutHistory(body);
     }
 
+    @GetMapping("workout/history")
+    public ResponseEntity<List<HashMap<String,Object>>> getWorkoutHistory(@RequestParam("userId") long id){
+        return workoutService.getHistory(id);
+    }
+
 }
