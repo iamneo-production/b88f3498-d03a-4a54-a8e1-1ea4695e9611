@@ -22,13 +22,13 @@
               <td mat-cell *matCellDef="let element"> {{element.workoutName}} </td>
             </ng-container>
 
-            <!-- Name Column -->
+            
             <ng-container matColumnDef="exercise">
               <th mat-header-cell *matHeaderCellDef> Exercises</th>
               <td mat-cell *matCellDef="let element"> {{element.exercise}} </td>
             </ng-container>
 
-            <!-- Symbol Column -->
+
             <ng-container matColumnDef="addWorkout">
               <th mat-header-cell *matHeaderCellDef> Add to history </th>
               <td mat-cell *matCellDef="let element">
@@ -38,13 +38,11 @@
               </td>
             </ng-container>
 
-
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 
-          <!-- <div id="contact-fitness" > -->
+
           <div id="fitness-content" [style.display]="isOpen?'flex' : 'none'">
             <div id="fitness-header">
               <div id="span" (click)="closeDiv()" class="close-fitness">&times;</div>
@@ -53,7 +51,7 @@
             <div id="fitness-body">
               <form #workoutForm="ngForm" (ngSubmit)="AddToHistory(workoutForm.value)">
                 <div class="form-group">
-                  <label for="exerciseType">Exercise Type</label>
+                  <label for="exerciseType">Exercise Type*</label>
                   <select id="exerciseType" name="exerciseType" required [(ngModel)]="exerciseType">
                     <option value="" disabled>Select exercise type</option>
                     <option *ngFor="let item of dataList" [value]="item">{{ item }}</option>
@@ -65,7 +63,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="sets">Sets</label>
+                  <label for="sets">Sets*</label>
                   <input type="number" id="sets" name="sets" placeholder="Enter no of sets" required [(ngModel)]="sets">
                   <div *ngIf="workoutForm.controls['sets']?.invalid && (workoutForm.controls['sets']?.dirty || workoutForm.controls['sets']?.touched)"
                        class="error-message">
@@ -74,7 +72,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="reps">Reps</label>
+                  <label for="reps">Reps*</label>
                   <input type="number" id="reps" name="reps" placeholder="Enter no of reps" required [(ngModel)]="reps">
                   <div *ngIf="workoutForm.controls['reps']?.invalid && (workoutForm.controls['reps']?.dirty || workoutForm.controls['reps']?.touched)"
                        class="error-message">
@@ -83,7 +81,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="weight">Weight</label>
+                  <label for="weight">Weight(kg)*</label>
                   <input type="number" id="weight" name="weight" placeholder="Enter your weight" required [(ngModel)]="weight">
                   <div *ngIf="workoutForm.controls['weight']?.invalid && (workoutForm.controls['weight']?.dirty || workoutForm.controls['weight']?.touched)"
                        class="error-message">
@@ -92,7 +90,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="duration">Duration (hrs/min)</label>
+                  <label for="duration">Duration(hrs/min)*</label>
                   <input type="time" id="duration" name="duration" placeholder="Enter the Duration of workout" required [(ngModel)]="duration">
                   <div *ngIf="workoutForm.controls['duration']?.invalid && (workoutForm.controls['duration']?.dirty || workoutForm.controls['duration']?.touched)"
                        class="error-message">
@@ -101,7 +99,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="date">Date</label>
+                  <label for="date">Date*</label>
                   <input type="date" id="date" name="date" placeholder="Enter the Date of workout" required [(ngModel)]="date">
                   <div *ngIf="workoutForm.controls['date']?.invalid && (workoutForm.controls['date']?.dirty || workoutForm.controls['date']?.touched)"
                        class="error-message">
@@ -110,7 +108,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="notes">Notes</label>
+                  <label for="notes">Notes*</label>
                   <input type="text" id="notes" name="notes" placeholder="Enter Notes" required [(ngModel)]="notes">
                   <div *ngIf="workoutForm.controls['notes']?.invalid && (workoutForm.controls['notes']?.dirty || workoutForm.controls['notes']?.touched)"
                        class="error-message">
@@ -129,7 +127,7 @@
             <div [style.display]="isSubmitted?'grid':'none'" id="fitness-footer">
               <h3>Added Successfully!</h3>
             </div>
-            <!-- </div> -->
+
           </div>
           <app-footer></app-footer>
         </div>
