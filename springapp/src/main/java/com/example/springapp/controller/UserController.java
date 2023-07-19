@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin( origins="https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+@CrossOrigin( origins="https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class UserController {
 
     @Autowired
