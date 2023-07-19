@@ -1,58 +1,52 @@
 
-  
-      <div class="container-fluid page">
-        <div class="d-flex page__box p-3 mt-2">Goal Settings</div>
-        <div style="background-color: #746e6f;" class="page__content shadow position-relative">
-          <nav>
-            <a class="active" href="./tasks">Tasks</a>
-            
-            <a routerLink="./goalsetting">Set Goals</a>
-  
-            <a routerLink="./achievedgoals">Achieved goals</a>
-          </nav>
-          <div class="page_container p-4" style="font-size: medium; width: 100%; min-height: calc(100vh - 200px);">
-            <div class="">
-              <div class="carousel">
-                <article class="card">
 
-                  <h2>Running</h2>
+      
+        <div class="container-fluid page">
+          <div class="d-flex page__box p-3">Goal Settings </div>
+          <div class="page__content shadow p-3 position-relative">
+            <div class="page_container position-relative p-4"
+        style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
 
-                </article>
+   
+        <div class="dropdown">
+          <button class="dropbtn" (click)="toggleDropdown()" #dropdownButton>
+            Tasks <span class="arrow-down"></span>
+          </button>
+          <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}" (keydown)="onKeyDown($event)">
+            <a (click)="showAllTasks()">All Tasks</a>
+            <a (click)="showLastMonthTasks()">Last Week</a>
+            <a (click)="showLastWeekTasks()">Last Month</a>
+      
+          </div>
 
-                <article class="card">
-
-                  <h2>Swimming</h2>
-
-                </article>
-
-                <article class="card">
-
-                  <h2>Walking</h2>
-
-                </article>
-
-                <article class="card">
-
-                  <h2>Cycling</h2>
-
-                </article>
-
-                <article class="card">
-
-                  <h2>Yoga</h2>
-
-                </article>
-
-                <article class="card">
-
-                  <h2>Exercises</h2>
-                  
-                </article>
-              </div>
-            </div>
-  
-  
+          <div class="button-container">
+            <button routerLink="./goalsetting" class="task-button">Set Goals</button>
+            <button routerLink="./achievedgoals" class="task-button">Achieved Goals</button>
           </div>
         </div>
+
+        <div class="page__content shadow p-3 position-relative no-box-shadow">
+          <div class="page_container position-relative p-4"
+               style="font-size: medium; width: 100%; min-height: calc(80vh - 200px)">
+          
+          <div class="task-list">
+            
+            <div *ngFor="let task of filteredTasks">
+              <div class="task-container">
+  
+              <div class="task-name">{{ task.name }}</div>
+              <div class="task-duration">{{ task.duration }}</div>
+              <div class="task-time">{{ task.time }}</div>
+              <div class="task-date">{{ task.date }}</div>
+             
+            </div>
+          </div>
+          <app-footer></app-footer>
+          </div>
+
+          </div>
       </div>
     
+    </div>
+  
+   
