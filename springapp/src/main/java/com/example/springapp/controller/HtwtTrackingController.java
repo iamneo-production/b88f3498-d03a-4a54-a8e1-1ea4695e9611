@@ -31,7 +31,6 @@ public class HtwtTrackingController {
         return trackingRepository.findAllByUserId(userId);
     }
 
-    @CrossOrigin
     @PostMapping("/tracking")
     public ResponseEntity<?> saveData(@RequestBody HtwtTracking data) {
         double height = data.getHeight();
