@@ -1,15 +1,25 @@
 package com.example.springapp.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.ArrayList;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.example.springapp.exception.UserNotFoundException;
+import com.example.springapp.model.Exercise;
+import com.example.springapp.model.Set;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
+import com.example.springapp.repository.ExerciseRepository;
+import com.example.springapp.repository.SetRepository;
 import com.example.springapp.repository.WorkoutRepository;
 import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.exception.InvalidDeleteException;
@@ -32,6 +42,13 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
   
     @Autowired
    private WorkoutRepository workoutRepository;
+
+   @Autowired
+    private ExerciseRepository exerciseRepository;
+
+    @Autowired
+    private SetRepository setRepository;
+
 
    @Override
    public Iterable<Workout> getAllWorkout() throws CustomDataAccessException{
@@ -98,5 +115,45 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         throw new InvalidDeleteException("Error occurred while deleting the workout.");
     }
 }
+
+    @Transactional
+    public ResponseEntity<String> addToWorkoutHistory(HashMap<String,Object> body) throws InvalidDeleteException{
+        try {
+            long userId = (Integer) body.get("id");
+            String date = (String) body.get("date");
+            String duration = (String) body.get("duration");
+            int sets = (Integer) body.get("sets");
+            int reps = (Integer) body.get("reps");
+            int weight = (Integer) body.get("weight");
+            String notes = (String) body.get("notes");
+            String exerciseType = (String) body.get("exerciseType");
+
+            //Create a User object for adding workout
+            User user = new User();
+            user.setId(userId);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(date, formatter);
+
+            Workout workout = new Workout(0,user,localDate,duration,notes);
+            Workout createdWorkout = workoutRepository.save(workout);
+            
+            //for adding exercise
+            Exercise exercise = new Exercise(0,createdWorkout.getId(),exerciseType,notes);
+            Exercise createdExercise = exerciseRepository.save(exercise);
+
+            //for adding set
+            Set set = new Set((long)0,(long)reps,createdExercise.getId(),weight+"",sets+"");
+            setRepository.save(set);
+
+            return new ResponseEntity<>("Workout history added", HttpStatus.OK);
+            // return new ResponseEntity<>(body, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new InvalidDeleteException("Error occurred while adding data to workout history.");
+        }
+    }
+
+    
+  
    
 }
