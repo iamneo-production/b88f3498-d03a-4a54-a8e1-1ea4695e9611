@@ -67,10 +67,10 @@ public class UserController {
 
     // Update a specific user
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
         updatedUser.setId(id);
-        userService.updateUser(updatedUser);
-        return "User Updated";
+        return userService.updateUser(updatedUser);
+        
     }
 
     // Delete a specific user by ID
