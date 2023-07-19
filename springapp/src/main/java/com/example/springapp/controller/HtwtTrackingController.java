@@ -20,7 +20,7 @@ import com.example.springapp.repository.HtwtTrackingRepository;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin( origins="https://8081-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+@CrossOrigin( origins="https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class HtwtTrackingController {
 
     @Autowired
@@ -31,7 +31,6 @@ public class HtwtTrackingController {
         return trackingRepository.findAllByUserId(userId);
     }
 
-    @CrossOrigin
     @PostMapping("/tracking")
     public ResponseEntity<?> saveData(@RequestBody HtwtTracking data) {
         double height = data.getHeight();

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,10 @@ export class UserService implements OnDestroy {
     this.userSubject.next(user);
   }
   getUser() {
-    return this.userSubject;
+    this.userSubject.subscribe(newUser =>{
+      this.user = newUser;
+    });
+    return this.user;
   }
 
 

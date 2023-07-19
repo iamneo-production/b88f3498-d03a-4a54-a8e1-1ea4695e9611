@@ -48,8 +48,9 @@ public class UserService {
         return optionalUser.orElseThrow();
     }
 
-    public void updateUser(User updatedUser) {
+    public ResponseEntity<User> updateUser(User updatedUser) {
         userRepository.save(updatedUser);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK );
     }
 
    
