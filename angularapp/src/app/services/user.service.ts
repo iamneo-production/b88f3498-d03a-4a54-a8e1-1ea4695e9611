@@ -16,7 +16,8 @@ export class UserService implements OnDestroy {
     this.tokenService = tokenService;
   }
 
-  baseUrl:string = environment.baseUrl;
+
+  baseUrl:string = 'https://8080-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io';
   user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
 
   userCalorie: number = 2000;
