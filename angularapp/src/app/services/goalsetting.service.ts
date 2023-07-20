@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserService } from './user.service';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -6,12 +9,17 @@ import { Injectable } from '@angular/core';
 export class GoalsettingService {
 
   private goalData: any = null;
-  constructor() { }
-  setGoalData(data: any): void {  //storing the string array hereeuh
-    this.goalData = data;
-  }
+  private responseBody: any = null;
 
-  getGoalData(): any {
-    return this.goalData;
+  constructor(private http: HttpClient,private userService : UserService) { }
+
+  setGoalData(requestData: any): string {
+    console.log("In");
+    this.http.post<any>(environment.baseUrl+"/goal/set", requestData).subscribe(response =>{
+      console.log(response);
+      this.responseBody=response;
+    });
+    return this.responseBody;
+
   }
 }

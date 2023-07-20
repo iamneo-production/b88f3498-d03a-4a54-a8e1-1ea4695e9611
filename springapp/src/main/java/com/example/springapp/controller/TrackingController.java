@@ -18,7 +18,7 @@ import com.example.springapp.service.TrackingService;
 import com.example.springapp.model.TrackingModel;
 
 @RestController
-@CrossOrigin( origins="https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+@CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class TrackingController {
     @Autowired
     public TrackingService trackingService;
