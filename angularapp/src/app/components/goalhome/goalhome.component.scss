@@ -1,99 +1,167 @@
 @import '../home/home.component.scss';
-*,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body{
-    background-color: #746e6f;
 
+.no-box-shadow {
+  box-shadow: none !important;
 }
-nav{
-    height: 20vh;
-    min-width: 400px;
+
+.dropdown{
+    font-size: 18px;
+    margin-left: 250px;
     display: flex;
-    align-items: top;
-    justify-content: space-around;
-    margin: auto;
+    align-items: center;
 }
-a{
-    position: relative;
-    text-decoration: none;
-    font-family: 'Poppins',sans-serif;
-    color: black;
+.dropbtn {
     font-weight: bold;
-    font-size: 25px;
-    letter-spacing: 0.5px;
-    padding: 0 10px;
-    top:20%;
+    border-radius: 7px;
+   font-size: 25px;
+    background-color: #2c3344;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+  }
+  
+.dropbtn:hover{
+    background-color: gray;
+  }
 
-}
-
-a:after{
-    content: "";
-    position: absolute;
-    background-color:crimson;
-    height: 3px;
-    width: 0%;
-    top:20%;
-    left:5%;
-    bottom: -5px;
-    transition: 0.3s;
-}
-.active, a:hover{
-    color: azure;
+.arrow-down {
     
-}
-a:hover:after{
-    width: 100%;
-}
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    border-color: #fff transparent transparent;
+    margin-left: 5px;
+  }
 
-.container{
-    position: absolute;
-    left:20%;
-    top:50%;
-    width: 700px;
+  
    
-    
-    
-}
+  .task-button {
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 10px 30px;
+    background-color: #2c3344;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    transition: background-color 0.3s ease;
+  }
 
-.carousel{
-    
-    display: grid;
-    grid-auto-flow: column;
-    scroll-behavior: auto;
-    gap: 1.2rem;
-    overflow-y: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+.task-button:hover {
+    background-color: gray;
+  }
+
+.dropdown-content {
     
     
-    
-}
-.carousel::-webkit-scrollbar{
+    top: 65%;
+    border-radius: 7px;
+    align-items: center;
+    margin: 0 auto;
     display: none;
-    
-    
-}
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+ 
+.dropdown-content a {
+    font-size: 18px;
+    color: #000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
 
-.card{
-    font-family: 'Poppins',sans-serif;
-    text-align: center;
-    scroll-snap-align: start;
-    border-radius: 20px;
-    min-height: 150px;
-    min-width: 200px;
+.dropdown-content a:hover {
+    background-color: rgba(0, 0, 148, 0.1);
+  }
+  
+ 
+.show {
+    display: block;
+  }
+  
+  
+  .button-container {
+    
     display: flex;
-    align-items:center;
-    justify-content: center;
-}
-.card:nth-child(odd) {
-    background: linear-gradient(-229deg,#fbd52d, #ef3a7b);
-}
-.card:nth-child(even) {
-    background: linear-gradient(-229deg,#ff70af, #5fa8f5);
-}
+    margin-left: 100px;
+    justify-content: center; 
+    align-items: center ;
+    gap: 100px; 
+    height: 30vh; 
+    
+  }
+
+
+
+.task-list {
+    margin-left: 13%;
+    margin-top: 0.1px;
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+ 
+ 
+   width: 90%; 
+   max-width: 900px;
+  
+
+
+  }
+  
+
+.task-item {
+     
+    padding:  10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+
+.task-container {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    
+    background-color: rgba(31, 31, 214, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+ 
+.task-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+.task-duration {
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
+ 
+.task-time {
+    font-size: 15px;
+    color: #555;
+  }
+  
+  
+.task-date {
+    font-size: 15px;
+    color: #777;
+  }
+
+  

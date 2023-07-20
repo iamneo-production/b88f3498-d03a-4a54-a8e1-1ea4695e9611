@@ -1,6 +1,6 @@
 package com.example.springapp.controller;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -77,4 +77,15 @@ public class WorkoutController {
     public ResponseEntity<String> deleteWorkoutById(@RequestParam("id") long id) throws InvalidDeleteException {
         return workoutService.deleteWorkoutById(id);
     }
+
+    @PostMapping("workout/addToHistory")
+    public ResponseEntity<String> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
+        return workoutService.addToWorkoutHistory(body);
+    }
+
+    @GetMapping("workout/history")
+    public ResponseEntity<List<HashMap<String,Object>>> getWorkoutHistory(@RequestParam("userId") long id){
+        return workoutService.getHistory(id);
+    }
+
 }

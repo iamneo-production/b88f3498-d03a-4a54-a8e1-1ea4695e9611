@@ -19,7 +19,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   
 ];
 const wt: WorkoutTypes[] = [
-  { workoutName: 'Push-Up Challenge', exercise: ['Push-ups','Diamond' ,'push-ups', 'Wide-push-ups'], addWorkout: 'H' },
+  { workoutName: 'Push-Up Challenge', exercise: ['Push-ups','Diamond-push-ups', 'Wide-push-ups'], addWorkout: 'H' },
   { workoutName: 'Squat Power', exercise: ['Squats', 'Jump squats', 'Barbell squats'], addWorkout: 'H' },
   { workoutName: 'Cardio Blast', exercise: ['Jumping jacks', 'High knees', 'Burpees'], addWorkout: 'H' },
 

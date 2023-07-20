@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,8 @@ export class UserService implements OnDestroy {
 
   }
 
-  //baseUrl:string = 'https://8080-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io';
-  
-  //vivek
-  baseUrl:string = 'https://8080-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io';
-
-  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+  baseUrl:string = environment.baseUrl;
+  user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
@@ -27,7 +24,10 @@ export class UserService implements OnDestroy {
     this.userSubject.next(user);
   }
   getUser() {
-    return this.userSubject;
+    this.userSubject.subscribe(newUser =>{
+      this.user = newUser;
+    });
+    return this.user;
   }
 
 
