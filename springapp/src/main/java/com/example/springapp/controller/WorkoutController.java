@@ -1,6 +1,6 @@
 package com.example.springapp.controller;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,11 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping
+<<<<<<< HEAD
 @CrossOrigin( origins="https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+=======
+@CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+>>>>>>> 89e1e79c7e025552bb3dbda104d5a94af93067f4
 public class WorkoutController {
 
     @Autowired
@@ -74,4 +78,15 @@ public class WorkoutController {
     public ResponseEntity<String> deleteWorkoutById(@RequestParam("id") long id) throws InvalidDeleteException {
         return workoutService.deleteWorkoutById(id);
     }
+
+    @PostMapping("workout/addToHistory")
+    public ResponseEntity<String> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
+        return workoutService.addToWorkoutHistory(body);
+    }
+
+    @GetMapping("workout/history")
+    public ResponseEntity<List<HashMap<String,Object>>> getWorkoutHistory(@RequestParam("userId") long id){
+        return workoutService.getHistory(id);
+    }
+
 }
