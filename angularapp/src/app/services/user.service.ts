@@ -2,22 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environment';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements OnDestroy {
-  constructor(private http: HttpClient){
+  private httpClient: HttpClient;
+  private tokenService: TokenService;
 
+  constructor(httpClient: HttpClient, tokenService: TokenService) {
+    this.httpClient = httpClient;
+    this.tokenService = tokenService;
   }
-<<<<<<< HEAD
-  baseUrl:string = 'https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io';
-  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
-=======
-
   baseUrl:string = environment.baseUrl;
   user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
->>>>>>> 89e1e79c7e025552bb3dbda104d5a94af93067f4
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
@@ -65,7 +64,20 @@ export class UserService implements OnDestroy {
     const encodedCredentials = btoa(credentials); // Base64 encode the credentials
     return 'Basic ' + encodedCredentials;
   }
-  
 
+  async getCurrentUser() {
+    let activeUser = this.user;
+    console.log("tokrn in userService", this.tokenService.getToken());
+    
+    this.httpClient.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
+      next: (currUser: any) => {
+        this.setUser(currUser);
+        activeUser = currUser;
+        console.log("currUser: ", activeUser);
+
+      }
+    })
+    return activeUser;
+  }
 
 }
