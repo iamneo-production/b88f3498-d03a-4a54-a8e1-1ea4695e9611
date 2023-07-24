@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/services/token.service';
 import { environment } from 'src/environment';
 
 
@@ -20,7 +21,7 @@ interface Goal {
 })
 export class AchievedGoalsComponent implements OnInit{
 
-constructor(private http:HttpClient){}
+constructor(private http:HttpClient, private tokenService: TokenService){}
 
   ngOnInit(): void {
     this.getAchievedGoals();
@@ -34,7 +35,7 @@ constructor(private http:HttpClient){}
   achievedGoals: any;
 
   getAchievedGoals(){
-    this.http.get<any>(environment.baseUrl+'/goal/all?status=complete').subscribe(response=>{
+    this.http.get<any>(environment.baseUrl+'/goal/all?status=complete',this.tokenService.getHeader()).subscribe(response=>{
       console.log(response);
       response = this.formatDate(response);
       console.log(response);

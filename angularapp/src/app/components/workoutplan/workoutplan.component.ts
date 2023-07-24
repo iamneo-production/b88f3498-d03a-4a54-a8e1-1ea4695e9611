@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TitleService } from 'src/app/services/title.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { WorkoutService } from 'src/app/services/workout.service';
 import { environment } from 'src/environment';
@@ -33,7 +34,7 @@ export class WorkoutplanComponent implements OnInit {
   date: string = '';
   userId:number = 0;
 
-  constructor(private titleService: TitleService, private router: Router, private workout: WorkoutService,private userService: UserService,private http :HttpClient) {
+  constructor(private titleService: TitleService, private router: Router, private workout: WorkoutService,private userService: UserService,private http :HttpClient, private tokenService: TokenService) {
     this.titleService.setTitle("Workout Plan");
   }
   // operation(name: string) {
@@ -68,7 +69,7 @@ export class WorkoutplanComponent implements OnInit {
 
   postData(url: string, requestData: any){
     console.log("In");
-    this.http.post<any>(url, requestData).subscribe(response =>{
+    this.http.post<any>(url, requestData,this.tokenService.getHeader()).subscribe(response =>{
       console.log(response);
     });
   }
