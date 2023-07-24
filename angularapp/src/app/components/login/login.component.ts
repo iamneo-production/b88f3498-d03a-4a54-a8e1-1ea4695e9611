@@ -7,6 +7,7 @@ import { TitleService } from '../../services/title.service';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent {
     private _http: HttpClient,
     private _route: Router,
     private title: TitleService,
+    private tokenService: TokenService,
     private userService: UserService
     ) { this.title.setTitle("Login"); }
 
@@ -35,7 +37,7 @@ export class LoginComponent {
     this.user.password = this.myform.value.password;
 
 
-    this._http.post(`${this.userService.baseUrl}/user/login`, this.user).subscribe(loggedUser=>{
+    this._http.post(`${this.userService.baseUrl}/user/login`, this.user,this.tokenService.getHeader()).subscribe(loggedUser=>{
       if(loggedUser!=null){
         console.log(loggedUser);
         this.authService.setAuthentication(true);

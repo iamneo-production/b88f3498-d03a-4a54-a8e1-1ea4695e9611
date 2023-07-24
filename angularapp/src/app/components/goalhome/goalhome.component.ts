@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { GoalsettingService } from 'src/app/services/goalsetting.service';
+import { TokenService } from 'src/app/services/token.service';
 import { environment } from 'src/environment';
 
 interface Task {
@@ -20,7 +21,7 @@ interface Task {
 })
 export class GoalhomeComponent implements OnInit{
 
-  constructor(private goalService:GoalsettingService,private http:HttpClient){}
+  constructor(private goalService:GoalsettingService,private http:HttpClient, private tokenService: TokenService){}
 
   ngOnInit(): void {
     this.getTasks();
@@ -75,7 +76,7 @@ export class GoalhomeComponent implements OnInit{
     this.dropdownOpen = false;
   }
   getTasks(){
-    this.http.get<any>(environment.baseUrl+'/goal/all?status=inprogress').subscribe(response=>{
+    this.http.get<any>(environment.baseUrl+'/goal/all?status=inprogress',this.tokenService.getHeader()).subscribe(response=>{
       console.log(response);
       response = this.formatDate(response);
       console.log(response);

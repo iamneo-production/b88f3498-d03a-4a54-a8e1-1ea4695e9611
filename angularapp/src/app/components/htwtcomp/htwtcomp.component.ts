@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Chart, registerables, scales } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-htwtcomp',
@@ -18,7 +19,7 @@ export class HtwtcompComponent implements OnInit {
   height!: number;
   chart: Chart | undefined;
   userId!:number;
-  constructor(private userService: UserService, private http: HttpClient) {
+  constructor(private userService: UserService, private http: HttpClient, private tokenService: TokenService) {
     this.userService.userSubject.subscribe({
       next: user=>{this.userId = user.id;}
     })
@@ -26,7 +27,7 @@ export class HtwtcompComponent implements OnInit {
   ngOnInit(): void {
 
     Chart.register(...registerables);
-    this.http.get(`${this.baseUrl}/api/v1/tracking/${this.userId}`).subscribe({
+    this.http.get(`${this.baseUrl}/api/v1/tracking/${this.userId}`,this.tokenService.getHeader()).subscribe({
         next: (response: any)=>{this.entries = response;}
       })
   }
@@ -57,7 +58,7 @@ export class HtwtcompComponent implements OnInit {
       
       
 
-      this.http.post(`${this.baseUrl}/api/v1/tracking`, entry).subscribe({
+      this.http.post(`${this.baseUrl}/api/v1/tracking`, entry,this.tokenService.getHeader()).subscribe({
         next: (response: any) => {
           console.log('Data sent successfully:', response);
           
