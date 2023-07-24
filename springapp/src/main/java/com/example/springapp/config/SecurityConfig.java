@@ -44,22 +44,22 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         return 
-        
+
         http
-                .csrf().disable()
-                .authorizeHttpRequests()
-                .antMatchers("/login", "/register")
-                .permitAll()
-                .antMatchers("/**").hasAuthority("ADMIN")
-                // .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(this.authenticationProvider())
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+        .csrf().disable()
+        .authorizeHttpRequests()
+        .antMatchers("/login", "/register")
+        .permitAll()
+        .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
+        .antMatchers("/**").hasAuthority("ADMIN")
+        .anyRequest().authenticated()
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .authenticationProvider(this.authenticationProvider())
+        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();
     }
 
     @Bean
@@ -94,7 +94,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io");
+        config.addAllowedOrigin("*");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
