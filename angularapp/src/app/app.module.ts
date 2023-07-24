@@ -42,6 +42,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     FooterComponent,
     LandingPageComponent,
     ChatbotComponent,
+    AdminPageComponent,
 
   ],
   imports: [
