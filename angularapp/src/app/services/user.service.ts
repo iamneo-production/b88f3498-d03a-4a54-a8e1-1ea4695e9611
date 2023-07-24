@@ -6,12 +6,15 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService implements OnDestroy {
-  constructor(private http: HttpClient){
+  private httpClient: HttpClient;
+  private tokenService: TokenService;
 
+  constructor(httpClient: HttpClient, tokenService: TokenService) {
+    this.httpClient = httpClient;
+    this.tokenService = tokenService;
   }
-
-  baseUrl:string = 'https://8080-cddcfabcbdedaaaccdcddcffebeaeaadbdbabf.project.examly.io';
-  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+  baseUrl:string = environment.baseUrl;
+  user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
@@ -59,7 +62,20 @@ export class UserService implements OnDestroy {
     const encodedCredentials = btoa(credentials); // Base64 encode the credentials
     return 'Basic ' + encodedCredentials;
   }
-  
 
+  async getCurrentUser() {
+    let activeUser = this.user;
+    console.log("tokrn in userService", this.tokenService.getToken());
+    
+    this.httpClient.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
+      next: (currUser: any) => {
+        this.setUser(currUser);
+        activeUser = currUser;
+        console.log("currUser: ", activeUser);
+
+      }
+    })
+    return activeUser;
+  }
 
 }

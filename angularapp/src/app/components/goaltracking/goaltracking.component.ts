@@ -30,7 +30,7 @@ export class GoaltrackingComponent implements OnInit{
   }
   
   displaychart(){
-    for(var val of this.dataArray){
+    for(let val of this.dataArray){
     this.myCha = new Chart("myChart", {
         type: 'pie',
         data: {
