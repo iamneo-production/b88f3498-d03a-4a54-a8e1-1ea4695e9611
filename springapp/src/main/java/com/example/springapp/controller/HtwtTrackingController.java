@@ -20,11 +20,7 @@ import com.example.springapp.repository.HtwtTrackingRepository;
 
 @RestController
 @RequestMapping("/api/v1")
-<<<<<<< HEAD
-@CrossOrigin( origins="https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
-=======
 @CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
->>>>>>> 89e1e79c7e025552bb3dbda104d5a94af93067f4
 public class HtwtTrackingController {
 
     @Autowired
