@@ -1,4 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environment';
+
+
+interface Goal {
+  id: number;
+  name: string;
+  notes: string;
+  intensity: string;
+  date: any;
+  duration: number;
+  status: string;
+}
 
 @Component({
   selector: 'app-achieved-goals',
@@ -6,7 +19,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./achieved-goals.component.scss']
 })
 export class AchievedGoalsComponent implements OnInit{
+
+constructor(private http:HttpClient){}
+
   ngOnInit(): void {
+    this.getAchievedGoals();
   }
   sideBarOpen = true;
 
@@ -14,13 +31,28 @@ export class AchievedGoalsComponent implements OnInit{
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  
+  achievedGoals: any;
 
-  achievedGoals: any[] = [
-    { goal: 'Goal 1', date: '2023-05-15', duration: '30 minutes', result: 'Completed' },
-    { goal: 'Goal 2', date: '2023-05-20', duration: '45 minutes', result: 'Completed' },
-    { goal: 'Goal 3', date: '2023-05-25', duration: '60 minutes', result: 'Completed' },
-    { goal: 'Goal 4', date: '2023-05-30', duration: '40 minutes', result: 'Completed' }
-  ];
+  getAchievedGoals(){
+    this.http.get<any>(environment.baseUrl+'/goal/all?status=complete').subscribe(response=>{
+      console.log(response);
+      response = this.formatDate(response);
+      console.log(response);
+      this.achievedGoals = response;
+    })
+  }
+
+  formatDate(exercises: Goal[]): Goal[] {
+    for (const exercise of exercises) {
+      const [year, month, day] = exercise.date;
+      const formattedDate = `${this.padZero(day)}-${this.padZero(month)}-${year}`;
+      exercise.date = formattedDate;
+    }
+    return exercises;
+  }
+
+  padZero(value: number): string {
+    return value.toString().padStart(2, '0');
+  }
 
 }
