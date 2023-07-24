@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +9,6 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient){
 
   }
-<<<<<<< HEAD
-  baseUrl:string = 'https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io';
-  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
-=======
 
   baseUrl:string = 'https://8080-cddcfabcbdedaaaccdcddcffebeaeaadbdbabf.project.examly.io';
   user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
