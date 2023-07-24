@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
+@CrossOrigin( origins="https://8081-cddcfabcbdedaaaccdcddcffebeaeaadbdbabf.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class UserController {
 
     @Autowired
@@ -40,12 +40,6 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
-    }
-
-    // Create a new user
-    @PostMapping("/register")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
     }
 
     // Retrieve a specific user by ID
@@ -60,10 +54,7 @@ public class UserController {
     }
     
     
-    @PostMapping("/login")
-    public ResponseEntity<User> loginByEmail(@RequestBody LoginModel loginData) {
-        return userService.loginByEmail(loginData);
-    }
+
 
     // Update a specific user
     @PutMapping("/{id}")
@@ -79,4 +70,18 @@ public class UserController {
         userService.deleteUserById(id);
         return "User deleted";
     }
+
+@GetMapping("/getCurrentUser")
+public User getCurrentUser() {
+    return userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+}
+
+@GetMapping("/isAuthenticated")
+public boolean isAuthenticated() {
+    boolean authentication = false;
+    if (SecurityContextHolder.getContext().getAuthentication().getName() != "anonymousUser") {
+        authentication = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    }
+    return authentication;
+}
 }
