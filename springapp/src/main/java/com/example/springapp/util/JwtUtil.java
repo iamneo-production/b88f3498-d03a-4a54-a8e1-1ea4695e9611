@@ -1,4 +1,4 @@
-package springapp.src.main.java.com.example.springapp.util;
+package com.example.springapp.util;
 
 import java.security.Key;
 import java.util.Date;
