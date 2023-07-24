@@ -1,4 +1,4 @@
-package com.example.springapp.config;
+package main.java.com.example.springapp.config;
 
 import java.util.Arrays;
 
