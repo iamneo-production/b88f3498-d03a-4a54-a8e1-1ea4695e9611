@@ -15,6 +15,22 @@ export class UserService implements OnDestroy {
     this.httpClient = httpClient;
     this.tokenService = tokenService;
   }
+
+  async getCurrentUser() {
+    let activeUser = this.user;
+    console.log("tokrn in userService", this.tokenService.getToken());
+    
+    this.http.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
+      next: (currUser: any) => {
+        this.setUser(currUser);
+        activeUser = currUser;
+        console.log("currUser: ", activeUser);
+
+      }
+    })
+    return activeUser;
+  }
+
   baseUrl:string = environment.baseUrl;
   user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
   userCalorie: number = 2000;
