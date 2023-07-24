@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { TitleService } from 'src/app/services/title.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
   imageName: string = "assets/icon/user.png";
 
 
-  constructor(private http: HttpClient, private formValidationService: FormValidationService, private titleService: TitleService, private userService: UserService) {
+  constructor(private http: HttpClient, private formValidationService: FormValidationService, private titleService: TitleService, private userService: UserService, private tokenService: TokenService) {
     this.titleService.setTitle("Profile");
     this.userService.userSubject.subscribe(userData => {
       this.user = userData;
@@ -44,11 +45,8 @@ export class ProfileComponent implements OnInit {
 
   UpdateProfile() {
     this.saved = true;
-    const requestOptions: object = {
-      responseType: 'json'
-    };
-    
-    this.http.put(`${this.userService.baseUrl}/user/${this.id}`,  this.user, requestOptions ).subscribe(updatedUser => {
+   
+    this.http.put(`${this.userService.baseUrl}/user/${this.id}`,  this.user, this.tokenService.getHeader() ).subscribe(updatedUser => {
       this.message = "Profile Updated Successfully!"
       console.log(updatedUser);
       this.userService.setUser(updatedUser);

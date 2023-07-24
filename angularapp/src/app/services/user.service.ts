@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environment';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -58,11 +59,6 @@ export class UserService implements OnDestroy {
     return this.userCalorie = BMR * activity_factor;
   }
 
-  getBasicAuthHeader(email: string, password: string): string {
-    const credentials = email + ':' + password;
-    const encodedCredentials = btoa(credentials); // Base64 encode the credentials
-    return 'Basic ' + encodedCredentials;
-  }
 
   async getCurrentUser() {
     let activeUser = this.user;

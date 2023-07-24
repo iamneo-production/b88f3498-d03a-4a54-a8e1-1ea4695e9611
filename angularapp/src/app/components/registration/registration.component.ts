@@ -43,7 +43,7 @@ export class RegistrationComponent {
       regUser.subscribe({
         next: dbUser => {
           console.log(dbUser);
-          
+
           this.user = dbUser;
           this.router.navigate(['login']);
         },
@@ -74,6 +74,6 @@ export class RegistrationComponent {
   }
 
   registerUser(user: any) {
-    return this.http.post(`${this.userService.baseUrl}/user/register`, this.user);
+    return this.http.post(`${this.userService.baseUrl}/register`, this.user);
   }
 }

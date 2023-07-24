@@ -1,16 +1,18 @@
-package main.java.com.example.springapp.controller.user;
+package com.example.springapp.controller.user;
 
 import javax.validation.Valid;
+
+import com.example.springapp.model.User;
+import com.example.springapp.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.example.springapp.model.User;
-import com.example.springapp.service.UserService;
-
+@CrossOrigin
 @RestController
 public class RegisterController {
     @Autowired
