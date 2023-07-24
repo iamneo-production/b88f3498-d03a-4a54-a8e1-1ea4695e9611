@@ -24,7 +24,9 @@ import com.example.springapp.exception.CustomDataAccessException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidUpdateException;
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/exercise")
 public class ExerciseController {

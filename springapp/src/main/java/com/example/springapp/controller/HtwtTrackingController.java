@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springapp.model.HtwtTracking;
 import com.example.springapp.repository.HtwtTrackingRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class HtwtTrackingController {

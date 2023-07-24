@@ -25,7 +25,9 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Transactional
 @RestController
 @RequestMapping("/set")

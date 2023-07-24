@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.springapp.model.Goal;
 // import com.example.springapp.repository.GoalRepository;
 import com.example.springapp.service.GoalService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/goal")
 public class GoalController {
