@@ -1,13 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environment';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements OnDestroy {
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private tokenService:TokenService){
 
+  }
+
+  async getCurrentUser() {
+    let activeUser = this.user;
+    console.log("tokrn in userService", this.tokenService.getToken());
+    
+    this.http.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
+      next: (currUser: any) => {
+        this.setUser(currUser);
+        activeUser = currUser;
+        console.log("currUser: ", activeUser);
+
+      }
+    })
+    return activeUser;
   }
 
   baseUrl:string = environment.baseUrl;
@@ -54,12 +71,6 @@ export class UserService implements OnDestroy {
     return this.userCalorie = BMR * activity_factor;
   }
 
-  getBasicAuthHeader(email: string, password: string): string {
-    const credentials = email + ':' + password;
-    const encodedCredentials = btoa(credentials); // Base64 encode the credentials
-    return 'Basic ' + encodedCredentials;
-  }
-  
 
 
 }
