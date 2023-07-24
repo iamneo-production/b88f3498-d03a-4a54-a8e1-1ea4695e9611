@@ -10,9 +10,14 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient){
 
   }
+<<<<<<< HEAD
+  baseUrl:string = 'https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io';
+  user: any = { email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+=======
 
   baseUrl:string = environment.baseUrl;
   user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+>>>>>>> 89e1e79c7e025552bb3dbda104d5a94af93067f4
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
