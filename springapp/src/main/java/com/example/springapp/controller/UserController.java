@@ -42,12 +42,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    // Create a new user
-    @PostMapping("/register")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
-    }
-
     // Retrieve a specific user by ID
     @GetMapping("/id")
     public ResponseEntity<User> getUserById(@RequestParam("id") long id) throws UserNotFoundException{
@@ -60,10 +54,7 @@ public class UserController {
     }
     
     
-    @PostMapping("/login")
-    public ResponseEntity<User> loginByEmail(@RequestBody LoginModel loginData) {
-        return userService.loginByEmail(loginData);
-    }
+
 
     // Update a specific user
     @PutMapping("/{id}")
@@ -79,4 +70,18 @@ public class UserController {
         userService.deleteUserById(id);
         return "User deleted";
     }
+
+@GetMapping("/getCurrentUser")
+public User getCurrentUser() {
+    return userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+}
+
+@GetMapping("/isAuthenticated")
+public boolean isAuthenticated() {
+    boolean authentication = false;
+    if (SecurityContextHolder.getContext().getAuthentication().getName() != "anonymousUser") {
+        authentication = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    }
+    return authentication;
+}
 }

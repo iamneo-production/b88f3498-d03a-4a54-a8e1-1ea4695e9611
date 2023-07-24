@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
-    API_KEY: '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'
-  };
-  
+  production: false,
+  baseUrl: 'http://localhost:8080',
+  API_KEY: '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'
+};
