@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.example.springapp.filters.JwtRequestFilter;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -68,6 +69,12 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailsService() {
         return new UserDtoDetailService();
+    }
+
+     @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+        return config.getAuthenticationManager();
+        
     }
 
 }
