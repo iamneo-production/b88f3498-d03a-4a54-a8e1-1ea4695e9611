@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -17,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springapp.model.HtwtTracking;
 import com.example.springapp.repository.HtwtTrackingRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin( origins="https://8081-cddcfabcbdedaaaccdcddcffebeaeaadbdbabf.project.examly.io", maxAge = 3600, allowCredentials="true")
 public class HtwtTrackingController {
 
     @Autowired

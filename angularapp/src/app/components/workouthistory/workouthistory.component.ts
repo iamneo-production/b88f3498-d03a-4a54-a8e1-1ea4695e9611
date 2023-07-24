@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TitleService } from 'src/app/services/title.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { WorkoutService } from 'src/app/services/workout.service';
 import { environment } from 'src/environment';
@@ -22,7 +23,7 @@ export class WorkouthistoryComponent implements OnInit {
   ds = [];
 
 
-  constructor(private titleService: TitleService, private workout: WorkoutService,private http: HttpClient,private userService:UserService) {
+  constructor(private titleService: TitleService, private workout: WorkoutService,private http: HttpClient,private userService:UserService,private tokenService: TokenService) {
     this.titleService.setTitle("Workout History");
   }
 
@@ -42,7 +43,7 @@ export class WorkouthistoryComponent implements OnInit {
     })
   }
   getData(): Observable<any> {
-    return this.http.get<PeriodicElement>(environment.baseUrl+'/workout/history?userId='+this.userService.getUser().id);
+    return this.http.get<PeriodicElement>(environment.baseUrl+'/workout/history?userId='+this.userService.getUser().id,this.tokenService.getHeader());
   }
 
 }

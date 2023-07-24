@@ -1,12 +1,14 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { TitleService } from '../../services/title.service';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
+import { TitleService } from '../../services/title.service';
 import { UserService } from 'src/app/services/user.service';
+import { TokenService } from 'src/app/services/token.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +17,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   constructor(
-    private authService: UserAuthService,
+    private userService: UserService,
     private formValidationService: FormValidationService,
     private _http: HttpClient,
     private _route: Router,
     private title: TitleService,
-    private userService: UserService
-    ) { this.title.setTitle("Login"); }
+    private userAuthService: UserAuthService,
+    private tokenService: TokenService
+
+  ) { this.title.setTitle("Login"); }
 
   id!: number;
-  imageBlob: Blob | undefined;
-  loginError!: string;
+  // imageBlob: Blob | undefined;
+  loginError!: any;
   loggedIn: boolean = false;
   myform: FormGroup = this.formValidationService.myform;
   user = { email: '', password: '' };
@@ -34,21 +38,23 @@ export class LoginComponent {
     this.user.email = this.myform.value.email;
     this.user.password = this.myform.value.password;
 
+    this.loginError = this.userAuthService.login(this.user.email, this.user.password);
+    
+    console.log(this.loginError);
 
-    this._http.post(`${this.userService.baseUrl}/user/login`, this.user).subscribe(loggedUser=>{
-      if(loggedUser!=null){
-        console.log(loggedUser);
-        this.authService.setAuthentication(true);
-        this.userService.setUser(loggedUser);
-        this._route.navigate(['home']);
-      }
-    },
-    error =>{
-      this.loginError = "Wrong Email or Password!!!"
-      console.log(error);   
-    });
   }
+  
+
+  
+
   sendToRegisterPage() {
     this._route.navigate(['register']);
   }
+
+
+  getUserByEmail(email: string) {
+    return this._http.get(`${this.userService.baseUrl}/user/${this.user.email}`, this.tokenService.getHeader())
+  }
+
 }
+
