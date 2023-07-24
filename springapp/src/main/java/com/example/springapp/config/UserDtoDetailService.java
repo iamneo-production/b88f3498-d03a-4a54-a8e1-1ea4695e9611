@@ -24,4 +24,3 @@ public class UserDtoDetailService implements UserDetailsService {
             return new UserDtoDetails(user);
         }
 }
-
