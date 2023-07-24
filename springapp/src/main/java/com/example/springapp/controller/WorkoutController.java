@@ -36,7 +36,9 @@ import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping
 @CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")

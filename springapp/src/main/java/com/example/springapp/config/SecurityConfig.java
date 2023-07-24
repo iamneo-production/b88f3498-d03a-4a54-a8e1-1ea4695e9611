@@ -38,8 +38,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers("/login", "/register")
                 .permitAll()
-                .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -71,12 +71,6 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailsService() {
         return new UserDtoDetailService();
-    }
-
-     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
-        return config.getAuthenticationManager();
-        
     }
 
 }

@@ -25,7 +25,9 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Transactional
 @RestController
 @CrossOrigin( origins="https://8081-cedbefdfddfcebbdaaaccdcddcffebdffccbebc.project.examly.io", maxAge = 3600, allowCredentials="true")
