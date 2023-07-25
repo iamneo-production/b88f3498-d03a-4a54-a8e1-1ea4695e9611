@@ -94,10 +94,9 @@ public class WorkoutController {
         return workoutService.getHistory(id);
     }
 
-    @DeleteMapping("/workout/history/delete/{id}")
-    public ResponseEntity<String> deleteWorkoutHistory(@PathVariable("id") long id) throws InvalidDeleteException{
-        workoutService.deleteHistoryById(id);
-        return new ResponseEntity<>(HttpStatus.OK) ;
+    @DeleteMapping("workout/history/delete/{id}")
+    public ResponseEntity<String> deleteWorkoutHistory(@PathVariable String id) throws InvalidDeleteException{
+        return workoutService.deleteHistoryById(Long.parseLong(id));
     }
 
 }
