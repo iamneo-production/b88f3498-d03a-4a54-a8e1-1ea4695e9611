@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environment';
@@ -8,15 +8,27 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class UserService implements OnDestroy {
-  private httpClient: HttpClient;
-  private tokenService: TokenService;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
 
-  constructor(httpClient: HttpClient, tokenService: TokenService) {
-    this.httpClient = httpClient;
-    this.tokenService = tokenService;
   }
-  baseUrl:string = environment.baseUrl;
-  user: any = {id:0, email: '',  name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath:  "./../../../assets/icon/user.png" };
+
+ async getCurrentUser() {
+    let activeUser = this.user;
+    console.log("tokrn in userService", this.tokenService.getToken());
+    
+    this.http.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
+      next: (currUser: any) => {
+        this.setUser(currUser);
+        activeUser = currUser;
+        console.log("currUser: ", activeUser);
+
+      }
+    })
+    return activeUser;
+  }
+
+  baseUrl: string = environment.baseUrl;
+  user: any = { email: '', name: 'DefaultUser', password: '', height: 67, weight: 56, age: 20, gender: 'Female', imagePath: "./../../../assets/icon/user.png" };
   userCalorie: number = 2000;
   userSubject = new BehaviorSubject(this.user);
 
@@ -28,13 +40,23 @@ export class UserService implements OnDestroy {
     this.userSubject.next(user);
   }
   getUser() {
-    this.userSubject.subscribe(newUser =>{
+    this.userSubject.subscribe(newUser => {
       this.user = newUser;
     });
     return this.user;
   }
 
 
+  getUserWorkout(){
+    let workouts:any = [];
+    this.http.get(`${this.baseUrl}/workout/userId`, { headers: {'Authorization': 'Bearer ' + this.tokenService.getToken() }, params : {'userId': this.getUser().id} }).subscribe({
+      next: (workout:any)=>{
+        workouts = workout;
+      }
+    })
+    return workouts;
+  
+  }
   getUserCalorie(weight: number) {
     let BMR = 0;
     let activity_factor = 1.2;
@@ -46,33 +68,17 @@ export class UserService implements OnDestroy {
         BMR = (10 * weight) + (6.25 * userData.height) - (5 * userData.age) - 161;
       }
       // getting activity_factor if one workout allowed perday
-      if (userData.workouts.length > 0 && userData.workouts.length <= 3)
+      if (this.getUserWorkout() && (this.getUserWorkout().length > 0 && this.getUserWorkout().length <= 3))
         activity_factor = 1.375;
-      else if (userData.workouts.length > 3 && userData.workouts.length <= 5)
+      else if (this.getUserWorkout().length > 3 && this.getUserWorkout().length <= 5)
         activity_factor = 1.55;
-      else if (userData.workouts.length > 5 && userData.workouts.length <= 7)
+      else if (this.getUserWorkout().length > 5 && this.getUserWorkout().length <= 7)
         activity_factor = 1.725;
-      else if (userData.workouts.length > 7)
+      else if (this.getUserWorkout().length > 7)
         activity_factor = 1.9;
       // calorie calculation
     })
     return this.userCalorie = BMR * activity_factor;
-  }
-
-
-  async getCurrentUser() {
-    let activeUser = this.user;
-    console.log("tokrn in userService", this.tokenService.getToken());
-    
-    this.httpClient.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
-      next: (currUser: any) => {
-        this.setUser(currUser);
-        activeUser = currUser;
-        console.log("currUser: ", activeUser);
-
-      }
-    })
-    return activeUser;
   }
 
 }
