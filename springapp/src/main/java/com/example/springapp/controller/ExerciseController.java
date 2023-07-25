@@ -46,27 +46,30 @@ public class ExerciseController {
         return exerciseService.getAllExercise();
     }
 
+    
     @GetMapping("/id")
     public Exercise getExerciseById(@RequestParam("id") long id) throws ExerciseNotFoundException {
         return exerciseService.getExerciseById(id);
     }
 
-    @DeleteMapping("/id")
-    public ResponseEntity<String> deleteExerciseById(@RequestParam("id") long id) throws InvalidDeleteException{
-        exerciseService.deleteExerciseById(id);
-        return new ResponseEntity<String>("Exercise deleted", HttpStatus.OK);
 
-    }
-
-    @GetMapping("/workout")
-
-    public List<Exercise> ExerciseByWorkoutId(@RequestParam("workout") long workoutId) throws WorkoutNotFoundException {
+    @GetMapping("/workoutId")
+    public List<Exercise> getExerciseByWorkoutId(@RequestParam("workoutId") long workoutId) throws WorkoutNotFoundException {
          return exerciseService.getExerciseByWorkoutId(workoutId);
     }
+
 
     @PutMapping
     public ResponseEntity<String> updateExercise(@RequestBody Exercise exercise) throws InvalidUpdateException{
         return exerciseService.updateExercise(exercise);
     }
+    
+    @DeleteMapping("/id")
+    public ResponseEntity<String> deleteExerciseById(@RequestParam("id") long id) throws InvalidDeleteException{
+        exerciseService.deleteExerciseById(id);
+        return new ResponseEntity<>("Exercise deleted", HttpStatus.OK);
+
+    }
+    
 
 }
