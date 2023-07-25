@@ -69,9 +69,19 @@ export class WorkoutplanComponent implements OnInit {
 
   postData(url: string, requestData: any){
     console.log("In");
-    this.http.post<any>(url, requestData,this.tokenService.getHeader()).subscribe(response =>{
-      console.log(response);
-    });
+    this.http.post<any>(url, requestData,this.tokenService.getHeader()).subscribe(
+      (response) => {
+        console.log(response);
+        console.log(1);
+      },
+      (error) => {
+        if (error instanceof Error) {
+          alert("Error occurred: " + error.message);
+        } else {
+          alert("An error occurred. Please try again later.");
+        }
+      }
+    );
   }
   goBack() {
     this.isOpen = false;
