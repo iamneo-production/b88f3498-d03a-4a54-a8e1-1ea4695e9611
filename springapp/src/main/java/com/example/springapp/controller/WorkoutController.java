@@ -79,7 +79,7 @@ public class WorkoutController {
     }
 
     @PostMapping("workout/addToHistory")
-    public ResponseEntity<String> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
+    public ResponseEntity<HashMap<String,Object>> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
         return workoutService.addToWorkoutHistory(body);
     }
 

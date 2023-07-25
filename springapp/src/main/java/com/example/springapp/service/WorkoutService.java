@@ -118,7 +118,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
 }
 
     @Transactional
-    public ResponseEntity<String> addToWorkoutHistory(HashMap<String,Object> body) throws InvalidDeleteException{
+    public ResponseEntity<HashMap<String,Object>> addToWorkoutHistory(HashMap<String,Object> body) throws InvalidDeleteException{
         try {
             long userId = (Integer) body.get("id");
             String date = (String) body.get("date");
@@ -147,7 +147,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
             Set set = new Set((long)0,(long)reps,createdExercise.getId(),weight+"",sets+"");
             setRepository.save(set);
 
-            return new ResponseEntity<>("Workout history added", HttpStatus.OK);
+            return new ResponseEntity<>(body, HttpStatus.OK);
             // return new ResponseEntity<>(body, HttpStatus.OK);
         } catch (Exception e) {
             throw new InvalidDeleteException("Error occurred while adding data to workout history.");
