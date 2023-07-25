@@ -47,8 +47,8 @@ public class SecurityConfig {
                 .antMatchers("/login", "/register")
                 // .antMatchers("/**")   allow all paths to pass testcases
                 .permitAll()
-                .antMatchers("/user/**","/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**","/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
