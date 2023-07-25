@@ -40,7 +40,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         return 
-        
+
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
@@ -87,6 +87,7 @@ public class SecurityConfig {
     private static final int CORS_FILTER_ORDER = -102;
 
     @Bean
+
     FilterRegistrationBean<?> corsFilter() {  //to register a filter
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  //to register CorsConfiguration
         CorsConfiguration config = new CorsConfiguration();  //to create configuration
