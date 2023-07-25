@@ -75,12 +75,16 @@ export class GoalhomeComponent implements OnInit{
 
     this.dropdownOpen = false;
   }
+  
   getTasks(){
+    
+    this.showAllTasks();
     this.http.get<any>(environment.baseUrl+'/goal/all?status=inprogress',this.tokenService.getHeader()).subscribe(response=>{
       console.log(response);
       response = this.formatDate(response);
       console.log(response);
       this.tasks = response;
+      
     })
   }
 
