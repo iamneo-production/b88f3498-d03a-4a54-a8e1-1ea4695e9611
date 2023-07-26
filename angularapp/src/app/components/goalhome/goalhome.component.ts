@@ -67,47 +67,63 @@ export class GoalhomeComponent implements OnInit{
   showLastMonthTasks() {
     const today = new Date();
     const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-
+  
     this.filteredTasks = this.tasks.filter(task => {
-      const taskDate = new Date(task.date);
+      const taskDate = new Date(task.date.split('-').reverse().join('-'));
       return taskDate >= lastMonth;
     });
-
+  
     this.dropdownOpen = false;
   }
+  
+  showLastWeekTasks() {
+    const today = new Date();
+    const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+  
+    this.filteredTasks = this.tasks.filter(task => {
+      const taskDate = new Date(task.date.split('-').reverse().join('-'));
+      return taskDate >= lastWeek;
+    });
+  
+    this.dropdownOpen = false;
+  }
+  
+  
   getTasks(){
-    this.http.get<any>(environment.baseUrl+'/goal/all?status=inprogress',this.tokenService.getHeader()).subscribe(response=>{
+    
+    
+    const defaultStatus = 'inprogress'; // Replace with your desired default status
+    const url = `${environment.baseUrl}/goal/all?status=${defaultStatus}`;
+    
+    this.http.get<any>(url, this.tokenService.getHeader()).subscribe(
+      response => {
       console.log(response);
       response = this.formatDate(response);
       console.log(response);
       this.tasks = response;
-    })
-  }
-
-  formatDate(exercises: Task[]): Task[] {
-    for (const exercise of exercises) {
-      const [year, month, day] = exercise.date;
-      const formattedDate = `${this.padZero(day)}-${this.padZero(month)}-${year}`;
-      exercise.date = formattedDate;
+      this.showAllTasks();
+    },
+    error => {
+      
+      console.error('Error fetching tasks:', error);
     }
-    return exercises;
+  );   
+      
+    
   }
 
-  padZero(value: number): string {
-    return value.toString().padStart(2, '0');
+formatDate(exercises: Task[]): Task[] {
+  for (const exercise of exercises) {
+    const [year, month, day] = exercise.date.split('-');
+    const formattedDate = `${this.padZero(day)}-${this.padZero(month)}-${year}`;
+    exercise.date = formattedDate;
   }
-
-  showLastWeekTasks() {
-    const today = new Date();
-    const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-
-    this.filteredTasks = this.tasks.filter(task => {
-      const taskDate = new Date(task.date);
-      return taskDate >= lastWeek;
-    });
-
-    this.dropdownOpen = false;
-  }
+  return exercises;
+}
+padZero(value: number): string {
+  return value.toString().padStart(2, '0');
+}
+  
 
     closeDropdown() {
       this.dropdownOpen = false;
@@ -124,4 +140,5 @@ export class GoalhomeComponent implements OnInit{
         this.closeDropdown();
     }
     }
+  
   }
