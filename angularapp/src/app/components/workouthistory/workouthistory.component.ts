@@ -47,15 +47,16 @@ export class WorkouthistoryComponent implements OnInit {
   }
   deleteHistory(id:number){
     console.log(id);
-    this.http.delete((environment.baseUrl+'/workout/history/delete/'+id)).subscribe(
-      (data) => {
+    this.http.delete(`${this.userService.baseUrl}/workout/history/delete/${id}`, this.tokenService.getHeader()).subscribe({
+      next:  (data:any) => {
         console.log('Delete request successful:', data);
-        // this.ds = this.deleteObjectsWithId(this.ds,id);
+        this.getAllHistory(); 
       },
-      (error) => {
+      error: (error) => {
         console.error('Error while making delete request:', error);
       }
-    );
+    });  
+    
   }
 
   deleteObjectsWithId(arr: any[], idToDelete: number): any[] {
