@@ -4,16 +4,18 @@
       <div class="page__content shadow p-3 position-realtive">
         <div class="page_container position-relative p-4"
     style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
-        <div *ngIf="setCustomClicked && !saved" class="d-flex flex-row pb-2" style="justify-content: space-between;">
-
-          <div [ngClass]="{'is-valid': calorieAdded> maxRequiredCalories}" class="cal-bar float-end p-2">
-            Total Calorie: {{calorieAdded}} / {{maxRequiredCalories}}
+    <div *ngIf="setCustomClicked && !saved" class="d-flex flex-row pb-2" style="justify-content: space-between;">
+      
+      <div [ngClass]="{'is-valid': calorieAdded> maxRequiredCalories}" class="cal-bar float-end p-2">
+        Total Calorie: {{calorieAdded}} / {{maxRequiredCalories}}
           </div>
           <div>
             <button (click)="saveCustomNutrition()" style="color: white;" class="btn btn-success">Show Added
             </button>
           </div>
         </div>
+
+
         <div *ngIf="showSavedNutritions">
           <table class="table table- table-secondary">
             <thead>
@@ -31,10 +33,9 @@
               </tr>
             </tbody>
           </table>
+          <button class="btn btn-danger" style="height: 50px; width: 100px;" (click)="deleteAllSaved()">Delete All</button>
         </div>
-
-        <div class="page_container position-relative p-4"
-          style="display: flex; flex-direction: column ;font-size: small; width: 100%; min-height: calc(100vh - 200px)">
+        
           <div class="row" *ngIf="!openClicked && !setCustomClicked && !showSavedNutritions">
             <!-- total calorie of user: -->
             <i>According to Mifflin-St. Jeor equation, Your Calorie:<b
@@ -183,7 +184,8 @@
           </div>
 
         </div>
+
         <app-footer></app-footer>
         </div>
       </div>
-    </div>
+  

@@ -10,9 +10,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./recommendations.component.scss']
 })
 export class RecommendationsComponent implements OnInit {
+
   moreCalorie: boolean = false;
 
-  constructor(private titleService: TitleService, private userService: UserService, private tokenService:TokenService, private http:HttpClient) {
+  constructor(private titleService: TitleService, private userService: UserService, private tokenService: TokenService, private http: HttpClient) {
     this.titleService.setTitle("Recommendations");
   }
 
@@ -37,7 +38,7 @@ export class RecommendationsComponent implements OnInit {
   minRequiredCalories!: number;
   saved: boolean = false;
   UserWeight!: number;
-  UserId!:any;
+  UserId!: any;
   ngOnInit(): void {
 
     this.userService.userSubject.subscribe((userData: any) => {
@@ -69,29 +70,36 @@ export class RecommendationsComponent implements OnInit {
 
   bagItemsRecieved: any[] = [];
 
-  
+
 
   receivedBagItems(event: any) {
+    this.deleteAllSaved();
     for (const item in event) {
       const key = item;
       const val = event[item];
-      if(val>0){
-        this.http.post(`${this.userService.baseUrl}/addNutrition/${this.UserId}`, {noOfItems: val, foodName: key}, this.tokenService.getHeader()).subscribe(response=>{
-          console.log("bagItems: ",this.bagItemsRecieved);
-        });    
+      if (val > 0) {
+        this.http.put(`${this.userService.baseUrl}/nutrition/addNutrition/${this.UserId}`, { noOfItems: val, foodName: key }, this.tokenService.getHeader()).subscribe(response => {
+          console.log("bagItems: ", this.bagItemsRecieved);
+        });
         this.bagItemsRecieved.push({ key: key, value: val })
       }
 
     }
   }
-  showSavedNutritions:boolean = false
-  savedNutrition!:any;
-  showSaved(){
+  savedNutrition!: any;
+  showSavedNutritions: boolean = false;
+  showSaved() {
     this.showSavedNutritions = !this.showSavedNutritions;
-    this.http.get(`${this.userService.baseUrl}/getNutrition/${this.UserId}`,this.tokenService.getHeader()).subscribe(listOfNutrition =>{
+    this.http.get(`${this.userService.baseUrl}/nutrition/getNutrition/${this.UserId}`, this.tokenService.getHeader()).subscribe(listOfNutrition => {
       this.savedNutrition = listOfNutrition;
       console.log(listOfNutrition);
-      
+
+    })
+  }
+
+  deleteAllSaved() {
+    this.http.delete(`${this.userService.baseUrl}/nutrition/deleteNutrition/${this.UserId}`, this.tokenService.getHeader()).subscribe(deleted => {
+      this.savedNutrition = deleted;
     })
   }
 
@@ -104,8 +112,8 @@ export class RecommendationsComponent implements OnInit {
       this.saved = true;
     }
     this.saved = !this.saved;
-    
-    
+
+
   }
 
   nutritions = {

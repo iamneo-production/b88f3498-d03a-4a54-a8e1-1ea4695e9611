@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +36,15 @@ import com.example.springapp.exception.UserNotFoundException;
 import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.AlreadyExistsException;
+
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import javax.transaction.Transactional;
 
 @CrossOrigin
 @RestController
 @RequestMapping
+@Transactional
 public class WorkoutController {
 
     @Autowired
@@ -77,19 +81,20 @@ public class WorkoutController {
         return workoutService.deleteWorkoutById(id);
     }
 
-    @PostMapping("workout/addToHistory")
+    @PostMapping("/workout/addToHistory")
     public ResponseEntity<HashMap<String,Object>> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
         return workoutService.addToWorkoutHistory(body);
     }
 
-    @GetMapping("workout/history")
+    @GetMapping("/workout/history")
     public ResponseEntity<List<HashMap<String,Object>>> getWorkoutHistory(@RequestParam("userId") long id){
         return workoutService.getHistory(id);
     }
 
-    @DeleteMapping("workout/history/delete/{id}")
-    public ResponseEntity<String> deleteWorkoutHistory(@PathVariable String id) throws InvalidDeleteException{
-        return workoutService.deleteHistoryById(Long.parseLong(id));
+    @DeleteMapping("/workout/history/delete/{id}")
+    public ResponseEntity<String> deleteWorkoutHistory(@PathVariable("id") long id) throws InvalidDeleteException{
+        workoutService.deleteHistoryById(id);
+        return new ResponseEntity<>(HttpStatus.OK) ;
     }
 
 }
