@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TitleService } from 'src/app/services/title.service';
 import { UserService } from 'src/app/services/user.service';
 import { WorksdataService } from 'src/app/services/worksdata.service';
 
@@ -25,7 +26,8 @@ export class ListworksComponent implements OnInit {
   userEmail!:string;
   // id!:number;
 
-  constructor(private workService: WorksdataService, private router: Router, private userService: UserService) {
+  constructor(private workService: WorksdataService, private router: Router, private userService: UserService, private titleService:TitleService) {
+    this.titleService.setTitle("Exercise Tracker");
 this.userService.userSubject.subscribe(user=>{
   this.userEmail= user.email;
   // this.id = user.id;
