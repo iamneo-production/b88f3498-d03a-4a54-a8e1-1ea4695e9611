@@ -7,5 +7,7 @@ public interface recommendedFoodRepository extends CrudRepository<RecommendedFoo
     Iterable<RecommendedFoodModel> findAllById(long id);
 
     Iterable<RecommendedFoodModel> findAllByUserId(long userId);
+
+    void deleteAllByUserId(long userId);
     
 }
