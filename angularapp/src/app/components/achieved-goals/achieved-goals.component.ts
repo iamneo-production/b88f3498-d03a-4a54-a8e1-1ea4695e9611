@@ -32,7 +32,9 @@ constructor(private http:HttpClient, private tokenService: TokenService){}
 
   getAchievedGoals(){
     this.http.get<any>(environment.baseUrl+'/goal/all?status=complete',this.tokenService.getHeader()).subscribe(response=>{
-      console.log(response);
+      const date = response[0].date;
+      console.log(date);
+      console.log('------');
       response = this.formatDate(response);
       console.log(response);
       this.achievedGoals = response;
@@ -41,15 +43,23 @@ constructor(private http:HttpClient, private tokenService: TokenService){}
 
   formatDate(exercises: Goal[]): Goal[] {
     for (const exercise of exercises) {
-      const [year, month, day] = exercise.date;
-      const formattedDate = `${this.padZero(day)}-${this.padZero(month)}-${year}`;
+      console.log(exercise.date+'inFormatDate');
+      let date:any[] = exercise.date.split('-');
+      console.log(date[0]);
+      const formattedDate = date[2]+'-'+date[1]+'-'+date[0];
       exercise.date = formattedDate;
+      console.log(exercise.date+'inFormatDate-----');
     }
+    console.log(exercises);
     return exercises;
   }
 
-  padZero(value: number): string {
-    return value.toString().padStart(2, '0');
-  }
+  // padZero(value: number): string {
+  //   console.log(value);
+  //   if(value<10){
+  //     return '0'+value
+  //   }
+  //   return value+'';
+  // }
 
 }

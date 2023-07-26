@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,13 +78,18 @@ public class WorkoutController {
     }
 
     @PostMapping("workout/addToHistory")
-    public ResponseEntity<String> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
+    public ResponseEntity<HashMap<String,Object>> addToWorkoutHistory(@RequestBody HashMap<String,Object> body) throws InvalidDeleteException {
         return workoutService.addToWorkoutHistory(body);
     }
 
     @GetMapping("workout/history")
     public ResponseEntity<List<HashMap<String,Object>>> getWorkoutHistory(@RequestParam("userId") long id){
         return workoutService.getHistory(id);
+    }
+
+    @DeleteMapping("workout/history/delete/{id}")
+    public ResponseEntity<String> deleteWorkoutHistory(@PathVariable String id) throws InvalidDeleteException{
+        return workoutService.deleteHistoryById(Long.parseLong(id));
     }
 
 }
