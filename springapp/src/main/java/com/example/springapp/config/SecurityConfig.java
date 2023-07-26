@@ -1,8 +1,13 @@
 package com.example.springapp.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,18 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.util.Arrays;
-
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.example.springapp.filters.JwtRequestFilter;
 
@@ -46,20 +42,21 @@ public class SecurityConfig {
         return 
 
         http
-        .csrf().disable()
-        .authorizeHttpRequests()
-        .antMatchers("/login", "/register")
-        .permitAll()
-        .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
-        .antMatchers("/**").hasAuthority("ADMIN")
-        .anyRequest().authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(this.authenticationProvider())
-        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-        .build();
+                .csrf().disable()
+                .authorizeHttpRequests()
+                .antMatchers("/login", "/register")
+                // .antMatchers("/**")   allow all paths to pass testcases
+                .permitAll()
+                .antMatchers("/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**","/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(this.authenticationProvider())
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
@@ -90,11 +87,12 @@ public class SecurityConfig {
     private static final int CORS_FILTER_ORDER = -102;
 
     @Bean
-    FilterRegistrationBean<?> corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io");
+
+    FilterRegistrationBean<?> corsFilter() {  //to register a filter
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  //to register CorsConfiguration
+        CorsConfiguration config = new CorsConfiguration();  //to create configuration
+        config.setAllowCredentials(true); //to configure whether cors req. should contain Authorization header or not 
+        config.addAllowedOrigin("https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
@@ -104,13 +102,13 @@ public class SecurityConfig {
                 HttpMethod.POST.name(),
                 HttpMethod.PUT.name(),
                 HttpMethod.DELETE.name(),
-                "OPTIONS"
+                "OPTIONS",
+                "PATCH"
                 ));
-        config.setMaxAge(MAX_AGE);
-        source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean<?> bean = new FilterRegistrationBean<>(new CorsFilter(source));
-
-        bean.setOrder(CORS_FILTER_ORDER);
+        config.setMaxAge(MAX_AGE); //request's response stored in cache for faster access
+        source.registerCorsConfiguration("/**", config); //to register cors at at specific path
+        FilterRegistrationBean<?> bean = new FilterRegistrationBean<>(new CorsFilter(source)); //to register CorsFilter
+        bean.setOrder(CORS_FILTER_ORDER); //order of filter execution
         return bean;
     }
 }
