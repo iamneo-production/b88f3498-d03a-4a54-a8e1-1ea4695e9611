@@ -161,6 +161,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         while(workoutIterator.hasNext()){
             Workout workout = workoutIterator.next();
             long workoutId = workout.getId();
+            // System.out.println(workoutId);
             List<Exercise> allExercises = exerciseRepository.findAllByWorkoutId(workoutId);
             Iterator<Exercise> exerciseIterator = (Iterator) allExercises.iterator();
             while(exerciseIterator.hasNext()){
@@ -178,12 +179,39 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
                     map.put("date" ,workout.getDate().toString());
                     map.put("duration", workout.getDuration());
                     map.put("notes" ,workout.getNotes());
+                    map.put("id",workoutId);
                     response.add(map);
                 }
                 
             }
         }
         return new ResponseEntity<List<HashMap<String,Object>>>(response,HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> deleteHistoryById(long id) throws InvalidDeleteException{
+        Optional<Workout> optWorkout = workoutRepository.findWorkoutById(id);
+        System.out.println("in1");
+        if(optWorkout.isEmpty()){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in2");
+        Optional<Exercise> optionalExercise = exerciseRepository.findByWorkoutId(id);
+        if(optionalExercise.isEmpty()){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in3");
+        long exerciseId = ((Exercise)optionalExercise.get()).getId();
+        Set optSet = setRepository.findByExerciseId(exerciseId).get(0);
+        if(optSet==null){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in4");
+        setRepository.deleteById(optSet.getId());
+        exerciseRepository.deleteById(exerciseId);
+        workoutRepository.deleteById(id);
+        System.out.println("in5");
+
+        return new ResponseEntity<>("Deleted successfully",HttpStatus.OK);
     }
   
    
