@@ -51,7 +51,7 @@ public class SecurityConfig {
                 // allow all paths to pass testcases
                 // .antMatchers("/**")
                 .permitAll()
-                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**", "/users/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -96,7 +96,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  //to register CorsConfiguration
         CorsConfiguration config = new CorsConfiguration();  //to create configuration
         config.setAllowCredentials(true); //to configure whether cors req. should contain Authorization header or not 
-        config.addAllowedOrigin("https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io");
+        config.addAllowedOrigin("https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,

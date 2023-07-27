@@ -36,7 +36,8 @@ public class TrackingController {
 
     @DeleteMapping("/users/{username}/todos/{id}")
     public ResponseEntity<String> deleteSetById(@PathVariable String username, @PathVariable int id){
-        return trackingService.deleteById(id);
+         trackingService.deleteById(id);
+         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/users/{username}/todos/{id}")

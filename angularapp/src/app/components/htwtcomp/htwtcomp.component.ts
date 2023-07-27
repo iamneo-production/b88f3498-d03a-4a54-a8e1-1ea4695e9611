@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { TitleService } from 'src/app/services/title.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,7 +22,8 @@ export class HtwtcompComponent implements OnInit {
   chart: Chart | undefined;
   userId!: number;
   
-  constructor(private userService: UserService, private http: HttpClient, private userAuthService: UserAuthService, private tokenService: TokenService) {
+  constructor(private userService: UserService, private http: HttpClient, private userAuthService: UserAuthService, private tokenService: TokenService, private titleService:TitleService) {
+    this.titleService.setTitle("Height Weight Tracker");
     this.userService.userSubject.subscribe({
       next: user => { this.userId = user.id; }
     })
@@ -35,11 +37,7 @@ export class HtwtcompComponent implements OnInit {
     })
   }
 
-  sideBarOpen = true;
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 
   addEntry() {
     this.calories = this.userService.getUserCalorie(this.weight);

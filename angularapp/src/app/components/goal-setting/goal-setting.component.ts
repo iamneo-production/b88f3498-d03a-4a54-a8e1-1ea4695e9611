@@ -119,11 +119,7 @@ export class GoalSettingComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  sideBarOpen = true;
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 
 }
 
