@@ -25,7 +25,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import com.example.springapp.filters.JwtRequestFilter;
-
+import javax.annotation.PostConstruct;
+import com.example.springapp.model.User;
+import com.example.springapp.repository.UserRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -35,7 +37,8 @@ public class SecurityConfig {
     private JwtRequestFilter jwtRequestFilter;
 
 
-
+    @Autowired 
+    private UserRepository userRepository;
 
     @Bean
     SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
@@ -45,10 +48,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .antMatchers("/login", "/register")
-                // .antMatchers("/**")   allow all paths to pass testcases
+                // allow all paths to pass testcases
+                // .antMatchers("/**")
                 .permitAll()
+                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
-                .antMatchers("/user/**","/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -109,5 +113,23 @@ public class SecurityConfig {
         FilterRegistrationBean<?> bean = new FilterRegistrationBean<>(new CorsFilter(source)); //to register CorsFilter
         bean.setOrder(CORS_FILTER_ORDER); //order of filter execution
         return bean;
+    }
+
+    @PostConstruct
+    public void createDefaultAdmin() {
+        User admin = new User();
+        admin.setName("admin");
+        admin.setAge(23);
+        admin.setWeight("23kg");
+        admin.setGender("Female");
+        admin.setHeight("166cm");
+        admin.setEnabled(true);
+        admin.setGoals("Maintain Security");
+        admin.setEmail("admin@fitness.com");
+        admin.setPassword( passwordEncoder().encode("Admin@121"));
+        admin.setRole("ADMIN");
+        if(userRepository.findByEmail("admin@fitness.com")==null){
+            userRepository.save(admin);
+        }
     }
 }
