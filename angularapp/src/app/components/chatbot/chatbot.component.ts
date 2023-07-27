@@ -35,7 +35,7 @@ export class ChatbotComponent {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization':`Bearer `
+        'Authorization':`Bearer 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`
       }),
     };
     const requestBody = {
