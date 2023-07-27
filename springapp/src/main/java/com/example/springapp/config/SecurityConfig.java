@@ -93,7 +93,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  //to register CorsConfiguration
         CorsConfiguration config = new CorsConfiguration();  //to create configuration
         config.setAllowCredentials(true); //to configure whether cors req. should contain Authorization header or not 
-        config.addAllowedOrigin("https://8081-bfbbcbbafccbbbdaaaccdcddcffebdffccbebc.project.examly.io");
+        config.addAllowedOrigin("https://8081-caffdebdbbfedaaaccdcddcffebdffccbebc.project.examly.io");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,

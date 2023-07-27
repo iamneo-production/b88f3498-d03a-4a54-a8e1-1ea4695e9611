@@ -22,7 +22,6 @@ import com.example.springapp.exception.InvalidDeleteException;
 import com.example.springapp.exception.InvalidInputException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import com.example.springapp.model.Set;
 import com.example.springapp.model.User;
 import com.example.springapp.model.Workout;
