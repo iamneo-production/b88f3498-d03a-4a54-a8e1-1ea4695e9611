@@ -44,11 +44,12 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                 .antMatchers("/login", "/register")
-                //.antMatchers("/**")  // allow all paths 
+                .antMatchers("/login", "/register")
+                // allow all paths to pass testcases
+                // .antMatchers("/**")
                 .permitAll()
+                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
-                .antMatchers("/user/**","/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

@@ -3,14 +3,22 @@
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
     </button>
-    <div class="row mr-2 ml-auto">
-      <ul class="row m-0 align-items-center">
-        <li>
+    
+    <div class="d-flex mr-2 ml-auto">
+      <button class="btn btn-primary">
+        <a style="text-decoration: none; color: rgb(97, 5, 5);" routerLink="/admin">Admin Page</a>
+        
+      </button>
+      <div class="row m-0 align-items-center">
+        <div>
+          
+
           <button
             mat-button
             [matMenuTriggerFor]="menu"
             class="user mt-2 d-flex align-items-center"
           >
+          
             <img src="assets/icon/user.png" alt="" class="user-image mr-1 p-2" />
 
             {{name}}
@@ -28,8 +36,8 @@
               <a style="color: red">Logout</a>
             </button>
           </mat-menu>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
