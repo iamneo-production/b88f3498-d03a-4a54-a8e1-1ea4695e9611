@@ -14,7 +14,7 @@ export class UserService implements OnDestroy {
 
  async getCurrentUser() {
     let activeUser = this.user;
-    console.log("tokrn in userService", this.tokenService.getToken());
+    console.log("token in userService", this.tokenService.getToken());
     
     this.http.get(`${this.baseUrl}/user/getCurrentUser`, this.tokenService.getHeader()).subscribe({
       next: (currUser: any) => {
