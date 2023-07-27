@@ -51,7 +51,7 @@ public class User {
     private String goals;
 
     @NotNull(message = "select atleast one role")
-    private String role;
+    private String role ="USER";
 
     @OneToMany(mappedBy = "user")
     private List<Workout> workout;
