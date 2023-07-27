@@ -1,8 +1,6 @@
-th {
-    background-color: darkblue;
-    color: white;
-  }
+@import '../home/home.component.scss';
 
-  td{
-    background-color: rgb(253, 253, 241);
-  }
+.is-Activated{
+    background-color: #0a7901;
+    border-color: #32a139;
+}

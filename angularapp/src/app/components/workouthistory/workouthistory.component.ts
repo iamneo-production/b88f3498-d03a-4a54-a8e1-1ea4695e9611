@@ -45,7 +45,7 @@ export class WorkouthistoryComponent implements OnInit {
   getData(): Observable<any> {
     return this.http.get<PeriodicElement>(environment.baseUrl+'/workout/history?userId='+this.userService.getUser().id,this.tokenService.getHeader());
   }
-  deleteHistory(id:number){
+  async deleteHistory(id:number){
     console.log(id);
     this.http.delete(`${this.userService.baseUrl}/workout/history/delete/${id}`, this.tokenService.getHeader()).subscribe({
       next:  (data:any) => {

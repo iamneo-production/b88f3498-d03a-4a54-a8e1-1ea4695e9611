@@ -55,10 +55,42 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Workout> workout;
+
+    
+    private boolean enabled=true;
    
+
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
     public User() {
         
+    }
+
+
+   
+    public User(long id, String name, String email, String password, String height, String weight, long age,
+            String gender, String goals, String role, boolean isEnabled) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.goals = goals;
+        this.role = role;
+        this.workout = new ArrayList<>();
+        this.enabled = true;
     }
 
 
