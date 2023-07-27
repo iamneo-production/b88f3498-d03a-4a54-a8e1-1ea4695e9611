@@ -92,7 +92,7 @@ export class GoalhomeComponent implements OnInit{
   getTasks(){
     
     
-    const defaultStatus = 'inprogress'; // Replace with your desired default status
+    const defaultStatus = 'inprogress'; 
     const url = `${environment.baseUrl}/goal/all?status=${defaultStatus}`;
     
     this.http.get<any>(url, this.tokenService.getHeader()).subscribe(
@@ -103,10 +103,7 @@ export class GoalhomeComponent implements OnInit{
       this.tasks = response;
       this.showAllTasks();
     },
-    error => {
-      
-      console.error('Error fetching tasks:', error);
-    }
+   
   );   
       
     
