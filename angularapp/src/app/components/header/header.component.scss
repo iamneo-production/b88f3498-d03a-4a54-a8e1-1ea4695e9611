@@ -1,7 +1,14 @@
+.navbar-custom{
+  background-color: #C0CFC3;
+  min-width: 600px;
+}
+.heading{
+  color: rgb(13, 98, 110); 
+}
 mat-toolbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+
 }
 
 ul {

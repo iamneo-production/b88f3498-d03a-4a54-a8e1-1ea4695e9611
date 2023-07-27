@@ -11,17 +11,21 @@
             [matMenuTriggerFor]="menu"
             class="user mt-2 d-flex align-items-center"
           >
-            <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-2" />
+            <img src="assets/icon/user.png" alt="" class="user-image mr-1 p-2" />
 
-            User Name
+            {{name}}
             <mat-icon class="user-image-icon ml-1"
               >keyboard_arrow_down</mat-icon
             >
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+          <mat-menu  #menu="matMenu">
+            <button (click)="showUserProfile()" mat-menu-item>
+              <mat-icon>person</mat-icon>
+              <a style="text-decoration: none; color:blue">Profile</a>
+            </button>
+            <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
-              Logout
+              <a style="color: red">Logout</a>
             </button>
           </mat-menu>
         </li>
