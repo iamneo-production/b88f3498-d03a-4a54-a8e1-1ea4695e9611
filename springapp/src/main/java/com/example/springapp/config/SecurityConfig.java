@@ -51,7 +51,7 @@ public class SecurityConfig {
                 // allow all paths to pass testcases
                 // .antMatchers("/**")
                 .permitAll()
-                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
