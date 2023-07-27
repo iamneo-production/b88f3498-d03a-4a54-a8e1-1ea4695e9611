@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+
 import { TitleService } from 'src/app/services/title.service';
 import { UserService } from 'src/app/services/user.service';
 import { WorksdataService } from 'src/app/services/worksdata.service';
@@ -38,23 +40,19 @@ this.userService.userSubject.subscribe(user=>{
     this.refreshTodos()
   }
 
-  refreshTodos(){
-    this.workService.retrieveAllTodos(this.userEmail).subscribe(
-      response => {
-        console.log(response);
-        this.todos = response;
-      }
-    )
+  async refreshTodos(){
+    let response:any = await lastValueFrom(this.workService.retrieveAllTodos(this.userEmail));
+    this.todos =  response;
+    
   }
   deleteTodo(id: any){
     console.log(`delete todo ${id}`);
     this.workService.deleteTodo(this.userEmail,id).subscribe(
       response => {
-        console.log(response);
-        this.message = `Delete of Exercise ${id} is Successful`;
+        // this.message = `Delete of Exercise ${id} is Successful`;
         this.refreshTodos();
       }
-    )
+      )
   }
   updateTodo(id:any){
     console.log (`update ${id}`);

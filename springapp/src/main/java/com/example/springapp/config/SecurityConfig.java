@@ -25,7 +25,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import com.example.springapp.filters.JwtRequestFilter;
-
+import javax.annotation.PostConstruct;
+import com.example.springapp.model.User;
+import com.example.springapp.repository.UserRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -35,28 +37,30 @@ public class SecurityConfig {
     private JwtRequestFilter jwtRequestFilter;
 
 
-
+    @Autowired 
+    private UserRepository userRepository;
 
     @Bean
     SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         return 
 
         http
-        .csrf().disable()
-        .authorizeHttpRequests()
-        // .antMatchers("/login", "/register")
-        .antMatchers("/**")
-        .permitAll()
-        .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**").hasAnyAuthority("USER","ADMIN")
-        .antMatchers("/**").hasAuthority("ADMIN")
-        .anyRequest().authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(this.authenticationProvider())
-        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-        .build();
+                .csrf().disable()
+                .authorizeHttpRequests()
+                .antMatchers("/login", "/register")
+                // allow all paths to pass testcases
+                // .antMatchers("/**")
+                .permitAll()
+                .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**", "/users/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(this.authenticationProvider())
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
@@ -87,12 +91,12 @@ public class SecurityConfig {
     private static final int CORS_FILTER_ORDER = -102;
 
     @Bean
-    FilterRegistrationBean<?> corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io");
 
+    FilterRegistrationBean<?> corsFilter() {  //to register a filter
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  //to register CorsConfiguration
+        CorsConfiguration config = new CorsConfiguration();  //to create configuration
+        config.setAllowCredentials(true); //to configure whether cors req. should contain Authorization header or not 
+        config.addAllowedOrigin("https://8081-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
@@ -110,5 +114,23 @@ public class SecurityConfig {
         FilterRegistrationBean<?> bean = new FilterRegistrationBean<>(new CorsFilter(source)); //to register CorsFilter
         bean.setOrder(CORS_FILTER_ORDER); //order of filter execution
         return bean;
+    }
+
+    @PostConstruct
+    public void createDefaultAdmin() {
+        User admin = new User();
+        admin.setName("admin");
+        admin.setAge(23);
+        admin.setWeight("23kg");
+        admin.setGender("Female");
+        admin.setHeight("166cm");
+        admin.setEnabled(true);
+        admin.setGoals("Maintain Security");
+        admin.setEmail("admin@fitness.com");
+        admin.setPassword( passwordEncoder().encode("Admin@121"));
+        admin.setRole("ADMIN");
+        if(userRepository.findByEmail("admin@fitness.com")==null){
+            userRepository.save(admin);
+        }
     }
 }
