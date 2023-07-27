@@ -19,8 +19,8 @@ import { environment } from 'src/environment';
 
 export class WorkouthistoryComponent implements OnInit {
 
-  displayedColumns: string[] = ['ExerciseName', 'Duration', 'Date', 'Sets', 'Reps','Weight','Notes'];
-  ds = [];
+  displayedColumns: string[] = ['ExerciseName', 'Duration', 'Date', 'Sets', 'Reps','Weight','Notes','Action'];
+  ds:any[] = [];
 
 
   constructor(private titleService: TitleService, private workout: WorkoutService,private http: HttpClient,private userService:UserService,private tokenService: TokenService) {
@@ -45,7 +45,24 @@ export class WorkouthistoryComponent implements OnInit {
   getData(): Observable<any> {
     return this.http.get<PeriodicElement>(environment.baseUrl+'/workout/history?userId='+this.userService.getUser().id,this.tokenService.getHeader());
   }
+  async deleteHistory(id:number){
+    console.log(id);
+    this.http.delete(`${this.userService.baseUrl}/workout/history/delete/${id}`, this.tokenService.getHeader()).subscribe({
+      next:  (data:any) => {
+        console.log('Delete request successful:', data);
+        this.getAllHistory(); 
+      },
+      error: (error) => {
+        console.error('Error while making delete request:', error);
+      }
+    });  
+    
+  }
 
+  deleteObjectsWithId(arr: any[], idToDelete: number): any[] {
+    const filteredArray = arr.filter((obj) => obj.id !== idToDelete);
+    return filteredArray;
+  }
 }
 export class PeriodicElement {
   name!: string;
@@ -56,5 +73,6 @@ export class PeriodicElement {
   notes!:string;
   sets!:string;
   weight!:string;
+  id!:number
 }
 

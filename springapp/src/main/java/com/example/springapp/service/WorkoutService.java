@@ -2,19 +2,23 @@ package com.example.springapp.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Optional;
 import java.util.ArrayList;
-
-import org.springframework.transaction.annotation.Transactional;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.springapp.exception.CustomDataAccessException;
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.UserNotFoundException;
+import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.model.Set;
 import com.example.springapp.model.User;
@@ -22,20 +26,6 @@ import com.example.springapp.model.Workout;
 import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.repository.SetRepository;
 import com.example.springapp.repository.WorkoutRepository;
-import com.example.springapp.exception.WorkoutNotFoundException;
-import com.example.springapp.exception.InvalidDeleteException;
-import com.example.springapp.exception.InvalidInputException;
-import com.example.springapp.exception.CustomDataAccessException;
-
-import javax.validation.Valid;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.context.request.WebRequest;
 
 
 @Service
@@ -161,6 +151,7 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
         while(workoutIterator.hasNext()){
             Workout workout = workoutIterator.next();
             long workoutId = workout.getId();
+            // System.out.println(workoutId);
             List<Exercise> allExercises = exerciseRepository.findAllByWorkoutId(workoutId);
             Iterator<Exercise> exerciseIterator = (Iterator) allExercises.iterator();
             while(exerciseIterator.hasNext()){
@@ -178,12 +169,39 @@ public class WorkoutService extends RuntimeException implements WorkoutServiceIn
                     map.put("date" ,workout.getDate().toString());
                     map.put("duration", workout.getDuration());
                     map.put("notes" ,workout.getNotes());
+                    map.put("id",workoutId);
                     response.add(map);
                 }
                 
             }
         }
         return new ResponseEntity<List<HashMap<String,Object>>>(response,HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> deleteHistoryById(long id) throws InvalidDeleteException{
+        Optional<Workout> optWorkout = workoutRepository.findWorkoutById(id);
+        System.out.println("in1");
+        if(optWorkout.isEmpty()){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in2");
+        Optional<Exercise> optionalExercise = exerciseRepository.findByWorkoutId(id);
+        if(optionalExercise.isEmpty()){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in3");
+        long exerciseId = ((Exercise)optionalExercise.get()).getId();
+        Set optSet = setRepository.findByExerciseId(exerciseId).get(0);
+        if(optSet==null){
+            throw new InvalidDeleteException("Error occurred while deleting data from workout history.");
+        }
+        System.out.println("in4");
+        setRepository.deleteById(optSet.getId());
+        exerciseRepository.deleteById(exerciseId);
+        workoutRepository.deleteById(id);
+        System.out.println("in5");
+
+        return new ResponseEntity<>("Deleted successfully",HttpStatus.OK);
     }
   
    
