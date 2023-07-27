@@ -1,0 +1,46 @@
+ 
+ 
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3">Goal Settings </div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page_container position-relative p-4"
+style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
+ 
+
+<div class="dropdown">
+  <button class="dropbtn" (click)="toggleDropdown()" #dropdownButton>
+    Tasks <span class="arrow-down"></span>
+  </button>
+  <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}" (keydown)="onKeyDown($event)">
+    <a (click)="showAllTasks()">All Tasks</a>
+    <a (click)="showLastMonthTasks()">Last Month</a>
+    <a (click)="showLastWeekTasks()">Last Week</a>
+
+  </div>
+ 
+  <div class="button-container">
+    <button routerLink="./goalsetting" class="task-button">Set Goals</button>
+    <button routerLink="./achievedgoals" class="task-button">Achieved Goals</button>
+  </div>
+</div>
+ 
+
+
+  <div class="task-list">
+
+    <div *ngFor="let task of filteredTasks">
+      <div class="task-container">
+
+      <div class="task-name">{{ task.name }}</div>
+      <div class="task-duration">{{ task.duration }} minute(s)</div>
+      <div class="task-date">{{ task.date }}</div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+  </div>
+ 
+  </div>
+
+

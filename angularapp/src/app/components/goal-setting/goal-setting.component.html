@@ -1,0 +1,141 @@
+
+
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3">Goal Setting</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page_container p-4" style="font-size: medium; width: 100%; min-height: calc(100vh - 200px);">
+
+      <div class="nav"><h1><i> <marquee class="marquee"> Organize your life with goals!!</marquee></i></h1>
+      </div>
+
+      <div class="card-container">
+      <div class="card" >
+          <img src="assets\images\swim.png"class="card-img-top" alt="..." (click)="setFormValues('card1')">
+          <div class="card-body">
+            <h5 class="card-title">Swimming</h5>
+            <p class="card-text">Dive into swimming for a boosts cardiovascular health and endurance.It's a refreshing way to burn calories and aiding weight loss.</p>
+         <div class="t1" >  <input type="number" placeholder="No. of minutes" [(ngModel)]="swiminput"> </div>
+          </div>
+
+        </div>
+        <div class="card">
+          <img src="assets\images\cycle1.jpg"class="card-img-top" alt="..." (click)="setFormValues('card2')">
+          <div class="card-body">
+            <h5 class="card-title">Cycling</h5>
+            <p class="card-text">Pedal your way to fitness with cycling, a low-impact exercise that strengthens the legs and improves cardiovascular health.</p>
+            <div class="t2" >  <input type="number" placeholder="No. of minutes" [(ngModel)]="cycleinput"> </div>
+          </div>
+        </div>
+        <div class="card" >
+          <img src="assets\images\yoga1.png"class="card-img-top" alt="..." (click)="setFormValues('card3')">
+          <div class="card-body">
+            <h5 class="card-title">Yoga</h5>
+            <p class="card-text">Embrace yoga for a holistic approach to fitness, nurturing the mind, body, and soul.Also reduce stress as you connect breath with movement</p>
+            <div class="t3" >  <input type="number" placeholder="No. of minutes" [(ngModel)]="yogainput"> </div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets\images\exercise.png"class="card-img-top" alt="..." (click)="setFormValues('card4')">
+          <div class="card-body">
+            <h5 class="card-title">Exercises</h5>
+            <p class="card-text"> Embrace exercise as a goal for total well-being, improving strength, flexibility, and overall fitness..</p>
+            <div class="t4" > <input type="number" placeholder="No. of minutes" [(ngModel)]="exerciseinput"> </div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets\images\run.png"class="card-img-top" alt="..." (click)="setFormValues('card5')">
+          <div class="card-body">
+            <h5 class="card-title">Running</h5>
+            <p class="card-text">Lace up your shoes and hit the pavement - running is a fantastic goal for cardiovascular fitness and weight management.</p>
+            <div class="t2" ><input type="number" placeholder="No. of minutes" [(ngModel)]="runinput"> </div>
+          </div>
+        </div>
+        <div class="button">
+          <button class="b1" style="background-color:blueviolet;" (click)="clicktotrack()">Track Your Goals</button>
+          <button type="button" class="b1" (click)="open()">Create your custom goals</button>
+          <img src="assets\images\goal.jfif" width="30%" >
+        </div>
+
+
+
+      <div id="contact-fitness" [style.display]="isOpen?'block' : 'none' " class="fitness">
+      <div id="fitness-content">
+      <div id="fitness-header">
+        <div id="span" (click)="close()" class="close-fitness">&times;</div>
+        <h2>Fitness Tracker App</h2>
+      </div>
+      <div id="fitness-body">
+        <h3><i>Set your life with goals!</i></h3>
+
+        <form #goalForm="ngForm">
+          <div class="form-group">
+            <label for="goalName">Goal Name</label>
+            <input type="text" id="goalName" name="goalName" placeholder="Enter Goal Name" required [(ngModel)]="goalName">
+            <div *ngIf="goalForm.controls['goalName']?.touched && goalForm.controls['goalName']?.errors?.['required']" class="error">Goal Name is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="goalIntensity">Goal intensity</label>
+            <select id="goalIntensity" name="goalIntensity" [(ngModel)]="goalIntensity" required>
+              <option value="" disabled>Select intensity</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <div *ngIf="goalForm.controls['goalIntensity']?.touched && goalForm.controls['goalIntensity']?.errors?.['required']" class="error">Goal intensity should be selected</div>
+          </div>
+
+          <div class="form-group">
+            <label for="startDate"> Date</label>
+            <input type="date" id="startDate" name="startDate" placeholder="Enter Start Date" required [(ngModel)]="startDate">
+            <div *ngIf="goalForm.controls['startDate']?.touched && goalForm.controls['startDate']?.errors?.['required']" class="error"> Date is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="duration">Duration (in days)</label>
+            <input type="number" id="duration" name="duration" placeholder="Enter Duration" required [(ngModel)]="duration">
+            <div *ngIf="goalForm.controls['duration']?.touched && goalForm.controls['duration']?.errors?.['required']" class="error">Duration is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="additionalProperties">Goal notes</label>
+            <textarea id="additionalProperties" name="additionalProperties" placeholder="Take your own notes" [(ngModel)]="additionalProperties"></textarea>
+          </div>
+
+          <div class="button-container">
+            <input type="submit" value="COMPLETE" [disabled]="!goalForm.valid" class="left-button" (click)="onSubmit('complete')">
+            <input type="submit" value="SET" [disabled]="!goalForm.valid" class="right-button" (click)="onSubmit('inprogress')">
+          </div>
+        </form>
+
+      </div>
+      <div id="fitness-footer">
+      </div>
+      </div>
+      </div>
+      <div class="container">
+        <div class="overlay" [class.active]="isConfirm"></div>
+        <div class="popup" [class.active]="isConfirm">
+          <div class="popup-header">
+            <span class="close-icon" (click)="opencloseConfirm()">&times;</span>
+          </div>
+          <div class="popup-content">
+            <h3><b>Name  :  </b> {{goalName}}</h3>
+            <h3><b>Intensity  :  </b> {{goalIntensity}}</h3>
+            <h3><b>Duration  :  </b> {{duration}}</h3>
+            <h3><b>Date  :  </b> {{startDate}}</h3>
+            <h3><b>Notes  :  </b> {{additionalProperties}}</h3>
+            <div class="popup-buttons">
+              <button class="b1" (click)="onSubmit('complete')">Complete</button>
+              <button class="b2" (click)="onSubmit('inprogress')">Set</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>

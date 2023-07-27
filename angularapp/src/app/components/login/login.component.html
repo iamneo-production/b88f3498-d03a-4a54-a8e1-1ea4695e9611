@@ -1,0 +1,71 @@
+<header>
+  <nav class="display-5 fixed-top fw-bold  text-center "
+    style="justify-content: center; font-weight:bolder;color: aliceblue; padding:15px;">
+    Fitness Tracker Portal
+    <hr>
+  </nav>
+</header>
+<!-- Section: Design Block -->
+<section class="align-items-center d-flex" style="flex-direction: row; height: 100vh;">
+
+  <div class="custom-container px-md-4 d-flex flex-wrap justify-content-around">
+    <div class="col-md-4 text-center" style="z-index: 10">
+      <h1 class="text-lg-center my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+        Fitness Tracker <br />
+        <span style="color: hsl(218, 81%, 75%)">Live the healthy Life</span>
+      </h1>
+        <p class="mb-4 opacity-70 mr-4" style="color: hsl(218, 81%, 85%)">
+          Transform Your Health and Fitness with Our Comprehensive Fitness Tracker: Reach Your Goals and Stay Motivated!
+        </p>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card align-items-center">
+
+        <div class="d-flex align-items-center justify-content-center mt-2 mb-2 w-25">
+          <span class="h1">Login</span>
+        </div>
+        <form [formGroup]="myform" class="p-4  my-auto" (submit)="OnLoginSubmit()">
+
+          <!-- container -->
+          <div class="row">
+            <!-- email -->
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email"  class="form-control mb-4" placeholder="Enter your email" type="email" formControlName="email"
+                [ngClass]="{'is-invalid': myform.get('email')?.invalid && myform.get('email')?.touched}" required>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline">
+              <label for="password">Password</label>
+              <input id="password" class="form-control p-2 mb-4" placeholder="Enter your password" type="password"
+                formControlName="password"
+                [ngClass]="{'is-invalid': myform.get('password')?.invalid && myform.get('password')?.touched}"
+                required />
+
+            </div>
+          </div>
+
+          <div class="row-btns">
+            <div>
+              <button type="submit" class="btn btn-danger">
+                Login
+              </button>
+
+            </div>
+            <label class="text-secondary">or</label>
+            <div>
+              <a (click)="sendToRegisterPage()" type="submit" class="text-primary text-decoration-none">
+                Sign up
+              </a>
+            </div>
+          </div>
+          <div *ngIf="loginError" class="mt-2 alert alert-danger">
+            {{loginError}}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
