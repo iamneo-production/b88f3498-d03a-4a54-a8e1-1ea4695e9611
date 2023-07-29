@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 //.antMatchers("/login", "/register")
                 // allow all paths to pass testcases
-                // .antMatchers("/**")
+                .antMatchers("/**")
                 .permitAll()
                 .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**", "/users/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
