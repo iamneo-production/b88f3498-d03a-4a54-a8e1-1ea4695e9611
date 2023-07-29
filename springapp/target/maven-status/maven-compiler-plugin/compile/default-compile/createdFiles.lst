@@ -1,5 +1,5 @@
-com/example/springapp/service/UserService.class
 com/example/springapp/model/Set.class
+com/example/springapp/service/UserService.class
 com/example/springapp/exception/TrackingNotFoundException.class
 com/example/springapp/controller/user/RegisterController.class
 com/example/springapp/model/HtwtTracking.class
@@ -8,8 +8,8 @@ com/example/springapp/controller/ExerciseController.class
 com/example/springapp/filters/JwtRequestFilter.class
 com/example/springapp/service/WorkoutService.class
 com/example/springapp/repository/WorkoutRepository.class
-com/example/springapp/service/ExerciseService.class
 com/example/springapp/recommendedFood/RecommendedFoodModel.class
+com/example/springapp/service/ExerciseService.class
 com/example/springapp/exception/ExerciseNotFoundException.class
 com/example/springapp/controller/TrackingController.class
 com/example/springapp/model/Goal.class
@@ -36,13 +36,13 @@ com/example/springapp/exception/ResourceNotFoundException.class
 com/example/springapp/exception/InvalidInputException.class
 com/example/springapp/service/ExerciseServiceInterface.class
 com/example/springapp/model/LoginModel.class
-com/example/springapp/repository/SetRepository.class
 com/example/springapp/model/User.class
+com/example/springapp/repository/SetRepository.class
 com/example/springapp/admin/adminController.class
 com/example/springapp/exception/InvalidDeleteException.class
 com/example/springapp/service/UserServiceInterface.class
-com/example/springapp/exception/GlobalExceptionHandler.class
 com/example/springapp/config/UserDtoDetailService.class
+com/example/springapp/exception/GlobalExceptionHandler.class
 com/example/springapp/exception/CustomDataAccessException.class
 com/example/springapp/controller/HtwtTrackingController.class
 main/java/com/example/springapp/model/AuthenticationResponse.class
@@ -51,8 +51,8 @@ com/example/springapp/service/SetServiceInterface.class
 com/example/springapp/service/WorkoutServiceInterface.class
 com/example/springapp/exception/ErrorResponse.class
 com/example/springapp/recommendedFood/recommendedFoodController.class
-com/example/springapp/service/SetService.class
 com/example/springapp/exception/SetsNotFoundException.class
+com/example/springapp/service/SetService.class
 com/example/springapp/exception/ExceptionProperties.class
 com/example/springapp/repository/HtwtTrackingRepository.class
 com/example/springapp/config/SecurityConfig.class
