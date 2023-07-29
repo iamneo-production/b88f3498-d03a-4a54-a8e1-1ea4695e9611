@@ -47,9 +47,9 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/login", "/register")
+                // .antMatchers("/login", "/register")
                 // allow all paths to pass testcases
-                // .antMatchers("/**")
+                .antMatchers("/**")
                 .permitAll()
                 .antMatchers("/user/**", "/workout/**", "/api/**", "/sets/**", "/goal/**", "/nutrition/**", "/users/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").hasAuthority("ADMIN")
