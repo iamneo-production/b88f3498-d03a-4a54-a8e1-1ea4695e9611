@@ -1,0 +1,32 @@
+.row-btns {
+  margin-top: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.custom-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: rgba(240, 248, 255, 0.799);
+  color: rgb(3, 129, 240);
+}
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+is-invalid {
+  border: 1px solid red;
+}

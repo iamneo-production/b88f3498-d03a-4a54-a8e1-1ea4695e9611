@@ -1,0 +1,55 @@
+
+  
+      <div class="container-fluid page">
+        <div class="d-flex page__box p-3">Goals Tracker</div>
+        <div class="page__content shadow p-3 position-relative">
+          <div class="page_container position-relative p-4"
+    style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
+          
+  
+              <div class="container">
+                  <h3>You can Track The Workouts by Setting Your Goals</h3>
+                  <br>
+                  <div>
+                  <div *ngFor="let data of dataArray">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th *ngIf="data.Swiminput">Swimming</th>
+                          <th *ngIf="data.Cycleinput">Cycling</th>
+                          <th *ngIf="data.Yogainput">Yoga</th>
+                          <th *ngIf="data.Exerciseinput">Exercises</th>
+                          <th *ngIf="data.Runinput">Running</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td *ngIf="data.Swiminput">{{data.Swiminput}} minutes</td>
+                          <td *ngIf="data.Cycleinput">{{data.Cycleinput}} minutes</td>
+                          <td *ngIf="data.Yogainput">{{data.Yogainput}} minutes</td>
+                          <td *ngIf="data.Exerciseinput">{{data.Exerciseinput}} minutes</td>
+                          <td *ngIf="data.Runinput">{{data.Runinput}} minutes</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- <div *ngFor="let data of dataArray">
+                    <h4 *ngIf="data.Swiminput" >You spent {{data.Swiminput}} minutes for swimming</h4>
+                    <h4 *ngIf="data.Cycleinput">You spent {{data.Cycleinput}} minutes for Cycling</h4>
+                    <h4 *ngIf="data.Yogainput">You spent {{data.Yogainput}} minutes for doing Yoga</h4>
+                    <h4 *ngIf="data.Exerciseinput">You spent {{data.Exerciseinput}} minutes for doing Exercises</h4>
+                    <h4 *ngIf="data.Runinput">You spent {{data.Runinput}} minutes for Running</h4>
+                  </div> -->
+                  <button (click)="displaychart()" style=" color: white;" class="btn btn-success">Track</button>
+                  <br>
+                  <div>
+                    <div style="height: 500px; width: 700px;">
+                      <canvas id="myChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+  
