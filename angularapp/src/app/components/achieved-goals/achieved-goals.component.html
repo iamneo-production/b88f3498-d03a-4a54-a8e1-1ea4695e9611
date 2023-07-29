@@ -1,0 +1,34 @@
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Achieved Goals</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page_container position-relative p-4"
+      style="font-size: small; width: 100%; min-height: calc(100vh - 200px)">
+
+      <div class="container-table">
+        <h1 class="text-primary">Achieved Goals</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>Goal</th>
+              <th>Date</th>
+              <th>Duration</th>
+              <th>Intensity</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let goal of achievedGoals">
+              <td>{{ goal.name }}</td>
+              <td>{{ goal.date }}</td>
+              <td>{{ goal.duration }} minutue(s)</td>
+              <td>{{ goal.intensity }}</td>
+              <td>{{ goal.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="chat-container" [class.loading]="isLoading">
+    
+    <img (click)="showChatForm()" *ngIf="!wantToChat" src="assets/icon/bot.png">
+    <div  *ngIf="wantToChat" >
+        <button (click)="close()" class="close">x</button>
+        
+        <div class="textArea_container scroll">
+             <mat-spinner disableParent="false" style="position:absolute; left:50%; top:50%;" *ngIf="isLoading" diameter="30"></mat-spinner>
+            <div class="card" (click)="getResponse('How to maintain my diet!')">
+                <div class="card-body">
+                    How to maintain my diet!
+                </div>
+            </div>
+            <div class="card" (click)="getResponse('How to live a healthy life!')">
+                <div class="card-body">
+                    How to live a healthy life!
+                </div>
+            </div>
+            <div class="card" (click)="getResponse('I am a beginner. Where to start from?')">
+                <div class="card-body">
+                    I am a beginner. Where to start from?
+                </div>
+            </div>
+             <div *ngFor="let message of responses">
+                 <textarea readonly class="textarea" [value]="message">
+                     
+                 </textarea>
+             </div>
+         </div>
+
+         
+         <div class="input-bar">
+             <input class="form-control" [(ngModel)]="promt">
+             <button class="btn btn-success" type="button" (click)="getResponse('ask')">Ask</button>
+         </div>
+        
+     </div>
+ </div>

@@ -1,9 +1,21 @@
+.navbar-custom{
+  background-color: #C0CFC3;
+  min-width: 600px;
+}
+.heading{
+  background-color: #071123; 
+}
 mat-toolbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-}
 
+}
+.btn-success {
+  color: #fff;
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  position: static;
+}
 ul {
   li {
     list-style: none;
