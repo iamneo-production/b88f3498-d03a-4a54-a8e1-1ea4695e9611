@@ -1,11 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { TitleService } from '../../services/title.service';
-import { UserService } from '../../services/user.service';
-=======
 import { TitleService } from 'src/app/services/title.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
->>>>>>> a978b8f9bbbe58a909423e450545f778df239390
 
 @Component ({
   selector: 'app-recommendations',
@@ -13,9 +10,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./recommendations.component.scss']
 })
 export class RecommendationsComponent implements OnInit {
+
   moreCalorie: boolean = false;
 
-  constructor(private titleService: TitleService, private userService: UserService) {
+  constructor(private titleService: TitleService, private userService: UserService, private tokenService: TokenService, private http: HttpClient) {
     this.titleService.setTitle("Recommendations");
   }
 
@@ -39,14 +37,16 @@ export class RecommendationsComponent implements OnInit {
   maxRequiredCalories!: number;
   minRequiredCalories!: number;
   saved: boolean = false;
-  UserWeight!:number;
+  UserWeight!: number;
+  UserId!: any;
   ngOnInit(): void {
-    
-    this.userService.userSubject.subscribe((userData:any) => {
+
+    this.userService.userSubject.subscribe((userData: any) => {
       this.UserGender = userData.gender;
       this.UserAge = userData.age;
       this.UserWeight = userData.weight;
-      
+
+      this.UserId = userData.id;
       //to get the max and min calorie required from table
       this.requiredCalorieRange.forEach(value => {
         if (userData.age >= value.range.min_age && userData.age <= value.range.max_age) {
@@ -61,32 +61,46 @@ export class RecommendationsComponent implements OnInit {
           console.log(this.minRequiredCalories);
         }
       });
-      
+
     })
     this.userCalorie = this.userService.getUserCalorie(this.UserWeight);
     console.log("user cal:" + this.userCalorie)
 
   }
-  sideBarOpen = true;
 
   bagItemsRecieved: any[] = [];
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
+
 
   receivedBagItems(event: any) {
+    this.deleteAllSaved();
     for (const item in event) {
       const key = item;
       const val = event[item];
-      this.bagItemsRecieved.push({ key: key, value: val })
+      if (val > 0) {
+        this.http.put(`${this.userService.baseUrl}/nutrition/addNutrition/${this.UserId}`, { noOfItems: val, foodName: key }, this.tokenService.getHeader()).subscribe(response => {
+          console.log("bagItems: ", this.bagItemsRecieved);
+        });
+        this.bagItemsRecieved.push({ key: key, value: val })
+      }
 
     }
+  }
+  savedNutrition!: any;
+  showSavedNutritions: boolean = false;
+  showSaved() {
+    this.showSavedNutritions = !this.showSavedNutritions;
+    this.http.get(`${this.userService.baseUrl}/nutrition/getNutrition/${this.UserId}`, this.tokenService.getHeader()).subscribe(listOfNutrition => {
+      this.savedNutrition = listOfNutrition;
+      console.log(listOfNutrition);
 
-    console.log(this.bagItemsRecieved);
+    })
+  }
 
-
-
+  deleteAllSaved() {
+    this.http.delete(`${this.userService.baseUrl}/nutrition/deleteNutrition/${this.UserId}`, this.tokenService.getHeader()).subscribe(deleted => {
+      this.savedNutrition = deleted;
+    })
   }
 
   saveCustomNutrition() {
@@ -98,6 +112,7 @@ export class RecommendationsComponent implements OnInit {
       this.saved = true;
     }
     this.saved = !this.saved;
+
 
   }
 

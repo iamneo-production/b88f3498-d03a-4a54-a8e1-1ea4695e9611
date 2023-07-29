@@ -1,11 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardDataService } from 'app/services/card-data.service';
-import { DataService } from 'app/services/data.service';
-import { GoalsettingService } from 'app/services/goalsetting.service';
-import { TitleService } from 'app/services/title.service';
-import { IComp } from '../IComp';
+import { IComp } from 'src/app/interfaces/IComp';
+import { CardDataService } from 'src/app/services/card-data.service';
+import { DataService } from 'src/app/services/data.service';
+import { GoalsettingService } from 'src/app/services/goalsetting.service';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-goal-setting',
@@ -61,17 +61,42 @@ export class GoalSettingComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    console.log('Form submitted!');
-    console.log('Goal Name:', this.goalName);
-    console.log('Goal Intensity:', this.goalIntensity);
-    console.log('Start Date:', this.startDate);
-    console.log('Duration:', this.duration);
-    console.log('Additional Properties:', this.additionalProperties);
+  onSubmit(status:string) {
+    const request = {name:'',intensity:'',date:'',duration:0,notes:'',status:''};
 
-    let res: string[] = [this.goalName, this.goalIntensity, this.duration.toString(), this.startDate, this.additionalProperties];
-    this.goalsettingservice.setGoalData(res);
+    console.log(this.startDate);
+    if (this.isReverseDateFormat(this.startDate)) {
+      const rightDateFormat = this.convertToRightDateFormat(this.startDate);
+      this.startDate = rightDateFormat;
+      this.opencloseConfirm();
+    }
+    console.log(this.startDate);
+
+    console.log('Form submitted!');
+    request['name']= this.goalName;
+    request['intensity']= this.goalIntensity;
+    request['date']= this.startDate;
+    request['duration']= this.duration;
+    request['notes']= this.additionalProperties;
+    request['status']=status;
+
+    console.log(request);
+    this.goalsettingservice.setGoalData(request);
     this.isOpen = false; //  too Close the form
+  }
+
+  isReverseDateFormat(input: string): boolean {
+    const reverseDateFormatRegex = /^\d{2}-\d{2}-\d{4}$/;
+    return reverseDateFormatRegex.test(input);
+  }
+
+  convertToRightDateFormat(input: string): string {
+    const parts = input.split('-');
+    if (parts.length !== 3 || parts[0].length !== 2 || parts[1].length !== 2 || parts[2].length !== 4) {
+      throw new Error('Invalid reverse date format');
+    }
+
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
   }
 
   onCardClick() {
@@ -88,17 +113,13 @@ export class GoalSettingComponent implements OnInit {
 
   clicktotrack() {
     let dataArray: IComp = { "Swiminput": this.swiminput, "Cycleinput": this.cycleinput, "Yogainput": this.yogainput, "Exerciseinput": this.exerciseinput, "Runinput": this.runinput };
-    this.router.navigateByUrl('/tracking');
+    this.router.navigateByUrl('exertracking/goaltracking');
     this.dataservice.setDataArray(dataArray);
     console.log(dataArray);
   }
   ngOnInit(): void {
   }
-  sideBarOpen = true;
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 
 }
 

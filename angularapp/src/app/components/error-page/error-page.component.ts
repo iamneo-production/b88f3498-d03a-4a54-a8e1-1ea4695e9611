@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { TitleService } from '../../services/title.service';
-=======
 import { TitleService } from 'src/app/services/title.service';
->>>>>>> a978b8f9bbbe58a909423e450545f778df239390
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-page',
@@ -11,8 +8,15 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./error-page.component.scss']
 })
 export class ErrorPageComponent {
-  constructor(private titleServices:TitleService){
+  constructor(private titleServices:TitleService , private _route: Router,){
     titleServices.setTitle("Error Page")
   }
 
+  goToLogin() {
+    this._route.navigate(['login']);
+  }
+
+  goToRegister() {
+    this._route.navigate(['register']);
+  }
 }

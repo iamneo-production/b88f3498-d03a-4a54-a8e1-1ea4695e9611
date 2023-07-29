@@ -1,16 +1,13 @@
-<mat-drawer-container class="body">
-  <mat-drawer mode="side" [opened]="sideBarOpen">
-    <app-sidenav></app-sidenav>
-  </mat-drawer>
-  <mat-drawer-content>
-    <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+
     <div class="container-fluid page">
       <div class="d-flex page__box p-3 ">Nutritional Recommendations</div>
       <div class="page__content shadow p-3 position-realtive">
-        <div *ngIf="setCustomClicked && !saved" class="d-flex flex-row pb-2" style="justify-content: space-between;">
-
-          <div [ngClass]="{'is-valid': calorieAdded> maxRequiredCalories}" class="cal-bar float-end p-2">
-            Total Calorie: {{calorieAdded}} / {{maxRequiredCalories}}
+        <div class="page_container position-relative p-4"
+    style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
+    <div *ngIf="setCustomClicked && !saved" class="d-flex flex-row pb-2" style="justify-content: space-between;">
+      
+      <div [ngClass]="{'is-valid': calorieAdded> maxRequiredCalories}" class="cal-bar float-end p-2">
+        Total Calorie: {{calorieAdded}} / {{maxRequiredCalories}}
           </div>
           <div>
             <button (click)="saveCustomNutrition()" style="color: white;" class="btn btn-success">Show Added
@@ -19,9 +16,27 @@
         </div>
 
 
-        <div class="page_container position-relative p-4"
-          style="display: flex; flex-direction: column ;font-size: small; width: 100%; min-height: calc(100vh - 200px)">
-          <div class="row" *ngIf="!openClicked && !setCustomClicked">
+        <div *ngIf="showSavedNutritions">
+          <table class="table table- table-secondary">
+            <thead>
+                <tr>
+                  <td>S.no.</td>
+                  <td>FoodName</td>
+                  <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let nutrition of savedNutrition; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{nutrition.foodName}}</td>
+                <td>{{nutrition.noOfItems}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-danger" style="height: 50px; width: 100px;" (click)="deleteAllSaved()">Delete All</button>
+        </div>
+        
+          <div class="row" *ngIf="!openClicked && !setCustomClicked && !showSavedNutritions">
             <!-- total calorie of user: -->
             <i>According to Mifflin-St. Jeor equation, Your Calorie:<b
                 [ngClass]="{'is-calorie': userCalorie!=0}">{{userCalorie}}</b>
@@ -52,11 +67,15 @@
                 </tr>
               </tbody>
             </Table>
-            <button (click)="openFoodRecommendation()" class="btn btn-primary text-white mt-4">Get
-              Recommendations</button><br>
-            <button (click)="openCustomRecommendations()" class="btn btn-secondary text-white mt-4">Custom
-              Recommendation</button>
+            <div class="row" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
 
+              <button style="height: 200px; width: 200px;" (click)="openFoodRecommendation()" class="btn btn-primary text-white mt-4 mx-2">Get
+                Recommendations</button><br>
+              <button style="height: 200px; width: 200px;" (click)="openCustomRecommendations()" class="btn btn-secondary text-white mt-4 mx-2">Custom
+                Recommendation</button>
+                <button style="height: 200px; width: 200px;" class="btn btn-danger mt-4 mx-2" (click)="showSaved()">Show saved Nutrition</button>
+
+            </div>  
 
           </div>
 
@@ -164,9 +183,9 @@
 
           </div>
 
+        </div>
 
+        <app-footer></app-footer>
         </div>
       </div>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+  

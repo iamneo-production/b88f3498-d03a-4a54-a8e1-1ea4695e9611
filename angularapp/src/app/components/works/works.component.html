@@ -1,0 +1,27 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3">Exercise Tracking</div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="page_container position-relative p-4"
+    style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
+
+      <div class="box-container">
+
+            <h1>Exercise</h1><br>
+            <div class="container">
+                <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+                    <fieldset class="form-group">
+                        <label>Exercise Type</label>
+                        <input class="form-control" type="text" name="description" required [(ngModel)]="todo.description">
+                    </fieldset>
+                    <br>
+                    <fieldset class="form-group">
+                        <label for="">Target Date</label>
+                        <input class="form-control" type="date" name="targetdate" required [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'" (ngModelChange)="todo.targetDate = $event">
+                    </fieldset>
+                    <br>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+            </div>
+    </div>
+</div>
