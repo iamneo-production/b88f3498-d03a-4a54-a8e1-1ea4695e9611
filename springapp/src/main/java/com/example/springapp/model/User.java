@@ -3,6 +3,7 @@ package com.example.springapp.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,14 +55,44 @@ public class User {
     private String goals;
 
     @NotNull(message = "select atleast one role")
-    private String role;
+    private String role ="USER";
 
     @OneToMany(mappedBy = "user")
     private List<Workout> workout;
+
+    private Boolean enabled=true;
    
+
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
     public User() {
         
+    }
+
+
+   
+    public User(String name, String email, String password, String height, String weight, long age,
+            String gender, String goals, String role, boolean isEnabled) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.goals = goals;
+        this.role = role;
+        this.workout = new ArrayList<>();
+        this.enabled = isEnabled;
     }
 
 

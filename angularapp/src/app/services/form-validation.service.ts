@@ -15,7 +15,7 @@ export class FormValidationService {
     age: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     goals: new FormControl('', [Validators.required]),
-    role: new FormControl('USER', [Validators.required]),
+    role: new FormControl("USER", [Validators.required]),
   })
 
 }

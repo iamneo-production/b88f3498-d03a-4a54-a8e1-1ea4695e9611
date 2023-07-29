@@ -2,19 +2,23 @@ package com.example.springapp.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Optional;
 import java.util.ArrayList;
-
-import org.springframework.transaction.annotation.Transactional;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.springapp.exception.CustomDataAccessException;
+import com.example.springapp.exception.InvalidDeleteException;
+import com.example.springapp.exception.InvalidInputException;
 import com.example.springapp.exception.UserNotFoundException;
+import com.example.springapp.exception.WorkoutNotFoundException;
 import com.example.springapp.model.Exercise;
 import com.example.springapp.model.Set;
 import com.example.springapp.model.User;
@@ -22,20 +26,6 @@ import com.example.springapp.model.Workout;
 import com.example.springapp.repository.ExerciseRepository;
 import com.example.springapp.repository.SetRepository;
 import com.example.springapp.repository.WorkoutRepository;
-import com.example.springapp.exception.WorkoutNotFoundException;
-import com.example.springapp.exception.InvalidDeleteException;
-import com.example.springapp.exception.InvalidInputException;
-import com.example.springapp.exception.CustomDataAccessException;
-
-import javax.validation.Valid;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.context.request.WebRequest;
 
 
 @Service
