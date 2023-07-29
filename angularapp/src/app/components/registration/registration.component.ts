@@ -36,7 +36,7 @@ export class RegistrationComponent {
   // to send data to backend
   onSubmit() {
     this.user = this.myform.value;
-    console.log("form:", this.myform.value);
+    //console.log("form:", this.myform.value);
     if (this.myform.valid) {
       let regUser = this.registerUser(this.user);
 

@@ -20,8 +20,6 @@ export class UserAuthService {
     this.userAuthenticated = logged;
     this.isUserAuthenticatedSubject.next(this.userAuthenticated);
     console.log("user authenticated?=>", this.userAuthenticated);
-
-
   }
 
   login(email: string, password: string) {

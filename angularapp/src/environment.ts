@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  API_KEY: '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',
-  baseUrl: 'https://8080-fcdeefeecdaaaccdcddcffebdffccbebc.project.examly.io',
+  API_KEY: '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',
+  baseUrl: 'https://8080-cedaebaacbebdefdaaaccdcddcffebdffccbebc.project.examly.io',
 };
