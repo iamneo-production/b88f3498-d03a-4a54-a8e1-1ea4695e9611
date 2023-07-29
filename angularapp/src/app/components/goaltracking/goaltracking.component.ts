@@ -18,16 +18,12 @@ export class GoaltrackingComponent implements OnInit{
   dataArray:IComp[] = this.dataservice.getDataArray();
 
   constructor(private titleService:TitleService, private dataservice: DataService) {
-    this.titleService.setTitle("Exercise Tracking");
+    this.titleService.setTitle("Goals Tracker");
    }
   ngOnInit(): void {
       
   }
-  sideBarOpen = true;
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
   
   displaychart(){
     for(let val of this.dataArray){

@@ -26,11 +26,7 @@ constructor(private http:HttpClient, private tokenService: TokenService){}
   ngOnInit(): void {
     this.getAchievedGoals();
   }
-  sideBarOpen = true;
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 
   achievedGoals: any;
 

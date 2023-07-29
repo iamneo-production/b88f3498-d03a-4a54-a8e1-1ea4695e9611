@@ -35,8 +35,7 @@
           </table>
           <button class="btn btn-danger" style="height: 50px; width: 100px;" (click)="deleteAllSaved()">Delete All</button>
         </div>
-        <div class="page_container position-relative p-4"
-          style="display: flex; flex-direction: column ;font-size: small; width: 100%; min-height: calc(100vh - 200px)">
+        
           <div class="row" *ngIf="!openClicked && !setCustomClicked && !showSavedNutritions">
             <!-- total calorie of user: -->
             <i>According to Mifflin-St. Jeor equation, Your Calorie:<b
@@ -189,4 +188,4 @@
         <app-footer></app-footer>
         </div>
       </div>
-    </div>
+  
