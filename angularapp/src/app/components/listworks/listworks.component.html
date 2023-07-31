@@ -1,0 +1,39 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3">Exercise Tracker</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page_container position-relative p-4"
+    style="font-size: medium; width: 100%; min-height: calc(100vh - 200px)">
+
+    <div class="box-container">
+      <h1> My Exercises</h1>
+      <br>
+      <div class="alert alert-success" *ngIf="message">{{message}}</div>
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Exercise Type</th>
+              <th>Target Date</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--   for (Todo todo: todos) {  -->
+                    <tr *ngFor="let todo of todos">
+                      <td>{{todo.description}}</td>
+                      <td>{{todo.targetDate | date | uppercase}}</td>
+                      <td><button (click)="updateTodo(todo.id)" class="btn btn-primary">Update</button></td>
+                      <td><button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td>
+                    </tr>
+            <!-- } -->
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <button (click)="addTodo()" class="btn btn-success">Add</button>
+      </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+</div>

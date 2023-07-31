@@ -1,0 +1,91 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-4 ">Profile</div>
+  <div class="page__content shadow position-relative" style="margin-bottom: 24px;">
+    <div class="position-absolute alert alert-success" style="z-index: 1; bottom: 0%" *ngIf="saved">
+      {{message}}
+    </div>
+    <div class="container d-flex align-items-center justify-content-center ">
+      <div class="row">
+        <div class="col">
+          <div class=" ">
+            <div class="d-flex align-items-center justify-content-center">
+
+              <img [ngClass]="{'shadow': allowEdit }" [src]="imageName" class="card-img-top oval-shape mt-3" alt="...">
+
+              <button *ngIf="allowEdit" style="height: 27px; width: 27px; right:52px; bottom: 40px; "
+                class="position-relative btn btn-danger">
+                <mat-icon style="top:0%; left: 0%; right: 0%; bottom: 0%;" class="position-absolute">
+                  edit
+                </mat-icon>
+                <input type="file" style="top:0%; left: 0%; right: 0%; bottom: 0%; opacity: 0%;"
+                  class="position-absolute custom-file-input border border-primary"
+                  (change)="updateProfileImage($event)">
+              </button>
+            </div>
+            <div class="box">
+              <div class="card-body">
+
+                <div class="form-group">
+                  <label class=" font-weight-normal">Name</label>
+                  <input [(ngModel)]="user.name" type="text" [readonly]="!allowEdit" [disabled]="!allowEdit"
+                    class="form-control border-0" [value]="user.name" [ngClass]="{'form-control-plaintext': allowEdit}"
+                    [disabled]="!allowEdit">
+                </div>
+                <div class="form-group">
+                  <label class=" font-weight-normal">Email</label>
+                  <input [ngClass]="{'form-control-plaintext': allowEdit}" [(ngModel)]="user.email" type="text"
+                    [readonly]="!allowEdit" [disabled]="!allowEdit" class="form-control  border-0" [value]="user.email">
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 col-sm-12">
+                    <label class=" font-weight-normal">Height</label>
+                    <input [ngClass]="{'form-control-plaintext': allowEdit}" [(ngModel)]="user.height" type="text"
+                      [readonly]="!allowEdit" [disabled]="!allowEdit" class="form-control  border-0"
+                      [value]="user.height">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class=" font-weight-normal">Weight</label>
+                    <input [ngClass]="{'form-control-plaintext': allowEdit}" [(ngModel)]="user.weight" type="text"
+                      [readonly]="!allowEdit" [disabled]="!allowEdit" class="form-control  border-0"
+                      [value]="user.weight">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label class=" font-weight-normal">Age</label>
+                    <input [ngClass]="{'form-control-plaintext': allowEdit}" [(ngModel)]="user.age" type="text"
+                      [readonly]="!allowEdit" [disabled]="!allowEdit" class="form-control  border-0" [value]="user.age">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="gender" class="hint">Gender </label>
+                    <select [ngClass]="{'form-select form-control-plaintext': allowEdit}" [(ngModel)]="user.gender"
+                      class="form-control border-0" id="gender" required [disabled]="!allowEdit">
+                      <option [disabled]="true" value="select">Select the gender</option>
+                      <option [selected]="(user.gender=='Male')?true:false" value="Male">
+                        Male
+                      </option>
+                      <option [selected]="(user.gender=='Female')?true:false" value="Female">
+                        Female</option>
+                      <option [selected]="(user.gender=='Other')?true:false" value="Other">
+                        Other</option>
+                    </select>
+                  </div>
+                  <div class="row-btns mt-4 mb-4">
+                    <button *ngIf="!allowEdit" style="color: white !important;" type="button" class="btn btn-secondary"
+                      (click)="enableEdit()">Edit</button>
+                    <button *ngIf="allowEdit" style="color: white !important;" type="button" class="btn btn-success"
+                      (click)="UpdateProfile()">Save</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <div class="d-flex mr-2 ml-auto">
+      
+        <a style="text-decoration: none; color: white;" routerLink="/admin"><button class="btn btn-primary" style="background-color: #1e293b;">Admin Page</button></a>
+        
+      
+      <div class="row m-0 align-items-center">
+        <div>
+          
+
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            class="user mt-2 d-flex align-items-center"
+          >
+          
+            <img src="assets/icon/user.png" alt="" class="user-image mr-1 p-2" />
+
+            {{name}}
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
+          </button>
+          <mat-menu  #menu="matMenu">
+            <button (click)="showUserProfile()" mat-menu-item>
+              <mat-icon>person</mat-icon>
+              <a style="text-decoration: none; color:blue">Profile</a>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <a style="color: red">Logout</a>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

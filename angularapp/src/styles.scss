@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #071123;
+  }
+  
+  
+  
+  
+  
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #2d1f1f;
+  }
+  
+  @media (max-width: 650px) or (max-height: 650px) {
+    .h-custom {
+      height: 100%;
+  
+    }
+  
+  }
+  
+  
+  .is-invalid {
+    border-color: red;
+  }
+  
+  
+  
+  
+  .nav {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mat-toolbar-row{
+    background-color: #ffffff;
+  }
+  .page__box{
+    background-color: #ff5c5c;
+    }
+
+    ::-webkit-scrollbar{
+      display: none;
+      width: 012px;
+      transition:2.3s;
+      
+      
+      }
+      
+      ::-webkit-scrollbar-thumb{
+      background-color: rgba(255, 255, 255);
+      border-radius: 6px;
+      }

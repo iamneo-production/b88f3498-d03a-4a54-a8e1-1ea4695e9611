@@ -1,0 +1,465 @@
+<div *ngIf="!isSaved" class="container">
+    <h3>Carbohydrates</h3>
+
+    <div class="row justify-content-around">
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/apple.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Apple</small>
+                <small>min-cal:165</small>
+                <small>max-cal:190</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Apple')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.apple}}</strong>
+                    <button type="button" (click)="addFood('Apple')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/bananas.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Bananas</small>
+                <small>min-cal:90</small>
+                <small>max-cal:120</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Bananas')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.bananas}}</strong>
+                    <button type="button" (click)="addFood('Bananas')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/berries.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Berries</small>
+                <small>min-cal:50</small>
+                <small>max-cal:80</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Berries')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.berries}}</strong>
+                    <button type="button" (click)="addFood('Berries')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/broccoli.jpeg" alt="">
+            <div class="cal-detail">
+                <small id="title">Broccoli</small>
+                <small>min-cal:30</small>
+                <small>max-cal:50</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Broccoli')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.broccoli}}</strong>
+                    <button type="button" (click)="addFood('Broccoli')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-around">
+
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/brown-rice.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Brown rice</small>
+                <small>min-cal:108</small>
+                <small>max-cal:115</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Brown rice')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.brownrice}}</strong>
+                    <button type="button" (click)="addFood('Brown rice')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/oats.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Oats</small>
+                <small>min-cal:150</small>
+                <small>max-cal:170</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Oats')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.oats}}</strong>
+                    <button type="button" (click)="addFood('Oats')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/quinoa.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Quinoa</small>
+                <small>min-cal:111</small>
+                <small>max-cal:125</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Quinoa')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.quinoa}}</strong>
+                    <button type="button" (click)="addFood('Quinoa')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/sweetpotatoes.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Sweet Potatoes</small>
+                <small>min-cal:100</small>
+                <small>max-cal:130</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Sweet Potatoes')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.sweetpotatoes}}</strong>
+                    <button type="button" (click)="addFood('Sweet Potatoes')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-3 justify-content-around">
+
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Carbohydrates/wholegrainbread.png" alt="">
+            <div class="cal-detail">
+                <small id="title">Whole Grain Bread</small>
+                <small>min-cal:70</small>
+                <small>max-cal:90</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Whole Grain Bread')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.wholegrainbread}}</strong>
+                    <button type="button" (click)="addFood('Whole Grain Bread')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h3>Protein</h3>
+    <div class="row justify-content-around">
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/chickenbreast.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Chicken Breast</small>
+                <small>min-cal:165</small>
+                <small>max-cal:190</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Chicken Breast')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.chickenbreast}}</strong>
+                    <button type="button" (click)="addFood('Chicken Breast')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/chickpeas.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Chick Peas</small>
+                <small>min-cal:140</small>
+                <small>max-cal:180</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Chick Peas')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.chickpeas}}</strong>
+                    <button type="button" (click)="addFood('Chick Peas')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/cottagecheese.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Cottage Cheese</small>
+                <small>min-cal:80</small>
+                <small>max-cal:120</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Cottage Cheese')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.cottagecheese}}</strong>
+                    <button type="button" (click)="addFood('Cottage Cheese')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/eggs.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Eggs</small>
+                <small>min-cal:70</small>
+                <small>max-cal:80</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Eggs')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.eggs}}</strong>
+                    <button type="button" (click)="addFood('Eggs')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/lentils.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Lentils</small>
+                <small>min-cal:115</small>
+                <small>max-cal:230</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Lentils')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.lentils}}</strong>
+                    <button type="button" (click)="addFood('Lentils')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/salmon.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Salmon</small>
+                <small>min-cal:280</small>
+                <small>max-cal:350</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Salmon')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.salmon}}</strong>
+                    <button type="button" (click)="addFood('Salmon')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/tofu.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Tofu</small>
+                <small>min-cal:80</small>
+                <small>max-cal:100</small>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Tofu')" class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.tofu}}</strong>
+                    <button type="button" (click)="addFood('Tofu')" class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+            <img src="./assets/Foods/Protein/turkeybreast.jpg" alt="">
+            <div class="cal-detail">
+                <small id="title">Turkey Breast</small>
+                <small>min-cal:160</small>
+                <small>max-cal:170</small>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" (click)="minusFood('Turkey Breast')"
+                        class="btn btn-secondary col-4 mb-4">-</button>
+                    <strong class="col-4 text-center pt-3">{{bagItems.turkeybreast}}</strong>
+                    <button type="button" (click)="addFood('Turkey Breast')"
+                        class="btn btn-secondary col-4 mb-4">+</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3 justify-content-around">
+
+
+
+        </div>
+        <h3>Fats</h3>
+        <div class="row justify-content-around">
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/almonds.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Almonds</small>
+                    <small>min-cal:165</small>
+                    <small>max-cal:190</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Almonds')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.almonds}}</strong>
+                        <button type="button" (click)="addFood('Almonds')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/avocado.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Avocado</small>
+                    <small>min-cal:60</small>
+                    <small>max-cal:100</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Avocado')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.avocado}}</strong>
+                        <button type="button" (click)="addFood('Avocado')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/cheesecheddar.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Cheese Cheddar</small>
+                    <small>min-cal:110</small>
+                    <small>max-cal:120</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Cheese Cheddar')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.cheesecheddar}}</strong>
+                        <button type="button" (click)="addFood('Cheese Cheddar')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/chiaseeds.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Chiaseeds</small>
+                    <small>min-cal:60</small>
+                    <small>max-cal:70</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Chiaseeds')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.chiaseeds}}</strong>
+                        <button type="button" (click)="addFood('Chiaseeds')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/coconutoil.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Coconut Oil</small>
+                    <small>min-cal:120</small>
+                    <small>max-cal:130</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Coconut Oil')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.coconut}}</strong>
+                        <button type="button" (click)="addFood('Coconut Oil')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/greekyogurt.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Greek Yogurt</small>
+                    <small>min-cal:100</small>
+                    <small>max-cal:150</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Greek Yogurt')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.greekyogurt}}</strong>
+                        <button type="button" (click)="addFood('Greek Yogurt')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/oliveoil.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Olive Oil</small>
+                    <small>min-cal:120</small>
+                    <small>max-cal:130</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Olive Oil')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.oliveoil}}</strong>
+                        <button type="button" (click)="addFood('Olive Oil')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/peanutbutter.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Peanut Butter</small>
+                    <small>min-cal:180</small>
+                    <small>max-cal:200</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Peanut Butter')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.peanutbutter}}</strong>
+                        <button type="button" (click)="addFood('Peanut Butter')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3 justify-content-around">
+
+            <div class="card m-2 col-md-4 col-sm-6 col-lg-2 text-center">
+                <img src="./assets/Foods/Fats/salmonfillet.jpg" alt="">
+                <div class="cal-detail">
+                    <small id="title">Salmon Fillet</small>
+                    <small>min-cal:280</small>
+                    <small>max-cal:350</small>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" (click)="minusFood('Fillet')"
+                            class="btn btn-secondary col-4 mb-4">-</button>
+                        <strong class="col-4 text-center pt-3">{{bagItems.fillet}}</strong>
+                        <button type="button" (click)="addFood('Fillet')"
+                            class="btn btn-secondary col-4 mb-4">+</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

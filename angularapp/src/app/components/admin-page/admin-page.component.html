@@ -1,0 +1,58 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">ADMIN PAGE</div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="page_container position-relative p-4"
+        style="font-size: small; width: 100%; min-height: calc(100vh - 200px)">
+
+        <div  *ngIf="role==='ADMIN'" class="container">
+            <div class="row justify-content-md-center">
+                <div class="">
+                <table class="text-center table table-hover table-primary">
+                    <thead class="">
+                        <tr>
+                            <th>Email</th>
+                            <th>Lock Account</th>
+                            <th>Set Role</th>
+                            <th>Delete User</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let user of users">
+                            <td>{{user.email}}</td>
+                            <td>
+                                <button (click)="activateUser(user.email, user.enabled)" [ngClass]="{'is-Activated': user.enabled }" class="btn btn-danger" >{{user.enabled ? 'Deactivate': 'Activate'}}</button>
+                            </td>
+                            <td>
+                                <select (change)="setNewRole($event, user.email)" name="role" id="role" class="form-select form-select-sm">
+                                    <option [selected]="true" [disabled]="true" >{{user.role}}</option>
+                                    <option value="USER">User</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button (click)="deleteUser(user.email)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="main-content">
+            <div *ngIf="role==='USER'" align="center" class="alert alert-warning col-md-12" role="alert">
+                <h3> Only Allowed For Admin</h3>
+        
+                <p> Please Contact Admin for more details</p>
+        
+                <p>or Login with Admin Account</p>
+            </div>
+        </div>
+
+    </div>
+  </div>
+  </div>
+  
+

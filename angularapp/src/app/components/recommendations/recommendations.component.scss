@@ -1,0 +1,36 @@
+@import "../home/home.component.scss";
+
+thead {
+    font-weight: bold;
+    font-style: normal;
+}
+.highlight-gender{
+    color: rgb(61, 172, 27) !important;
+}
+.is-valid{
+    border: 1px solid red;
+    background-color: rgb(248, 116, 116);
+}
+
+.is-Age {
+    border: 2px dotted rgb(16, 149, 27);
+}
+.is-calorie{
+ 
+    color:blue;
+}
+
+
+.cal-bar {
+    font-size: large;
+   color: rgb(42, 142, 105) !important;
+}
+
+.btn:hover{
+    background-color: rgb(255, 255, 255) !important;
+    color: blue !important;
+}
+.btn:active {
+    background-color: rgba(181, 181, 206, 0.782) !important;
+}
+
